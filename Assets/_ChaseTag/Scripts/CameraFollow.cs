@@ -10,9 +10,13 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private Transform target2 = default;
         [SerializeField] private float offsetZ = -2;
         [SerializeField] private float offsetY = 5;
+        [SerializeField] private float heightMultiplicator = 0.1f;
+        [SerializeField] private float widthMultiplicator = 0.1f;
         [SerializeField] private float smoothTime = 0.5F;
         [SerializeField] private float lookSpeed = 5;
-        [SerializeField] private float maxQuaternionRotaY = 0.1f;
+        [SerializeField] private Vector3 maxQuaternionRota;
+        [SerializeField] private Vector3 minQuaternionRota;
+        [SerializeField] private bool isLookat = true;
 
         private Vector3 velocity = Vector3.zero;
 
@@ -24,35 +28,36 @@ namespace Com.IsartDigital.ChaseTag
         private void MoveCamera()
         {
             Vector3 newPos = target.position;
-
-            if (target2 != null)
-                newPos = (target.position + target2.position) / 2;
+            float distance = Vector3.Distance(target.position, target2.position);
+            newPos = (target.position + target2.position) / 2;
             
-            Vector3 targetPosition = new Vector3(newPos.x, newPos.y + offsetY, newPos.z + offsetZ);
-            Quaternion targetRotation = Quaternion.LookRotation(newPos - transform.position);
-
-            targetRotation = ClampRotation(targetRotation, targetRotation.x, maxQuaternionRotaY, 0);
-
+            Vector3 targetPosition = new Vector3(newPos.x, newPos.y + offsetY + (distance * heightMultiplicator), newPos.z + offsetZ + (distance * widthMultiplicator));
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lookSpeed * Time.deltaTime);
+
+            if (isLookat) { 
+                Quaternion targetRotation = Quaternion.LookRotation(newPos - transform.position);
+                targetRotation = ClampRotation(targetRotation, minQuaternionRota.x, maxQuaternionRota.x, minQuaternionRota.y, maxQuaternionRota.y, minQuaternionRota.z, maxQuaternionRota.z);
+                
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lookSpeed * Time.deltaTime);
+            }
         }
 
-        private Quaternion ClampRotation(Quaternion targetRotation, float x, float y, float z)
+        private Quaternion ClampRotation(Quaternion targetRotation, float minX, float maxX, float minY, float maxY, float minZ, float maxZ)
         {
-            if (targetRotation.x > x)
-                targetRotation.x = x;
-            else if (targetRotation.x < -x)
-                targetRotation.x = -x;
+            if (targetRotation.x > maxX)
+                targetRotation.x = maxX;
+            else if (targetRotation.x < minX)
+                targetRotation.x = minX;
 
-            if (targetRotation.y > y)
-                targetRotation.y = y;
-            else if (targetRotation.y < -y)
-                targetRotation.y = -y;
+            if (targetRotation.y > maxY)
+                targetRotation.y = maxY;
+            else if (targetRotation.y < minY)
+                targetRotation.y = minY;
 
-            if (targetRotation.z > z)
-                targetRotation.z = z;
-            else if (targetRotation.z < -z)
-                targetRotation.z = -z;
+            if (targetRotation.z > maxZ)
+                targetRotation.z = maxZ;
+            else if (targetRotation.z < minZ)
+                targetRotation.z = minZ;
 
             return targetRotation;
         }
