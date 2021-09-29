@@ -15,3 +15,6 @@ MonoBehaviour:
   normalSpeed: 2
   catSpeed: 1
   mouseSpeed: 1
+  normalDrag: 5
+  catDrag: 1
+  mouseDrag: 1

@@ -25,6 +25,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			rigidbody = GetComponent<Rigidbody>();
 
 			currentSpeed = playerSpecs.NormalSpeed;
+			rigidbody.drag = playerSpecs.NormalDrag;
         }
 
         private void Update()
