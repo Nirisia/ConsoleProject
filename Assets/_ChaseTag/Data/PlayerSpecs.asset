@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ffd3c7204f189418892dfea9883f13, type: 3}
   m_Name: PlayerSpecs
   m_EditorClassIdentifier: 
-  normalSpeed: 2
-  catSpeed: 1
-  mouseSpeed: 1
+  normalSpeed: 5
+  catSpeed: 5
+  mouseSpeed: 7
   normalDrag: 5
   catDrag: 1
   mouseDrag: 1
