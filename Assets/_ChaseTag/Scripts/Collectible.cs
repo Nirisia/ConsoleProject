@@ -6,10 +6,22 @@
 using UnityEngine;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag {
+    public delegate void CollectibleEventHandler(Player player);
 	public class Collectible : MonoBehaviour {
-	
-		private void Start(){
-			Debug.Log(typeof(Collectible).ToString());
-		}
-	}
+
+        public static event CollectibleEventHandler OnCollected;
+
+        [SerializeField] private string playerTag = "Player";
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag(playerTag))
+            {
+                OnCollected?.Invoke(other.GetComponent<Player>());
+                
+                //Rajout de feedback
+                Destroy(gameObject);
+            }
+        }
+    }
 }
