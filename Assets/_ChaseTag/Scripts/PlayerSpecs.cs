@@ -9,6 +9,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 	[CreateAssetMenu(menuName = "Prototype/PlayerSpecs")]
 	public class PlayerSpecs: ScriptableObject {
 
+		[Header("Speed")]
 		[SerializeField] private float normalSpeed = 1f;
 		[SerializeField] private float catSpeed = 1f;
 		[SerializeField] private float mouseSpeed = 1f;
@@ -16,5 +17,14 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		public float NormalSpeed => normalSpeed;
 		public float CatSpeed => catSpeed;
 		public float MouseSpeed => mouseSpeed;
+
+		[Header("Drag")]
+		[SerializeField] private float normalDrag = 1f;
+		[SerializeField] private float catDrag = 1f;
+		[SerializeField] private float mouseDrag = 1f;
+
+		public float NormalDrag => normalDrag;
+		public float CatDrag => catDrag;
+		public float MouseDrag => mouseDrag;
 	}
 }

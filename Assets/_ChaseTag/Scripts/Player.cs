@@ -6,6 +6,7 @@
 using UnityEngine;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag {
+	[RequireComponent(typeof(Rigidbody))]
 	public class Player : MonoBehaviour {
 
 		[SerializeField] private string horizontalInput = "Horizontal";
@@ -17,9 +18,14 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		private Vector3 velocity = Vector3.zero;
 
+		new private Rigidbody rigidbody;
+
         private void Awake()
         {
+			rigidbody = GetComponent<Rigidbody>();
+
 			currentSpeed = playerSpecs.NormalSpeed;
+			rigidbody.drag = playerSpecs.NormalDrag;
         }
 
         private void Update()
@@ -29,7 +35,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 			velocity = velocity.normalized * (currentSpeed *Time.deltaTime);
 
-			transform.position += velocity;
+			rigidbody.AddForce(velocity, ForceMode.VelocityChange);
         }
     }
 }
