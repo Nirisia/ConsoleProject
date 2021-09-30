@@ -6,7 +6,7 @@
 using UnityEngine;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag {
-    public delegate void CollectibleEventHandler(Player player);
+    public delegate void CollectibleEventHandler(Collectible collectible);
 	public class Collectible : MonoBehaviour {
 
         public static event CollectibleEventHandler OnCollected;
@@ -17,7 +17,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         {
             if (other.CompareTag(playerTag))
             {
-                OnCollected?.Invoke(other.GetComponent<Player>());
+                OnCollected?.Invoke(this);
                 
                 //Rajout de feedback
                 Destroy(gameObject);
