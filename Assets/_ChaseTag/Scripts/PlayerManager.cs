@@ -9,6 +9,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 	public sealed class PlayerManager : MonoBehaviour {
 	
 		public static PlayerManager Instance { get; private set; }
+
+        [SerializeField] private Player player1 = default;
+        [SerializeField] private Player player2 = default;
 		
 		private void Awake()
         {
@@ -19,12 +22,33 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
                 Debug.LogWarning("Trying to create multiple instances of singleton script, creation denied");
                 Destroy(gameObject);
             }
+
+            Player.OnCollectibleCollected += Player_OnCollectibleCollected;
         }
 
         private void OnDestroy()
         {
             if (Instance == this)
                 Instance = null;
+
+            Player.OnCollectibleCollected -= Player_OnCollectibleCollected;
+        }
+ 
+        private void Player_OnCollectibleCollected(Player player)
+        {
+            if (player1.NumCollectiblesCollected > player2.NumCollectiblesCollected)
+            {
+                player1.SetModeCat();
+                player2.SetModeMouse();
+            }
+            else if (player1.NumCollectiblesCollected < player2.NumCollectiblesCollected)
+            {
+                player1.SetModeMouse();
+                player2.SetModeCat();
+            }
+
+            Debug.Log(player1.CurrentState);
+            Debug.Log(player2.CurrentState);
         }
 	}
 }
