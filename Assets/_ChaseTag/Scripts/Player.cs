@@ -54,8 +54,6 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         {
             if (other.CompareTag(collectibleTag))
             {
-				Debug.Log("touché");
-
 				numCollectiblesCollected++;
 				OnCollectibleCollected?.Invoke(this);
             }
