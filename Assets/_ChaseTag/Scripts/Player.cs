@@ -10,6 +10,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 	[RequireComponent(typeof(Rigidbody))]
 	public class Player : MonoBehaviour {
 
+		public static event PlayerEventHandler OnCollectibleCollected;
+
 		[Header("States")]
 		[SerializeField] private PlayerSpecs playerSpecs = default;
 		
@@ -24,6 +26,12 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		[Header("Inputs")]
 		[SerializeField] private string horizontalInput = "Horizontal";
 		[SerializeField] private string verticalInput = "Vertical";
+
+		[Header("Collisions")]
+		[SerializeField] private string collectibleTag = "Collectible";
+
+		private int numCollectiblesCollected = 0;
+		public int NumCollectiblesCollected => numCollectiblesCollected;
 
         private void Awake()
         {
@@ -42,8 +50,17 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			rigidbody.AddForce(velocity, ForceMode.VelocityChange);
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag(collectibleTag))
+            {
+				numCollectiblesCollected++;
+				OnCollectibleCollected?.Invoke(this);
+            }
+        }
+
         #region State Machine
-		public void SetModeNormal()
+        public void SetModeNormal()
         {
 			currentState = PlayerState.NORMAL;
 
