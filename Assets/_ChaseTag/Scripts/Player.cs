@@ -6,26 +6,30 @@
 using UnityEngine;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag {
+	public delegate void PlayerEventHandler(Player player);
 	[RequireComponent(typeof(Rigidbody))]
 	public class Player : MonoBehaviour {
 
-		[SerializeField] private string horizontalInput = "Horizontal";
-		[SerializeField] private string verticalInput = "Vertical";
-
+		[Header("States")]
 		[SerializeField] private PlayerSpecs playerSpecs = default;
-
+		
+		private PlayerState currentState = PlayerState.NORMAL;
+		public PlayerState CurrentState => currentState;
+		
 		private float currentSpeed;
-
+		
+		new private Rigidbody rigidbody;
 		private Vector3 velocity = Vector3.zero;
 
-		new private Rigidbody rigidbody;
+		[Header("Inputs")]
+		[SerializeField] private string horizontalInput = "Horizontal";
+		[SerializeField] private string verticalInput = "Vertical";
 
         private void Awake()
         {
 			rigidbody = GetComponent<Rigidbody>();
 
-			currentSpeed = playerSpecs.NormalSpeed;
-			rigidbody.drag = playerSpecs.NormalDrag;
+			SetModeNormal();
         }
 
         private void Update()
@@ -37,5 +41,38 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 			rigidbody.AddForce(velocity, ForceMode.VelocityChange);
         }
+
+        #region State Machine
+		public void SetModeNormal()
+        {
+			currentState = PlayerState.NORMAL;
+
+			currentSpeed = playerSpecs.NormalSpeed;
+			rigidbody.drag = playerSpecs.NormalDrag;
+        }
+
+		public void SetModeCat()
+        {
+			currentState = PlayerState.CAT;
+
+			currentSpeed = playerSpecs.CatSpeed;
+			rigidbody.drag = playerSpecs.CatDrag;
+        }
+
+		public void SetModeMouse()
+        {
+			currentState = PlayerState.MOUSE;
+
+			currentSpeed = playerSpecs.MouseSpeed;
+			rigidbody.drag = playerSpecs.MouseDrag;
+        }
+        #endregion State Machine
+    }
+
+	public enum PlayerState
+    {
+		NORMAL,
+		CAT,
+		MOUSE
     }
 }
