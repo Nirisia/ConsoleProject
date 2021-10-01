@@ -22,7 +22,18 @@ namespace Com.IsartDigital.ChaseTag
 
         private void Update()
         {
-            MoveCamera();
+            if(target != null && target2 != null)
+                MoveCamera();
+            else
+            {
+                var players = GameObject.FindGameObjectsWithTag("Player");
+
+                if (players.Length > 1)
+                {
+                    target = players[0].transform;
+                    target2 = players[1].transform;
+                }
+            }
         }
 
         private void MoveCamera()
