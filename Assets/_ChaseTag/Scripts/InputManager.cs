@@ -31,16 +31,18 @@ namespace Com.IsartDigital.ChaseTag
 
                 if (Keyboard.current[Key.Space].wasPressedThisFrame && !player2Spawned)
                 {
-                    PlayerInput.Instantiate(playerPrefab, controlScheme: "Player2", pairWithDevice: Keyboard.current);
+                    var player = PlayerInput.Instantiate(playerPrefab, controlScheme: "Player2", pairWithDevice: Keyboard.current);
                     player2Spawned = true;
                     UIManager.Instance.IsReady(1, true);
+                    UIManager.Instance.ReplacePlayerInMenu(1, player.transform);
                 } 
                 else if (Keyboard.current[Key.Numpad0].wasPressedThisFrame && !player1Spawned)
                 {
-                    PlayerInput.Instantiate(playerPrefab, controlScheme: "Player", pairWithDevice: Keyboard.current);
+                    var player = PlayerInput.Instantiate(playerPrefab, controlScheme: "Player", pairWithDevice: Keyboard.current);
                     player1Spawned = true;
                     UIManager.Instance.IsReady(0, true);
-                }
+                    UIManager.Instance.ReplacePlayerInMenu(0, player.transform);
+            }
 
 #endif
 

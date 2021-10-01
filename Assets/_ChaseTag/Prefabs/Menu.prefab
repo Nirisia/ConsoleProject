@@ -571,7 +571,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0705a2b59a949f499c39362f06f5ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  select:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 69f378b3-e66f-4b59-b1f4-c994d6f4ea8d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
   txtAnimPlay: FadeOut
+  txtReady: Ready
+  txtNotReady: Press A ...
+  btnPlay: {fileID: 0}
+  txtPlayer1Ready: {fileID: 0}
+  txtPlayer2Ready: {fileID: 0}
 --- !u!95 &1088375730786766792
 Animator:
   serializedVersion: 3

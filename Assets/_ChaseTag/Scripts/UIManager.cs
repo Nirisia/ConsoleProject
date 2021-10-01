@@ -1,3 +1,4 @@
+using Com.IsartDigital.ChaseTag.ChaseTag;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,11 +18,16 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private Button btnPlay = default;
         [SerializeField] private Text txtPlayer1Ready = default;
         [SerializeField] private Text txtPlayer2Ready = default;
+        [SerializeField] private Vector3 player1Pos = default;
+        [SerializeField] private Vector3 player2Pos = default;
 
         private Animator animator;
         private bool isPlayer1Ready = false;
         private bool isPlayer2Ready = false;
-        private bool gameStarted = false;
+        private Transform obj_player1;
+        private Transform obj_player2;
+        
+        public bool gameStarted = false;
 
         private void Awake()
         {
@@ -44,6 +50,13 @@ namespace Com.IsartDigital.ChaseTag
             select.Enable();
         }
 
+        public void ReplacePlayerInMenu(int id, Transform player)
+        {
+            if (id == 0)
+                player.position = player1Pos;
+            else
+                player.position = player2Pos;
+        }
 
         public void IsReady(int PlayerId, bool isReady)
         {
@@ -87,6 +100,11 @@ namespace Com.IsartDigital.ChaseTag
                 gameStarted = true;
 
                 select.Disable();
+
+                var players = GameObject.FindGameObjectsWithTag("Player");
+                players[0].GetComponent<Player>().StartMoving();
+                players[1].GetComponent<Player>().StartMoving();
+
             }
         }
 

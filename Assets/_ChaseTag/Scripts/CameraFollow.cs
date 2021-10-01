@@ -22,7 +22,7 @@ namespace Com.IsartDigital.ChaseTag
 
         private void Update()
         {
-            if(target != null && target2 != null)
+            if(target != null && target2 != null && UIManager.Instance.gameStarted)
                 MoveCamera();
             else
             {

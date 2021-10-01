@@ -15,6 +15,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		private float currentSpeed;
 		private Vector2 movementInput;
 		private bool isDash = false;
+		private bool isGameStart = false;
 
 		private Vector3 velocity = Vector3.zero;
 
@@ -26,16 +27,31 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 			currentSpeed = playerSpecs.NormalSpeed;
 			rigidbody.drag = playerSpecs.NormalDrag;
-        }
+			rigidbody.useGravity = false;
+		}
 
         private void Update()
         {
-			velocity.x = movementInput.x;
-			velocity.z = movementInput.y;
+			MovePlayer();
+        }
 
-			velocity = velocity.normalized * (currentSpeed *Time.deltaTime);
+		public void StartMoving()
+        {
+			isGameStart = true;
+			rigidbody.useGravity = true;
+        }
 
-			rigidbody.AddForce(velocity, ForceMode.VelocityChange);
+		private void MovePlayer()
+        {
+			if (isGameStart)
+            {
+				velocity.x = movementInput.x;
+				velocity.z = movementInput.y;
+
+				velocity = velocity.normalized * (currentSpeed * Time.deltaTime);
+
+				rigidbody.AddForce(velocity, ForceMode.VelocityChange);
+			}
         }
 
 		public void OnMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
