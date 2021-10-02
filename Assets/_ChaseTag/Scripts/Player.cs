@@ -3,6 +3,7 @@
 /// Date : 27/09/2021 19:08
 ///-----------------------------------------------------------------
 
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -40,28 +41,19 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		private float currentDash;
 		private bool canDash = true;
 
+		private Action doAction;
+
         private void Awake()
         {
 			rigidbody = GetComponent<Rigidbody>();
 
 			SetModeNormal();
+			Resume();
         }
 
         private void Update()
         {
-			velocity.x = Input.GetAxis(horizontalInput);
-			velocity.z = Input.GetAxis(verticalInput);
-
-			velocity = velocity.normalized * (currentSpeed * Time.deltaTime);
-
-			rigidbody.AddForce(velocity, ForceMode.VelocityChange);
-
-			if (canDash && Input.GetKeyDown(dashInput))
-            {
-				rigidbody.AddForce(velocity.normalized * currentDash, ForceMode.Impulse);
-
-				StartCoroutine(DashCooldown());
-            }
+			doAction();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -109,9 +101,55 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			rigidbody.drag = playerSpecs.MouseDrag;
 			currentDash = playerSpecs.MouseDash;
 		}
-        #endregion State Machine
 
-		private IEnumerator DashCooldown()
+		public void Stop()
+        {
+			doAction = DoActionStop;
+        }
+
+		public void Resume()
+        {
+            switch (currentState)
+            {
+                case PlayerState.NORMAL:
+					SetModeNormal();
+                    break;
+                case PlayerState.CAT:
+					SetModeCat();
+                    break;
+                case PlayerState.MOUSE:
+					SetModeMouse();
+                    break;
+            }
+
+			doAction = DoActionNormal;
+        }
+        
+		#region doAction
+		private void DoActionStop() { }
+
+		private void DoActionNormal()
+        {
+			velocity.x = Input.GetAxis(horizontalInput);
+			velocity.z = Input.GetAxis(verticalInput);
+
+			velocity = velocity.normalized * (currentSpeed * Time.deltaTime);
+
+			rigidbody.AddForce(velocity, ForceMode.VelocityChange);
+
+			if (canDash && Input.GetKeyDown(dashInput))
+			{
+				rigidbody.AddForce(velocity.normalized * currentDash, ForceMode.Impulse);
+
+				StartCoroutine(DashCooldown());
+			}
+		}
+        #endregion doAction
+        
+		#endregion State Machine
+
+
+        private IEnumerator DashCooldown()
         {
 			canDash = false;
 
