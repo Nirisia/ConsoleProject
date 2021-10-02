@@ -38,6 +38,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             if (GameTimer != null) GameTimer.OnTimerCompleted += GameTimer_OnTimerCompleted;
 
             Player.OnMouseCaught -= Player_OnMouseCaught;
+
+            OnWin = null;
+            OnTie = null;
         }
 
         private void Start()
