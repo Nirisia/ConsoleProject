@@ -56,8 +56,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 			if (canDash && Input.GetKeyDown(dashInput))
             {
-				//Dash
-				Debug.Log("dash");
+				rigidbody.AddForce(velocity.normalized * currentDash, ForceMode.Impulse);
+
 				StartCoroutine(DashCooldown());
             }
         }
