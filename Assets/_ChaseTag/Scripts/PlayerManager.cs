@@ -47,5 +47,24 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
                 player2.SetModeCat();
             }
         }
+
+        public bool TryGetMousePlayer(out Player player)
+        {
+            if (player1.CurrentState == PlayerState.MOUSE)
+            {
+                player = player1;
+                return true;
+            }
+            else if (player2.CurrentState == PlayerState.CAT)
+            {
+                player = player2;
+                return true;
+            }
+            else
+            {
+                player = null;
+                return false;
+            }
+        }
 	}
 }
