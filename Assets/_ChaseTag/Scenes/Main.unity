@@ -1375,6 +1375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd677a93651d65843b73e7fa42cc8234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerPrefab: {fileID: 7531695272994752963, guid: c969f20bc49ea8f4882346f3652d87b3, type: 3}
 --- !u!4 &1772121682
 Transform:
   m_ObjectHideFlags: 0
