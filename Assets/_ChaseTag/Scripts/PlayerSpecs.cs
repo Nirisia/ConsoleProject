@@ -32,8 +32,13 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		[SerializeField] private float catDash = 5f;
 		[SerializeField] private float mouseDash = 5f;
 
+		[Tooltip("in seconds")]
+		[SerializeField] private float dashCooldown = 1f;
+
 		public float NormalDash => normalDash;
 		public float CatDash => catDash;
 		public float MouseDash => mouseDash;
+
+		public float DashCooldown => dashCooldown;
 	}
 }
