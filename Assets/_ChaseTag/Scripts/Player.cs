@@ -3,6 +3,7 @@
 /// Date : 27/09/2021 19:08
 ///-----------------------------------------------------------------
 
+using System.Collections;
 using UnityEngine;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag {
@@ -26,6 +27,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		[Header("Inputs")]
 		[SerializeField] private string horizontalInput = "Horizontal";
 		[SerializeField] private string verticalInput = "Vertical";
+		[SerializeField] private string dashInput = "Dash";
 
 		[Header("Collisions")]
 		[SerializeField] private string collectibleTag = "Collectible";
@@ -34,6 +36,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		public int NumCollectiblesCollected => numCollectiblesCollected;
 
 		private float currentDash;
+		private bool canDash = true;
 
         private void Awake()
         {
@@ -50,6 +53,12 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			velocity = velocity.normalized * (currentSpeed *Time.deltaTime);
 
 			rigidbody.AddForce(velocity, ForceMode.VelocityChange);
+
+			if (canDash && Input.GetKeyDown(dashInput))
+            {
+				//Dash
+				StartCoroutine(DashCooldown());
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -89,6 +98,15 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			currentDash = playerSpecs.MouseDash;
 		}
         #endregion State Machine
+
+		private IEnumerator DashCooldown()
+        {
+			canDash = false;
+
+			yield return new WaitForSeconds(playerSpecs.DashCooldown);
+
+			canDash = true;
+        }
     }
 
 	public enum PlayerState
