@@ -66,5 +66,11 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
                 return false;
             }
         }
+
+        public int GetPlayerId(Player player)
+        {
+            if (player == player1) return 1;
+            else return 2;
+        }
 	}
 }

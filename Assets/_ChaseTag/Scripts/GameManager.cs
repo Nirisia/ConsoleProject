@@ -4,15 +4,20 @@
 ///-----------------------------------------------------------------
 
 using Com.IsartDigital.Common;
+using System;
 using UnityEngine;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag {
+    public delegate void EndGameEventHandler(int playerId, PlayerState role);
 	public sealed class GameManager : MonoBehaviour {
 	
 		public static GameManager Instance { get; private set; }
 
         [SerializeField] private Timer timerPrefab = default;
         public Timer GameTimer { get; private set; }
+
+        public event EndGameEventHandler OnWin;
+        public event Action OnTie;
 
 		private void Awake()
         {
@@ -29,6 +34,10 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         {
             if (Instance == this)
                 Instance = null;
+
+            if (GameTimer != null) GameTimer.OnTimerCompleted += GameTimer_OnTimerCompleted;
+
+            Player.OnMouseCaught -= Player_OnMouseCaught;
         }
 
         private void Start()
@@ -49,22 +58,23 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         {
             Player.OnMouseCaught -= Player_OnMouseCaught;
 
-            //player wins
+            OnWin?.Invoke(PlayerManager.Instance.GetPlayerId(player), player.CurrentState);
         }
 
         private void GameTimer_OnTimerCompleted()
         {
             GameTimer.OnTimerCompleted -= GameTimer_OnTimerCompleted;
+            GameTimer = null;
 
             Player winner;
 
             if (PlayerManager.Instance.TryGetMousePlayer(out winner))
             {
-                //winner wins
+                OnWin?.Invoke(PlayerManager.Instance.GetPlayerId(winner), winner.CurrentState);
             }
             else
             {
-                //tie
+                OnTie?.Invoke();
             }
         }
     }
