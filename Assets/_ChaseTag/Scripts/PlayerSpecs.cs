@@ -26,5 +26,14 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		public float NormalDrag => normalDrag;
 		public float CatDrag => catDrag;
 		public float MouseDrag => mouseDrag;
+
+		[Header("Dash")]
+		[SerializeField] private float normalDash = 5f;
+		[SerializeField] private float catDash = 5f;
+		[SerializeField] private float mouseDash = 5f;
+
+		public float NormalDash => normalDash;
+		public float CatDash => catDash;
+		public float MouseDash => mouseDash;
 	}
 }
