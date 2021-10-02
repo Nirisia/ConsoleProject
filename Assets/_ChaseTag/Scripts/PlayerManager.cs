@@ -46,9 +46,6 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
                 player1.SetModeMouse();
                 player2.SetModeCat();
             }
-
-            Debug.Log(player1.CurrentState);
-            Debug.Log(player2.CurrentState);
         }
 	}
 }

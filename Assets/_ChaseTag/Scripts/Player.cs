@@ -148,7 +148,6 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         
 		#endregion State Machine
 
-
         private IEnumerator DashCooldown()
         {
 			canDash = false;
