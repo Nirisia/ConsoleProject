@@ -12,6 +12,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 	public class Player : MonoBehaviour {
 
 		public static event PlayerEventHandler OnCollectibleCollected;
+		public static event PlayerEventHandler OnMouseCaught;
 
 		[Header("States")]
 		[SerializeField] private PlayerSpecs playerSpecs = default;
@@ -31,6 +32,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		[Header("Collisions")]
 		[SerializeField] private string collectibleTag = "Collectible";
+		[SerializeField] private string playerTag = "Player";
 
 		private int numCollectiblesCollected = 0;
 		public int NumCollectiblesCollected => numCollectiblesCollected;
@@ -50,7 +52,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			velocity.x = Input.GetAxis(horizontalInput);
 			velocity.z = Input.GetAxis(verticalInput);
 
-			velocity = velocity.normalized * (currentSpeed *Time.deltaTime);
+			velocity = velocity.normalized * (currentSpeed * Time.deltaTime);
 
 			rigidbody.AddForce(velocity, ForceMode.VelocityChange);
 
@@ -68,6 +70,15 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             {
 				numCollectiblesCollected++;
 				OnCollectibleCollected?.Invoke(this);
+            }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (currentState == PlayerState.CAT && collision.collider.CompareTag(playerTag))
+            {
+				Debug.Log("j'ai eu la souris !");
+				OnMouseCaught?.Invoke(this);
             }
         }
 
