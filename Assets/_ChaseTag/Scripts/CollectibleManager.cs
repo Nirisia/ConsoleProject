@@ -19,6 +19,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         
         [SerializeField] private float collectibleRespawnDelay = 0f;
         private WaitForSeconds respawnDelay;
+        private Coroutine respawnCoroutine;
 
         [SerializeField] private int numSimultaneousCollectibles = 1;
 
@@ -48,7 +49,10 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             collectibles.Remove(collectible);
 
             Debug.Log("spawn new collectible");
-            StartCoroutine(SpawnNewCollectible());
+            if (collectibles.Count < numSimultaneousCollectibles && respawnCoroutine != null)
+            {
+                respawnCoroutine = StartCoroutine(SpawnNewCollectible());
+            }
         }
 
         private void OnDestroy()
@@ -78,6 +82,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             yield return respawnDelay;
 
             Collectible collectible = Instantiate(collectiblePrefab);
+            collectibles.Add(collectible);
             Vector3 position = Vector3.zero;
 
             RaycastHit hit;
@@ -94,6 +99,13 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             }
 
             collectible.transform.position = position;
+
+            respawnCoroutine = null;
+
+            if (collectibles.Count < numSimultaneousCollectibles)
+            {
+                respawnCoroutine = StartCoroutine(SpawnNewCollectible());
+            }
         }
 	}
 }
