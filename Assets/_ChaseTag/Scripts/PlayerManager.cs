@@ -12,8 +12,26 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
         [SerializeField] private Player player1 = default;
         [SerializeField] private Player player2 = default;
-		
-		private void Awake()
+        [SerializeField] private Color colorPlayer1 = default;
+        [SerializeField] private Color colorPlayer2 = default;
+
+        public Player Player1 {
+            get { return player1; }
+            set { 
+                player1 = value;
+                player1.GetComponentInChildren<Renderer>().material.color = colorPlayer1;
+            }
+        }
+        public Player Player2
+        {
+            get { return player2; }
+            set { 
+                player2 = value;
+                player2.GetComponentInChildren<Renderer>().material.color = colorPlayer2;
+            }
+        }
+
+        private void Awake()
         {
             if (Instance == null)
                 Instance = this;

@@ -24,8 +24,6 @@ namespace Com.IsartDigital.ChaseTag
         private Animator animator;
         private bool isPlayer1Ready = false;
         private bool isPlayer2Ready = false;
-        private Transform obj_player1;
-        private Transform obj_player2;
         
         public bool gameStarted = false;
 
@@ -53,9 +51,17 @@ namespace Com.IsartDigital.ChaseTag
         public void ReplacePlayerInMenu(int id, Transform player)
         {
             if (id == 0)
+            {
                 player.position = player1Pos;
+                PlayerManager.Instance.Player1 = player.GetComponent<Player>();
+                PlayerManager.Instance.Player1.GetComponent<Player>().Stop();
+            }
             else
+            {
                 player.position = player2Pos;
+                PlayerManager.Instance.Player2 = player.GetComponent<Player>();
+                PlayerManager.Instance.Player2.GetComponent<Player>().Stop();
+            }
         }
 
         public void IsReady(int PlayerId, bool isReady)
@@ -101,9 +107,8 @@ namespace Com.IsartDigital.ChaseTag
 
                 select.Disable();
 
-                var players = GameObject.FindGameObjectsWithTag("Player");
-                players[0].GetComponent<Player>().StartMoving();
-                players[1].GetComponent<Player>().StartMoving();
+                PlayerManager.Instance.Player1.GetComponent<Player>().Resume();
+                PlayerManager.Instance.Player2.GetComponent<Player>().Resume();
 
             }
         }

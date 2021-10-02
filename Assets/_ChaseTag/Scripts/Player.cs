@@ -6,6 +6,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag {
 	public delegate void PlayerEventHandler(Player player);
@@ -17,19 +18,21 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		[Header("States")]
 		[SerializeField] private PlayerSpecs playerSpecs = default;
-		
+
 		private PlayerState currentState = PlayerState.NORMAL;
 		public PlayerState CurrentState => currentState;
-		
+
 		private float currentSpeed;
-		
+
+		private Vector3 movementInput;
+
 		new private Rigidbody rigidbody;
 		private Vector3 velocity = Vector3.zero;
 
-		[Header("Inputs")]
-		[SerializeField] private string horizontalInput = "Horizontal";
-		[SerializeField] private string verticalInput = "Vertical";
-		[SerializeField] private KeyCode dashInput = default;
+		// [Header("Inputs")]
+		// [SerializeField] private string horizontalInput = "Horizontal";
+		// [SerializeField] private string verticalInput = "Vertical";
+		// [SerializeField] private KeyCode dashInput = default;
 
 		[Header("Collisions")]
 		[SerializeField] private string collectibleTag = "Collectible";
@@ -43,49 +46,49 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		private Action doAction;
 
-        private void Awake()
-        {
+		private void Awake()
+		{
 			rigidbody = GetComponent<Rigidbody>();
 
 			SetModeNormal();
 			Resume();
-        }
+		}
 
-        private void Update()
-        {
+		private void Update()
+		{
 			doAction();
-        }
+		}
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag(collectibleTag))
-            {
+		private void OnTriggerEnter(Collider other)
+		{
+			if (other.CompareTag(collectibleTag))
+			{
 				numCollectiblesCollected++;
 				OnCollectibleCollected?.Invoke(this);
-            }
-        }
+			}
+		}
 
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (currentState == PlayerState.CAT && collision.collider.CompareTag(playerTag))
-            {
+		private void OnCollisionEnter(Collision collision)
+		{
+			if (currentState == PlayerState.CAT && collision.collider.CompareTag(playerTag))
+			{
 				Debug.Log("j'ai eu la souris !");
 				OnMouseCaught?.Invoke(this);
-            }
-        }
+			}
+		}
 
-        #region State Machine
-        public void SetModeNormal()
-        {
+		#region State Machine
+		public void SetModeNormal()
+		{
 			currentState = PlayerState.NORMAL;
 
 			currentSpeed = playerSpecs.NormalSpeed;
 			rigidbody.drag = playerSpecs.NormalDrag;
 			currentDash = playerSpecs.NormalDash;
-        }
+		}
 
 		public void SetModeCat()
-        {
+		{
 			currentState = PlayerState.CAT;
 
 			currentSpeed = playerSpecs.CatSpeed;
@@ -94,7 +97,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		}
 
 		public void SetModeMouse()
-        {
+		{
 			currentState = PlayerState.MOUSE;
 
 			currentSpeed = playerSpecs.MouseSpeed;
@@ -103,60 +106,67 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		}
 
 		public void Stop()
-        {
+		{
+			rigidbody.useGravity = false;
 			doAction = DoActionStop;
-        }
+		}
 
 		public void Resume()
-        {
-            switch (currentState)
-            {
-                case PlayerState.NORMAL:
+		{
+			switch (currentState)
+			{
+				case PlayerState.NORMAL:
 					SetModeNormal();
-                    break;
-                case PlayerState.CAT:
+					break;
+				case PlayerState.CAT:
 					SetModeCat();
-                    break;
-                case PlayerState.MOUSE:
+					break;
+				case PlayerState.MOUSE:
 					SetModeMouse();
-                    break;
-            }
+					break;
+			}
 
+			rigidbody.useGravity = true;
 			doAction = DoActionNormal;
-        }
-        
+		}
+
 		#region doAction
 		private void DoActionStop() { }
 
 		private void DoActionNormal()
-        {
-			velocity.x = Input.GetAxis(horizontalInput);
-			velocity.z = Input.GetAxis(verticalInput);
+		{
+			velocity.x = movementInput.x;
+			velocity.z = movementInput.y;
 
 			velocity = velocity.normalized * (currentSpeed * Time.deltaTime);
 
 			rigidbody.AddForce(velocity, ForceMode.VelocityChange);
 
-			if (canDash && Input.GetKeyDown(dashInput))
+		}
+		#endregion doAction
+
+		#endregion State Machine
+
+		private IEnumerator DashCooldown()
+		{
+			canDash = false;
+
+			yield return new WaitForSeconds(playerSpecs.DashCooldown);
+
+			canDash = true;
+		}
+
+		public void OnMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
+		public void OnDash(InputAction.CallbackContext ctx)
+		{
+			if (canDash)
 			{
 				rigidbody.AddForce(velocity.normalized * currentDash, ForceMode.Impulse);
 
 				StartCoroutine(DashCooldown());
 			}
 		}
-        #endregion doAction
-        
-		#endregion State Machine
-
-        private IEnumerator DashCooldown()
-        {
-			canDash = false;
-
-			yield return new WaitForSeconds(playerSpecs.DashCooldown);
-
-			canDash = true;
-        }
-    }
+	}
 
 	public enum PlayerState
     {
