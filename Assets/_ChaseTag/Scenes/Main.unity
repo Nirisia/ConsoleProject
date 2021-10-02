@@ -2028,6 +2028,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7127144402857935985, guid: 3cbabe413d3a0ef4091cd443ff1ec210, type: 3}
+      propertyPath: dashInput
+      value: 305
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127144402857935985, guid: 3cbabe413d3a0ef4091cd443ff1ec210, type: 3}
       propertyPath: playerSpecs
       value: 
       objectReference: {fileID: 11400000, guid: f4631ac44e56f1943a53fa5c09e6b552, type: 2}
@@ -2053,6 +2057,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1790802966}
     m_Modifications:
+    - target: {fileID: 1385543578951867491, guid: ebf05653ae809d648b48e4735434d1fe, type: 3}
+      propertyPath: dashInput
+      value: 306
+      objectReference: {fileID: 0}
     - target: {fileID: 1385543578951867491, guid: ebf05653ae809d648b48e4735434d1fe, type: 3}
       propertyPath: playerSpecs
       value: 

@@ -27,7 +27,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		[Header("Inputs")]
 		[SerializeField] private string horizontalInput = "Horizontal";
 		[SerializeField] private string verticalInput = "Vertical";
-		[SerializeField] private string dashInput = "Dash";
+		[SerializeField] private KeyCode dashInput = default;
 
 		[Header("Collisions")]
 		[SerializeField] private string collectibleTag = "Collectible";
@@ -57,6 +57,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			if (canDash && Input.GetKeyDown(dashInput))
             {
 				//Dash
+				Debug.Log("dash");
 				StartCoroutine(DashCooldown());
             }
         }
