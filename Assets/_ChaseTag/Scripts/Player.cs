@@ -33,6 +33,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		private int numCollectiblesCollected = 0;
 		public int NumCollectiblesCollected => numCollectiblesCollected;
 
+		private float currentDash;
+
         private void Awake()
         {
 			rigidbody = GetComponent<Rigidbody>();
@@ -66,6 +68,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 			currentSpeed = playerSpecs.NormalSpeed;
 			rigidbody.drag = playerSpecs.NormalDrag;
+			currentDash = playerSpecs.NormalDash;
         }
 
 		public void SetModeCat()
@@ -74,7 +77,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 			currentSpeed = playerSpecs.CatSpeed;
 			rigidbody.drag = playerSpecs.CatDrag;
-        }
+			currentDash = playerSpecs.CatDash;
+		}
 
 		public void SetModeMouse()
         {
@@ -82,7 +86,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 			currentSpeed = playerSpecs.MouseSpeed;
 			rigidbody.drag = playerSpecs.MouseDrag;
-        }
+			currentDash = playerSpecs.MouseDash;
+		}
         #endregion State Machine
     }
 
