@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ffd3c7204f189418892dfea9883f13, type: 3}
   m_Name: PlayerSpecs
   m_EditorClassIdentifier: 
-  normalSpeed: 10
+  normalSpeed: 30
   catSpeed: 5
   mouseSpeed: 7
   normalDrag: 5
   catDrag: 1
   mouseDrag: 1
-  normalDash: 5
+  normalDash: 10
   catDash: 5
   mouseDash: 5
   dashCooldown: 1

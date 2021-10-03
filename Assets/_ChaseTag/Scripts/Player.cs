@@ -38,6 +38,10 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		[SerializeField] private string collectibleTag = "Collectible";
 		[SerializeField] private string playerTag = "Player";
 
+		[Header("Particles")]
+		[SerializeField] private ParticleSystem fx_Slow = default;
+		[SerializeField] private ParticleSystem fx_Dash = default;
+
 		private int numCollectiblesCollected = 0;
 		public int NumCollectiblesCollected => numCollectiblesCollected;
 
@@ -58,6 +62,16 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		{
 			doAction();
 		}
+
+		public void PlayParticleSlow()
+        {
+			fx_Slow.Play();
+        }
+		
+		public void StopParticleSlow()
+        {
+			fx_Slow.Stop();
+        }
 
 		private void OnTriggerEnter(Collider other)
 		{
@@ -164,6 +178,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 				rigidbody.AddForce(velocity.normalized * currentDash, ForceMode.Impulse);
 
 				StartCoroutine(DashCooldown());
+
+				fx_Dash.Play();
 			}
 		}
 	}

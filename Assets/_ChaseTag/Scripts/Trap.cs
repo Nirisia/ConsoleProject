@@ -29,7 +29,7 @@ namespace Com.IsartDigital.ChaseTag
                 originPlayerSpeed = playerCollided.currentSpeed;
                 playerCollided.currentSpeed = 0f;
                 StartCoroutine(ReaccelerationPlayer(playerCollided));
-
+                playerCollided.PlayParticleSlow();
             }
         }
 
@@ -45,7 +45,7 @@ namespace Com.IsartDigital.ChaseTag
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
-
+            player.StopParticleSlow();
             player.currentSpeed = originPlayerSpeed;
             yield return null;
             
