@@ -22,7 +22,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		private PlayerState currentState = PlayerState.NORMAL;
 		public PlayerState CurrentState => currentState;
 
-		private float currentSpeed;
+		public float currentSpeed;
 
 		private Vector3 movementInput;
 
