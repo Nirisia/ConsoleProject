@@ -20,6 +20,7 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private Text txtPlayer2Ready = default;
         [SerializeField] private Vector3 player1Pos = default;
         [SerializeField] private Vector3 player2Pos = default;
+        [SerializeField] private Text txt_timer = default;
 
         private Animator animator;
         private bool isPlayer1Ready = false;
@@ -46,6 +47,12 @@ namespace Com.IsartDigital.ChaseTag
 
             select.performed += ctx => BtnPlay();
             select.Enable();
+        }
+
+        private void Update()
+        {
+            int remainingTime = (int)GameManager.Instance.GameTimer.InvertedElapsedTime;
+            txt_timer.text = remainingTime.ToString();
         }
 
         public void ReplacePlayerInMenu(int id, Transform player)
