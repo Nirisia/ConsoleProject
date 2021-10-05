@@ -13,6 +13,8 @@ namespace Com.IsartDigital.ChaseTag
 
         [SerializeField] private InputAction select;
         [SerializeField] private string txtAnimPlay = "FadeOut";
+        [SerializeField] private string txtAnimGameOver = "GameOver";
+        [SerializeField] private string txtAnimReturnToTitlecard = "ReturnToTitlecard";
         [SerializeField] private string txtReady = "Ready";
         [SerializeField] private string txtNotReady = "Press A ...";
         [SerializeField] private Button btnPlay = default;
@@ -118,6 +120,16 @@ namespace Com.IsartDigital.ChaseTag
                 PlayerManager.Instance.Player2.GetComponent<Player>().Resume();
 
             }
+        }
+
+        public void DisplayGameOver()
+        {
+            animator.SetTrigger(txtAnimGameOver);
+        }
+
+        public void GameOverToTitleCard()
+        {
+            animator.SetTrigger(txtAnimReturnToTitlecard);
         }
 
         private void OnDestroy()
