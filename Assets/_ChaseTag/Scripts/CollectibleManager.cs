@@ -49,7 +49,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             collectibles.Remove(collectible);
 
             Debug.Log("spawn new collectible");
-            if (collectibles.Count < numSimultaneousCollectibles && respawnCoroutine != null)
+            if (collectibles.Count < numSimultaneousCollectibles && respawnCoroutine == null)
             {
                 respawnCoroutine = StartCoroutine(SpawnNewCollectible());
             }
@@ -99,6 +99,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             }
 
             collectible.transform.position = position;
+            collectible.transform.rotation = Quaternion.Euler(0, -90, 90);
 
             respawnCoroutine = null;
 

@@ -14,6 +14,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		public static GameManager Instance { get; private set; }
 
         [SerializeField] private Timer timerPrefab = default;
+        [SerializeField] private int timeLimit = 300;
         public Timer GameTimer { get; private set; }
 
         public event EndGameEventHandler OnWin;
@@ -51,7 +52,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         private void StartGame()
         {
             GameTimer = Instantiate(timerPrefab);
-            GameTimer.Init(300);
+            GameTimer.Init(timeLimit);
             GameTimer.OnTimerCompleted += GameTimer_OnTimerCompleted;
 
             Player.OnMouseCaught += Player_OnMouseCaught;

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.SceneManagement;
 
 namespace Com.IsartDigital.ChaseTag
 {
@@ -42,9 +44,13 @@ namespace Com.IsartDigital.ChaseTag
                     player1Spawned = true;
                     UIManager.Instance.IsReady(0, true);
                     UIManager.Instance.ReplacePlayerInMenu(0, player.transform);
-            }
-
+                }
+                else if (Keyboard.current[Key.Space].wasPressedThisFrame && UIManager.Instance.gameOver)
+                {
+                    SceneManager.LoadScene(0);
+                }
 #endif
+                //Manette input a faire
 
         }
 

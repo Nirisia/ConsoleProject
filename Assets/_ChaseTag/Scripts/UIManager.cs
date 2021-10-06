@@ -23,11 +23,14 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private Vector3 player1Pos = default;
         [SerializeField] private Vector3 player2Pos = default;
         [SerializeField] private Text txt_timer = default;
+        [SerializeField] private Text txt_GameOverPlayer1 = default;
+        [SerializeField] private Text txt_GameOverPlayer2 = default;
 
         private Animator animator;
         private bool isPlayer1Ready = false;
         private bool isPlayer2Ready = false;
         
+        public bool gameOver = false;
         public bool gameStarted = false;
 
         private void Awake()
@@ -49,12 +52,23 @@ namespace Com.IsartDigital.ChaseTag
 
             select.performed += ctx => BtnPlay();
             select.Enable();
+
+            GameManager.Instance.OnWin += DisplayWin;
+            GameManager.Instance.OnTie += DisplayTie;
         }
 
         private void Update()
         {
-            int remainingTime = (int)GameManager.Instance.GameTimer.InvertedElapsedTime;
-            txt_timer.text = remainingTime.ToString();
+            DisplayTimeUpdate();
+        }
+
+        private void DisplayTimeUpdate()
+        {
+            if (GameManager.Instance.GameTimer != null)
+            {
+                int remainingTime = (int)GameManager.Instance.GameTimer.InvertedElapsedTime;
+                txt_timer.text = remainingTime.ToString();
+            }
         }
 
         public void ReplacePlayerInMenu(int id, Transform player)
@@ -122,14 +136,37 @@ namespace Com.IsartDigital.ChaseTag
             }
         }
 
-        public void DisplayGameOver()
+        public void DisplayTie()
         {
+            txt_GameOverPlayer1.text = "TIE";
+            txt_GameOverPlayer2.text = "TIE";
+            animator.SetTrigger(txtAnimGameOver);
+        }
+
+        public void DisplayWin(int playerId, PlayerState role)
+        {
+            if (playerId == 0)
+            {
+                txt_GameOverPlayer1.text = "WIN";
+                txt_GameOverPlayer2.text = "LOSE";
+            }
+            else
+            {
+                txt_GameOverPlayer1.text = "LOSE";
+                txt_GameOverPlayer2.text = "WIN";
+            }
+
             animator.SetTrigger(txtAnimGameOver);
         }
 
         public void GameOverToTitleCard()
         {
             animator.SetTrigger(txtAnimReturnToTitlecard);
+        }
+
+        public void SetGameOver()
+        {
+            gameOver = true;
         }
 
         private void OnDestroy()
