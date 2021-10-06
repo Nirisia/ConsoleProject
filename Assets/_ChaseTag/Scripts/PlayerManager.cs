@@ -4,6 +4,7 @@
 ///-----------------------------------------------------------------
 
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag {
 	public sealed class PlayerManager : MonoBehaviour {
@@ -14,6 +15,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         [SerializeField] private Player player2 = default;
         [SerializeField] private Color colorPlayer1 = default;
         [SerializeField] private Color colorPlayer2 = default;
+        [SerializeField] private Text txtStatePlayer1 = default;
+        [SerializeField] private Text txtStatePlayer2 = default;
 
         public Player Player1 {
             get { return player1; }
@@ -58,11 +61,17 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             {
                 player1.SetModeCat();
                 player2.SetModeMouse();
+
+                txtStatePlayer1.text = "CAT";
+                txtStatePlayer2.text = "MOUSE";
             }
             else if (player1.NumCollectiblesCollected < player2.NumCollectiblesCollected)
             {
                 player1.SetModeMouse();
                 player2.SetModeCat();
+
+                txtStatePlayer1.text = "MOUSE";
+                txtStatePlayer2.text = "CAT";
             }
         }
 
