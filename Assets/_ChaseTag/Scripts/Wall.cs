@@ -1,3 +1,4 @@
+using Com.IsartDigital.ChaseTag.ChaseTag;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,16 +22,21 @@ namespace Com.IsartDigital.ChaseTag
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (!isMoving)
+            if (collision.collider.CompareTag("Player") && !isMoving)
             {
-                if (collision.GetContact(0).thisCollider == collider_top)
-                    StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(-transform.forward)));
-                else if (collision.GetContact(0).thisCollider == collider_bottom)
-                    StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(transform.forward)));
-                else if (collision.GetContact(0).thisCollider == collider_left)
-                    StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(transform.right)));
-                else if (collision.GetContact(0).thisCollider == collider_right)
-                    StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(-transform.right)));
+                if (collision.collider.GetComponent<Player>().NumCollectiblesCollected > 0)
+                {
+                    collision.collider.GetComponent<Player>().RemoveCollectible(1);
+
+                    if (collision.GetContact(0).thisCollider == collider_top)
+                        StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(-transform.forward)));
+                    else if (collision.GetContact(0).thisCollider == collider_bottom)
+                        StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(transform.forward)));
+                    else if (collision.GetContact(0).thisCollider == collider_left)
+                        StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(transform.right)));
+                    else if (collision.GetContact(0).thisCollider == collider_right)
+                        StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(-transform.right)));
+                }
             }
         }
 
@@ -47,7 +53,7 @@ namespace Com.IsartDigital.ChaseTag
             GetComponentInChildren<Renderer>().enabled = false;
             fx_explosion.Play();
             
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
             Destroy(gameObject);
         }
 

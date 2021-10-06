@@ -93,6 +93,12 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			GetComponent<SphereCollider>().enabled = false;
         }
 
+		public void RemoveCollectible(int value)
+        {
+			numCollectiblesCollected -= value;
+			OnCollectibleCollected?.Invoke(this);
+		}
+
 		private void OnTriggerEnter(Collider other)
 		{
 			if (other.CompareTag(collectibleTag))
