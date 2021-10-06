@@ -19,6 +19,8 @@ namespace Com.IsartDigital.ChaseTag
         [Header("Collision")]
         [SerializeField] private string playerTag = "Player";
 
+        [SerializeField] private ParticleSystem fx_explosion;
+
         private float originPlayerSpeed = default;
 
         private void OnCollisionEnter(Collision collision)
@@ -31,6 +33,23 @@ namespace Com.IsartDigital.ChaseTag
                 StartCoroutine(ReaccelerationPlayer(playerCollided));
                 playerCollided.PlayParticleSlow();
             }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Wall"))
+            {
+                StartCoroutine(Explode());
+            }
+        }
+
+        IEnumerator Explode()
+        {
+            GetComponentInChildren<Renderer>().enabled = false;
+            fx_explosion.Play();
+
+            yield return new WaitForSeconds(2);
+            Destroy(transform.parent.gameObject);
         }
 
         private IEnumerator ReaccelerationPlayer(Player player) 

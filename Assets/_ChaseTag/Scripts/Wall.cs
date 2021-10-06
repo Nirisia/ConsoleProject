@@ -15,6 +15,8 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private AnimationCurve animationCurve;
         [SerializeField] private float moveDuration;
 
+        [SerializeField] private ParticleSystem fx_explosion;
+
         private bool isMoving = false;
 
         private void OnCollisionEnter(Collision collision)
@@ -30,6 +32,23 @@ namespace Com.IsartDigital.ChaseTag
                 else if (collision.GetContact(0).thisCollider == collider_right)
                     StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(-transform.right)));
             }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Wall") && !isMoving)
+            {
+                StartCoroutine(Explode());
+            }
+        }
+
+        IEnumerator Explode()
+        {
+            GetComponentInChildren<Renderer>().enabled = false;
+            fx_explosion.Play();
+            
+            yield return new WaitForSeconds(1);
+            Destroy(gameObject);
         }
 
         IEnumerator AnimateMove(Vector3 origin, Vector3 target)
