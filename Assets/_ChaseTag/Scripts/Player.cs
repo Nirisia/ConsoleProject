@@ -37,10 +37,14 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		[Header("Collisions")]
 		[SerializeField] private string collectibleTag = "Collectible";
 		[SerializeField] private string playerTag = "Player";
+		[SerializeField] private string wallTag = "Wall";
 
 		[Header("Particles")]
 		[SerializeField] private ParticleSystem fx_Slow = default;
 		[SerializeField] private ParticleSystem fx_Dash = default;
+		[SerializeField] private ParticleSystem fx_Explosion = default;
+
+		[SerializeField] private Renderer playerRenderer = default;
 
 		private CameraShake cameraShake = default;
 
@@ -77,6 +81,18 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			fx_Slow.Stop();
         }
 
+		public void Explode()
+        {
+			ParticleSystem.MainModule main = fx_Explosion.main;
+			main.startColor = playerRenderer.material.color;
+
+			fx_Explosion.Play();
+			playerRenderer.enabled = false;
+			rigidbody.useGravity = false;
+			rigidbody.isKinematic = true;
+			GetComponent<SphereCollider>().enabled = false;
+        }
+
 		private void OnTriggerEnter(Collider other)
 		{
 			if (other.CompareTag(collectibleTag))
@@ -88,12 +104,14 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		private void OnCollisionEnter(Collision collision)
 		{
-			cameraShake.enabled = true;
+			if (collision.collider.CompareTag(playerTag) || collision.collider.CompareTag(wallTag))
+				cameraShake.enabled = true;
 
 			if (currentState == PlayerState.CAT && collision.collider.CompareTag(playerTag))
 			{
 				Debug.Log("j'ai eu la souris !");
 				OnMouseCaught?.Invoke(this);
+				collision.gameObject.GetComponent<Player>().Explode();
 			}
 		}
 

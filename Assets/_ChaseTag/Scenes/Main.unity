@@ -282,6 +282,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LDBlock (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6510751834407518819, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
 --- !u!4 &215484237 stripped
@@ -492,6 +496,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LDBlock (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6510751834407518819, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
 --- !u!4 &363506518 stripped
@@ -597,6 +605,10 @@ PrefabInstance:
     - target: {fileID: 6510751834407518819, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
       propertyPath: m_Name
       value: LDBlock (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6510751834407518819, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
@@ -1201,7 +1213,7 @@ MonoBehaviour:
   target: {fileID: 0}
   target2: {fileID: 0}
   offsetZ: -1.5
-  offsetY: 3
+  offsetY: 4
   heightMultiplicator: 0.25
   widthMultiplicator: -0.05
   smoothTime: 0.3
@@ -1359,6 +1371,10 @@ PrefabInstance:
     - target: {fileID: 6510751834407518819, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
       propertyPath: m_Name
       value: LDBlock (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6510751834407518819, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
@@ -1877,6 +1893,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LDBlock (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6510751834407518819, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
 --- !u!4 &1933215713 stripped
@@ -2013,6 +2033,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LDBlock (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6510751834407518819, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
 --- !u!4 &2002536636 stripped
@@ -2148,6 +2172,10 @@ PrefabInstance:
     - target: {fileID: 6510751834407518819, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
       propertyPath: m_Name
       value: LDBlock (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6510751834407518819, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9ed7de61a75b6d48b8a0b6f1f734947, type: 3}
