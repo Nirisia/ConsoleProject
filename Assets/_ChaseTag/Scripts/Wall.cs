@@ -17,6 +17,7 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private float moveDuration;
 
         [SerializeField] private ParticleSystem fx_explosion;
+        [SerializeField] private ParticleSystem fx_dust;
 
         private bool isMoving = false;
 
@@ -36,6 +37,8 @@ namespace Com.IsartDigital.ChaseTag
                         StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(transform.right)));
                     else if (collision.GetContact(0).thisCollider == collider_right)
                         StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(-transform.right)));
+
+                    fx_dust.Play();
                 }
             }
         }
@@ -73,6 +76,7 @@ namespace Com.IsartDigital.ChaseTag
                 yield return null;
             }
 
+            fx_dust.Stop();
             isMoving = false;
         }
     }
