@@ -91,15 +91,14 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             while (!positionIsValid)
             {
                 position = RandomTool.GetRandomPositionInCube(spawnZoneBottomLeftAngle.position, spawnZoneTopRightAngle.position);
-                
-                if (Physics.Raycast(position, Vector3.down, out hit, position.y + 0.5f))
+
+                if (Physics.Raycast(position, Vector3.down, out hit))
                 {
                     positionIsValid = hit.collider.CompareTag(groundTag);
                 }
             }
 
             collectible.transform.position = position;
-            collectible.transform.rotation = Quaternion.Euler(0, -90, 90);
 
             respawnCoroutine = null;
 
