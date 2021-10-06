@@ -42,7 +42,7 @@ namespace Com.IsartDigital.ChaseTag
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Wall") && !isMoving)
+            if ((other.CompareTag("Wall") && !isMoving) || other.CompareTag("Border"))
             {
                 StartCoroutine(Explode());
             }
