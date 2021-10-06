@@ -17,6 +17,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         [SerializeField] private Color colorPlayer2 = default;
         [SerializeField] private Text txtStatePlayer1 = default;
         [SerializeField] private Text txtStatePlayer2 = default;
+        [SerializeField] private Text txtCollectiblePlayer1 = default;
+        [SerializeField] private Text txtCollectiblePlayer2 = default;
 
         public Player Player1 {
             get { return player1; }
@@ -73,6 +75,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
                 txtStatePlayer1.text = "MOUSE";
                 txtStatePlayer2.text = "CAT";
             }
+
+            txtCollectiblePlayer1.text = player1.NumCollectiblesCollected.ToString();
+            txtCollectiblePlayer2.text = player2.NumCollectiblesCollected.ToString();
         }
 
         public bool TryGetMousePlayer(out Player player)
