@@ -145,7 +145,8 @@ namespace Com.IsartDigital.ChaseTag
 
         public void DisplayWin(int playerId, PlayerState role)
         {
-            if (playerId == 0)
+            Debug.Log(playerId+" : " + role);
+            if (playerId == 1 && role == PlayerState.CAT)
             {
                 txt_GameOverPlayer1.text = "WIN";
                 txt_GameOverPlayer2.text = "LOSE";
