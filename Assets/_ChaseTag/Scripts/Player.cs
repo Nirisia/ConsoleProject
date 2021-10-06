@@ -42,6 +42,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		[SerializeField] private ParticleSystem fx_Slow = default;
 		[SerializeField] private ParticleSystem fx_Dash = default;
 
+		private CameraShake cameraShake = default;
+
 		private int numCollectiblesCollected = 0;
 		public int NumCollectiblesCollected => numCollectiblesCollected;
 
@@ -56,6 +58,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 			SetModeNormal();
 			Resume();
+
+			cameraShake = Camera.main.GetComponentInParent<CameraShake>();
 		}
 
 		private void Update()
@@ -84,6 +88,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		private void OnCollisionEnter(Collision collision)
 		{
+			cameraShake.enabled = true;
+
 			if (currentState == PlayerState.CAT && collision.collider.CompareTag(playerTag))
 			{
 				Debug.Log("j'ai eu la souris !");
