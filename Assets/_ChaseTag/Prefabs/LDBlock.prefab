@@ -5019,6 +5019,7 @@ MonoBehaviour:
   moveDuration: 0.5
   fx_explosion: {fileID: 8947605390600148723}
   fx_dust: {fileID: 1335919321142963817}
+  playerMagnitudeSpeedForMovingWall: 30
 --- !u!54 &8501222562656329880
 Rigidbody:
   m_ObjectHideFlags: 0

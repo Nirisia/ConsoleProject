@@ -54,6 +54,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		private float currentDash;
 		private bool canDash = true;
 
+		public float prevSqrMagnitude;
+
 		private Action doAction;
 
 		private void Awake()
@@ -69,6 +71,11 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		private void Update()
 		{
 			doAction();
+		}
+
+		void FixedUpdate()
+		{
+			prevSqrMagnitude = rigidbody.velocity.sqrMagnitude;
 		}
 
 		public void PlayParticleSlow()

@@ -19,15 +19,21 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private ParticleSystem fx_explosion;
         [SerializeField] private ParticleSystem fx_dust;
 
+        [SerializeField] private float playerMagnitudeSpeedForMovingWall = 0.5f;
+
         private bool isMoving = false;
 
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.collider.CompareTag("Player") && !isMoving)
             {
-                if (collision.collider.GetComponent<Player>().NumCollectiblesCollected > 0)
+                Player player = collision.collider.GetComponent<Player>();
+
+                Debug.Log(player.prevSqrMagnitude);
+
+                if (player.NumCollectiblesCollected > 0 && player.CurrentState == PlayerState.CAT && player.prevSqrMagnitude > playerMagnitudeSpeedForMovingWall)
                 {
-                    collision.collider.GetComponent<Player>().RemoveCollectible(1);
+                    player.RemoveCollectible(1);
 
                     if (collision.GetContact(0).thisCollider == collider_top)
                         StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(-transform.forward)));
