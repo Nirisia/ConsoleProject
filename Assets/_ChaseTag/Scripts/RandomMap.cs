@@ -27,11 +27,19 @@ namespace Com.IsartDigital.ChaseTag
                 var randomPos = new Vector3(GetRandomFloat(minPos.x, maxPos.x), 0, GetRandomFloat(minPos.y, maxPos.y));
 
                 RaycastHit hit;
-                if (Physics.Raycast(randomPos, Vector3.down, out hit))
+                bool positionIsValid = false;
+                Vector3 rayPos;
+
+                int count = 0;
+                while (!positionIsValid && ++count < 10000)
                 {
-                    while (!hit.collider.CompareTag(groundTag))
+                    randomPos = new Vector3(GetRandomFloat(minPos.x, maxPos.x), 0, GetRandomFloat(minPos.y, maxPos.y));
+                    rayPos = randomPos;
+                    rayPos.y += 10;
+
+                    if (Physics.Raycast(rayPos, Vector3.down, out hit))
                     {
-                        randomPos = new Vector3(GetRandomFloat(minPos.x, maxPos.x), 0, GetRandomFloat(minPos.y, maxPos.y));
+                        positionIsValid = hit.collider.CompareTag(groundTag);
                     }
                 }
 

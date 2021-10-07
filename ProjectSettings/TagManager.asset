@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Wall
   - Border
+  - Spawn
   layers:
   - Default
   - TransparentFX
