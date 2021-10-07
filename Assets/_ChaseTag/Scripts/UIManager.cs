@@ -14,6 +14,7 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private InputAction select;
         [SerializeField] private string txtAnimPlay = "FadeOut";
         [SerializeField] private string txtAnimGameOver = "GameOver";
+        [SerializeField] private string txtAnimQuit = "Quit";
         [SerializeField] private string txtAnimReturnToTitlecard = "ReturnToTitlecard";
         [SerializeField] private string txtReady = "Ready";
         [SerializeField] private string txtNotReady = "Press A ...";
@@ -32,6 +33,7 @@ namespace Com.IsartDigital.ChaseTag
         
         public bool gameOver = false;
         public bool gameStarted = false;
+        public bool isQuitting = false;
 
         private void Awake()
         {
@@ -158,6 +160,28 @@ namespace Com.IsartDigital.ChaseTag
             }
 
             animator.SetTrigger(txtAnimGameOver);
+        }
+
+        public void Pause()
+        {
+            Time.timeScale = 0;
+        }
+
+        public void UnPause()
+        {
+            Time.timeScale = 1;
+        }
+
+        public void DisplayQuit()
+        {
+            isQuitting = true;
+            animator.SetTrigger(txtAnimQuit);
+        }
+
+        public void RemoveQuit()
+        {
+            isQuitting = false;
+            animator.SetTrigger(txtAnimQuit);
         }
 
         public void GameOverToTitleCard()

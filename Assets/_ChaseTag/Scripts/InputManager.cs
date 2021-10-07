@@ -1,3 +1,4 @@
+using Com.IsartDigital.ChaseTag.ChaseTag;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,13 +32,32 @@ namespace Com.IsartDigital.ChaseTag
         {
 #if UNITY_EDITOR
 
-                if (Keyboard.current[Key.Space].wasPressedThisFrame && !player2Spawned)
+                
+                if (Keyboard.current[Key.Space].wasPressedThisFrame && UIManager.Instance.gameOver)
+                {
+                    SceneManager.LoadScene(0);
+                }
+                else if (Keyboard.current[Key.Escape].wasPressedThisFrame && !UIManager.Instance.isQuitting)
+                {
+                    UIManager.Instance.DisplayQuit();
+                }
+                else if (Keyboard.current[Key.Escape].wasPressedThisFrame && UIManager.Instance.isQuitting)
+                {
+                    UIManager.Instance.RemoveQuit();
+                    UIManager.Instance.UnPause();
+                }
+                else if (Keyboard.current[Key.Space].wasPressedThisFrame && UIManager.Instance.isQuitting)
+                {
+                    Application.Quit(0);
+                    Debug.Log("You leaved the game !");
+                }
+                else if (Keyboard.current[Key.Space].wasPressedThisFrame && !player2Spawned)
                 {
                     var player = PlayerInput.Instantiate(playerPrefab, controlScheme: "Player2", pairWithDevice: Keyboard.current);
                     player2Spawned = true;
                     UIManager.Instance.IsReady(1, true);
                     UIManager.Instance.ReplacePlayerInMenu(1, player.transform);
-                } 
+                }
                 else if (Keyboard.current[Key.Numpad0].wasPressedThisFrame && !player1Spawned)
                 {
                     var player = PlayerInput.Instantiate(playerPrefab, controlScheme: "Player", pairWithDevice: Keyboard.current);
@@ -45,12 +65,8 @@ namespace Com.IsartDigital.ChaseTag
                     UIManager.Instance.IsReady(0, true);
                     UIManager.Instance.ReplacePlayerInMenu(0, player.transform);
                 }
-                else if (Keyboard.current[Key.Space].wasPressedThisFrame && UIManager.Instance.gameOver)
-                {
-                    SceneManager.LoadScene(0);
-                }
 #endif
-                //Manette input a faire
+            //Manette input a faire
 
         }
 
