@@ -58,7 +58,7 @@ namespace Com.IsartDigital.ChaseTag
                     UIManager.Instance.IsReady(1, true);
                     UIManager.Instance.ReplacePlayerInMenu(1, player.transform);
                 }
-                else if (Keyboard.current[Key.Numpad0].wasPressedThisFrame && !player1Spawned)
+                else if (Keyboard.current[Key.RightShift].wasPressedThisFrame && !player1Spawned)
                 {
                     var player = PlayerInput.Instantiate(playerPrefab, controlScheme: "Player", pairWithDevice: Keyboard.current);
                     player1Spawned = true;
