@@ -29,8 +29,6 @@ namespace Com.IsartDigital.ChaseTag
             {
                 Player player = collision.collider.GetComponent<Player>();
 
-                Debug.Log(player.prevSqrMagnitude);
-
                 if (player.NumCollectiblesCollected > 0 && player.CurrentState == PlayerState.CAT && player.prevSqrMagnitude > playerMagnitudeSpeedForMovingWall)
                 {
                     player.RemoveCollectible(1);

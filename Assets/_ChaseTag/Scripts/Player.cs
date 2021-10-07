@@ -46,6 +46,13 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		[SerializeField] private Renderer playerRenderer = default;
 
+		[SerializeField] private Vector3 sizeNormal;
+		[SerializeField] private Vector3 sizeCat;
+		[SerializeField] private Vector3 sizeMouse;
+
+		[SerializeField] private float rescaleDuration = 1f;
+		[SerializeField] private AnimationCurve rescaleAnimation;
+
 		private CameraShake cameraShake = default;
 
 		private int numCollectiblesCollected = 0;
@@ -98,6 +105,24 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			rigidbody.useGravity = false;
 			rigidbody.isKinematic = true;
 			GetComponent<SphereCollider>().enabled = false;
+        }
+
+		public void SetSize(PlayerState state)
+        {
+            switch (state)
+            {
+                case PlayerState.NORMAL:
+					StartCoroutine(AnimateScale(transform.localScale, sizeNormal));
+                    break;
+                case PlayerState.CAT:
+					StartCoroutine(AnimateScale(transform.localScale, sizeCat));
+					break;
+                case PlayerState.MOUSE:
+					StartCoroutine(AnimateScale(transform.localScale, sizeMouse));
+					break;
+                default:
+                    break;
+            }
         }
 
 		public void RemoveCollectible(int value)
@@ -197,6 +222,22 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		#endregion doAction
 
 		#endregion State Machine
+
+		IEnumerator AnimateScale(Vector3 origin, Vector3 target)
+		{
+			float journey = 0f;
+
+			while (journey <= rescaleDuration)
+			{
+				journey = journey + Time.deltaTime;
+				float percent = Mathf.Clamp01(journey / rescaleDuration);
+				float curvePercent = rescaleAnimation.Evaluate(percent);
+
+				transform.localScale = Vector3.LerpUnclamped(origin, target, curvePercent);
+
+				yield return null;
+			}
+		}
 
 		private IEnumerator DashCooldown()
 		{

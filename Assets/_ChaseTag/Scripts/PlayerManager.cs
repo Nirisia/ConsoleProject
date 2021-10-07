@@ -64,6 +64,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
                 player1.SetModeCat();
                 player2.SetModeMouse();
 
+                player1.SetSize(PlayerState.CAT);
+                player2.SetSize(PlayerState.MOUSE);
+
                 txtStatePlayer1.text = "CAT";
                 txtStatePlayer2.text = "MOUSE";
             }
@@ -71,6 +74,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             {
                 player1.SetModeMouse();
                 player2.SetModeCat();
+
+                player1.SetSize(PlayerState.MOUSE);
+                player2.SetSize(PlayerState.CAT);
 
                 txtStatePlayer1.text = "MOUSE";
                 txtStatePlayer2.text = "CAT";
