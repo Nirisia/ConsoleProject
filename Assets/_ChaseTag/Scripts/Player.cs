@@ -22,7 +22,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		private PlayerState currentState = PlayerState.NORMAL;
 		public PlayerState CurrentState => currentState;
 
-		public float currentSpeed;
+		[HideInInspector] public float currentSpeed;
 
 		private Vector3 movementInput;
 
@@ -38,6 +38,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		[SerializeField] private string collectibleTag = "Collectible";
 		[SerializeField] private string playerTag = "Player";
 		[SerializeField] private string wallTag = "Wall";
+		[SerializeField,Range(0.1f,2f)] private float secondStunAfterCollision = default;
 
 		[Header("Particles")]
 		[SerializeField] private ParticleSystem fx_Slow = default;
@@ -55,8 +56,10 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		private CameraShake cameraShake = default;
 
-		private int numCollectiblesCollected = 0;
-		public int NumCollectiblesCollected => numCollectiblesCollected;
+		//private int numCollectiblesCollected = 0;
+		//public int NumCollectiblesCollected => numCollectiblesCollected;
+
+		public bool haveCrown = false;
 
 		private float currentDash;
 		private bool canDash = true;
@@ -105,11 +108,11 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			main.startColor = playerRenderer.material.color;
 
 			fx_Explosion.Play();
-			playerRenderer.enabled = false;
-			rigidbody.useGravity = false;
-			rigidbody.isKinematic = true;
-			GetComponent<SphereCollider>().enabled = false;
-        }
+			//playerRenderer.enabled = false;
+			//rigidbody.useGravity = false;
+			//rigidbody.isKinematic = true;
+			//GetComponent<SphereCollider>().enabled = false;
+		}
 
 		public void SetSize(PlayerState state)
         {
@@ -129,18 +132,29 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             }
         }
 
-		public void RemoveCollectible(int value)
+        
+		public void ChangeCrown()
         {
-			numCollectiblesCollected -= value;
-			OnCollectibleCollected?.Invoke(this);
+			haveCrown = !haveCrown;
+			if (!haveCrown)
+            {
+				StartCoroutine(StunAfterCollision());
+            }
+
+			else
+				AddCollectible();
 		}
 
-		private void OnTriggerEnter(Collider other)
+        public void AddCollectible()
+        {
+            OnCollectibleCollected?.Invoke(this);
+        }
+
+        private void OnTriggerEnter(Collider other)
 		{
 			if (other.CompareTag(collectibleTag))
 			{
-				numCollectiblesCollected++;
-				OnCollectibleCollected?.Invoke(this);
+				ChangeCrown();
 			}
 		}
 
@@ -152,8 +166,13 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			if (currentState == PlayerState.CAT && collision.collider.CompareTag(playerTag))
 			{
 				Debug.Log("j'ai eu la souris !");
-				OnMouseCaught?.Invoke(this);
-				collision.gameObject.GetComponent<Player>().Explode();
+				//OnMouseCaught?.Invoke(this);
+
+				Player playerCollided = collision.gameObject.GetComponent<Player>();
+				playerCollided.Explode();
+				
+				playerCollided.ChangeCrown();
+				ChangeCrown();
 			}
 		}
 
@@ -190,6 +209,11 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			rigidbody.useGravity = false;
 			doAction = DoActionStop;
 		}
+
+		public void SetModeVoid()
+        {
+			doAction = DoActionStop;
+        }
 
 		public void Resume()
 		{
@@ -255,6 +279,14 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 			canDash = true;
 		}
+		
+		public IEnumerator StunAfterCollision()
+        {
+			SetModeVoid();
+			yield return new WaitForSeconds(secondStunAfterCollision);
+			SetModeCat();
+			Resume();
+		}
 
 		public void OnMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
 		public void OnDash(InputAction.CallbackContext ctx)
@@ -269,6 +301,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			}
 		}
 	}
+
+
 
 	public enum PlayerState
     {

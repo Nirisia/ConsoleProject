@@ -59,7 +59,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
  
         private void Player_OnCollectibleCollected(Player player)
         {
-            if (player1.NumCollectiblesCollected < player2.NumCollectiblesCollected)
+            if (/*player1.NumCollectiblesCollected < player2.NumCollectiblesCollected*/ player2.haveCrown)
             {
                 player1.SetModeCat();
                 player2.SetModeMouse();
@@ -70,7 +70,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
                 txtStatePlayer1.text = "CAT";
                 txtStatePlayer2.text = "MOUSE";
             }
-            else if (player1.NumCollectiblesCollected > player2.NumCollectiblesCollected)
+            else if (/*player1.NumCollectiblesCollected > player2.NumCollectiblesCollected*/ player1.haveCrown)
             {
                 player1.SetModeMouse();
                 player2.SetModeCat();
@@ -82,8 +82,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
                 txtStatePlayer2.text = "CAT";
             }
 
-            txtCollectiblePlayer1.text = player1.NumCollectiblesCollected.ToString();
-            txtCollectiblePlayer2.text = player2.NumCollectiblesCollected.ToString();
+            //txtCollectiblePlayer1.text = player1.NumCollectiblesCollected.ToString();
+            //txtCollectiblePlayer2.text = player2.NumCollectiblesCollected.ToString();
         }
 
         public bool TryGetMousePlayer(out Player player)
