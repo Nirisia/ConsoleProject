@@ -17,8 +17,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         [SerializeField] private Color colorPlayer2 = default;
         [SerializeField] private Text txtStatePlayer1 = default;
         [SerializeField] private Text txtStatePlayer2 = default;
-        [SerializeField] private Text txtCollectiblePlayer1 = default;
-        [SerializeField] private Text txtCollectiblePlayer2 = default;
+        //[SerializeField] private Text txtCollectiblePlayer1 = default;
+        //[SerializeField] private Text txtCollectiblePlayer2 = default;
 
         public Player Player1 {
             get { return player1; }
@@ -82,8 +82,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
                 txtStatePlayer2.text = "CAT";
             }
 
-            txtCollectiblePlayer1.text = player1.NumCollectiblesCollected.ToString();
-            txtCollectiblePlayer2.text = player2.NumCollectiblesCollected.ToString();
+            //txtCollectiblePlayer1.text = player1.NumCollectiblesCollected.ToString();
+            //txtCollectiblePlayer2.text = player2.NumCollectiblesCollected.ToString();
         }
 
         public bool TryGetMousePlayer(out Player player)
@@ -122,5 +122,13 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             player = player1.MouseElapsedTime > player2.MouseElapsedTime ? player1 : player2;
             return true;
         }
-	}
+
+        public float GetPlayerMouseElapsedTime(int playerId)
+        {
+            if (playerId == 1) return player1.MouseElapsedTime;
+            if (playerId == 2) return player2.MouseElapsedTime;
+
+            return 0;
+        }
+    }
 }

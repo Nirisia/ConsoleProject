@@ -2257,6 +2257,10 @@ MonoBehaviour:
   txt_timer: {fileID: 5860178598047856224}
   txt_GameOverPlayer1: {fileID: 2027674766}
   txt_GameOverPlayer2: {fileID: 754614348}
+  fx_spawnP1: {fileID: 0}
+  fx_spawnP2: {fileID: 0}
+  txtPlayer1Collectible: {fileID: 7733137858906247845}
+  txtPlayer2Collectible: {fileID: 4075581628659369814}
   gameOver: 0
   gameStarted: 0
   isQuitting: 0

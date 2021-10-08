@@ -29,6 +29,8 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private Text txt_GameOverPlayer2 = default;
         [SerializeField] private ParticleSystem fx_spawnP1 = default;
         [SerializeField] private ParticleSystem fx_spawnP2 = default;
+        [SerializeField] private Text txtPlayer1Collectible = default;
+        [SerializeField] private Text txtPlayer2Collectible = default;
 
         private Animator animator;
         private bool isPlayer1Ready = false;
@@ -73,6 +75,16 @@ namespace Com.IsartDigital.ChaseTag
             {
                 int remainingTime = (int)GameManager.Instance.GameTimer.InvertedElapsedTime;
                 txt_timer.text = remainingTime.ToString();
+            }
+
+            if (PlayerManager.Instance.Player1 != null)
+            {
+                txtPlayer1Collectible.text = PlayerManager.Instance.Player1.MouseElapsedTime.ToString();
+            }
+
+            if (PlayerManager.Instance.Player2 != null)
+            {
+                txtPlayer2Collectible.text = PlayerManager.Instance.Player2.MouseElapsedTime.ToString();
             }
         }
 
