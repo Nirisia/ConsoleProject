@@ -67,6 +67,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		public bool isTrapped = false;
 
+		public float MouseElapsedTime { get; private set; } = 0f;
+
 		private void Awake()
 		{
 			rigidbody = GetComponent<Rigidbody>();
@@ -220,6 +222,10 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 			rigidbody.AddForce(velocity, ForceMode.VelocityChange);
 
+			if (currentState == PlayerState.MOUSE) 
+			{ 
+				MouseElapsedTime += Time.deltaTime; 
+			}
 		}
 		#endregion doAction
 
