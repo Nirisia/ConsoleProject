@@ -9892,6 +9892,7 @@ MonoBehaviour:
   collectibleTag: Collectible
   playerTag: Player
   wallTag: Wall
+  secondStunAfterCollision: 2
   fx_Slow: {fileID: 5837246514943736875}
   fx_Dash: {fileID: 1493922511621233128}
   fx_Explosion: {fileID: 8710129108750823602}
@@ -9924,6 +9925,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  haveCrown: 0
   prevSqrMagnitude: 0
   isTrapped: 0
 --- !u!54 &6911039557622591632
