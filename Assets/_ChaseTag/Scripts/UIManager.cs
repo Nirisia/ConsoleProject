@@ -26,6 +26,8 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private Text txt_timer = default;
         [SerializeField] private Text txt_GameOverPlayer1 = default;
         [SerializeField] private Text txt_GameOverPlayer2 = default;
+        [SerializeField] private ParticleSystem fx_spawnP1 = default;
+        [SerializeField] private ParticleSystem fx_spawnP2 = default;
 
         private Animator animator;
         private bool isPlayer1Ready = false;
@@ -80,12 +82,14 @@ namespace Com.IsartDigital.ChaseTag
                 player.position = player1Pos;
                 PlayerManager.Instance.Player1 = player.GetComponent<Player>();
                 PlayerManager.Instance.Player1.GetComponent<Player>().Stop();
+                fx_spawnP1.Play();
             }
             else
             {
                 player.position = player2Pos;
                 PlayerManager.Instance.Player2 = player.GetComponent<Player>();
                 PlayerManager.Instance.Player2.GetComponent<Player>().Stop();
+                fx_spawnP2.Play();
             }
         }
 
