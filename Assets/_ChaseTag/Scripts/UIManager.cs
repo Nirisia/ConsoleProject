@@ -57,7 +57,7 @@ namespace Com.IsartDigital.ChaseTag
             select.performed += ctx => BtnPlay();
             select.Enable();
 
-            GameManager.Instance.OnWin += DisplayWin;
+            //GameManager.Instance.OnWin += DisplayWin;
             GameManager.Instance.OnTie += DisplayTie;
         }
 
@@ -149,22 +149,22 @@ namespace Com.IsartDigital.ChaseTag
             animator.SetTrigger(txtAnimGameOver);
         }
 
-        public void DisplayWin(int playerId, PlayerState role)
-        {
-            Debug.Log(playerId+" : " + role);
-            if (playerId == 1 && role == PlayerState.CAT)
-            {
-                txt_GameOverPlayer1.text = "WIN";
-                txt_GameOverPlayer2.text = "LOSE";
-            }
-            else
-            {
-                txt_GameOverPlayer1.text = "LOSE";
-                txt_GameOverPlayer2.text = "WIN";
-            }
+        //public void DisplayWin(int playerId, PlayerState role)
+        //{
+        //    Debug.Log(playerId+" : " + role);
+        //    if (playerId == 1 && role == PlayerState.CAT)
+        //    {
+        //        txt_GameOverPlayer1.text = "WIN";
+        //        txt_GameOverPlayer2.text = "LOSE";
+        //    }
+        //    else
+        //    {
+        //        txt_GameOverPlayer1.text = "LOSE";
+        //        txt_GameOverPlayer2.text = "WIN";
+        //    }
 
-            animator.SetTrigger(txtAnimGameOver);
-        }
+        //    animator.SetTrigger(txtAnimGameOver);
+        //}
 
         public void Pause()
         {

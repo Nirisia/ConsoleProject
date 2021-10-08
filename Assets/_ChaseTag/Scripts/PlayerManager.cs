@@ -110,5 +110,17 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             if (player == player1) return 1;
             else return 2;
         }
+
+        public bool TryGetPlayerWithMostElapsedTime(out Player player)
+        {
+            if (player1.MouseElapsedTime == player2.MouseElapsedTime)
+            {
+                player = null;
+                return false;
+            }
+
+            player = player1.MouseElapsedTime > player2.MouseElapsedTime ? player1 : player2;
+            return true;
+        }
 	}
 }

@@ -8,7 +8,7 @@ using System;
 using UnityEngine;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag {
-    public delegate void EndGameEventHandler(int playerId, PlayerState role);
+    public delegate void EndGameEventHandler(int playerId, float elapsedTime);
 	public sealed class GameManager : MonoBehaviour {
 	
 		public static GameManager Instance { get; private set; }
@@ -38,8 +38,6 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
             if (GameTimer != null) GameTimer.OnTimerCompleted += GameTimer_OnTimerCompleted;
 
-            Player.OnMouseCaught -= Player_OnMouseCaught;
-
             OnWin = null;
             OnTie = null;
         }
@@ -54,15 +52,6 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             GameTimer = Instantiate(timerPrefab);
             GameTimer.Init(timeLimit);
             GameTimer.OnTimerCompleted += GameTimer_OnTimerCompleted;
-
-            Player.OnMouseCaught += Player_OnMouseCaught;
-        }
-
-        private void Player_OnMouseCaught(Player player)
-        {
-            Player.OnMouseCaught -= Player_OnMouseCaught;
-
-            OnWin?.Invoke(PlayerManager.Instance.GetPlayerId(player), player.CurrentState);
         }
 
         private void GameTimer_OnTimerCompleted()
@@ -72,9 +61,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
             Player winner;
 
-            if (PlayerManager.Instance.TryGetMousePlayer(out winner))
+            if (PlayerManager.Instance.TryGetPlayerWithMostElapsedTime(out winner))
             {
-                OnWin?.Invoke(PlayerManager.Instance.GetPlayerId(winner), winner.CurrentState);
+                OnWin?.Invoke(PlayerManager.Instance.GetPlayerId(winner), winner.MouseElapsedTime);
             }
             else
             {
