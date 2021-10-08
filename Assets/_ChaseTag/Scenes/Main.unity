@@ -676,8 +676,6 @@ MonoBehaviour:
   colorPlayer2: {r: 0.3066038, g: 0.57821685, b: 1, a: 1}
   txtStatePlayer1: {fileID: 690006103}
   txtStatePlayer2: {fileID: 555480468}
-  txtCollectiblePlayer1: {fileID: 3034856238191225476}
-  txtCollectiblePlayer2: {fileID: 3034856238191225475}
 --- !u!4 &669529901
 Transform:
   m_ObjectHideFlags: 0
@@ -1746,7 +1744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectiblePrefab: {fileID: 1378327994107320170, guid: b1b3e63972bbe3b46a5d32e2775a188e, type: 3}
-  collectibleRespawnDelay: 0
+  collectibleRespawnDelay: 1
   numSimultaneousCollectibles: 1
   spawnZoneBottomLeftAngle: {fileID: 197447487}
   spawnZoneTopRightAngle: {fileID: 1399253043}
@@ -2553,28 +2551,6 @@ PrefabInstance:
       objectReference: {fileID: 3034856238191225477}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
---- !u!114 &3034856238191225475 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4075581628659369814, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
-  m_PrefabInstance: {fileID: 3034856238191225474}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3034856238191225476 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7733137858906247845, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
-  m_PrefabInstance: {fileID: 3034856238191225474}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &3034856238191225477 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1783478380824119792, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
