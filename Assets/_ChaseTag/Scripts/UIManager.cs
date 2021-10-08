@@ -1,4 +1,5 @@
 using Com.IsartDigital.ChaseTag.ChaseTag;
+using Com.IsartDigital.ChaseTag.Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -79,12 +80,12 @@ namespace Com.IsartDigital.ChaseTag
 
             if (PlayerManager.Instance.Player1 != null)
             {
-                txtPlayer1Collectible.text = PlayerManager.Instance.Player1.MouseElapsedTime.ToString();
+                txtPlayer1Collectible.text = TimeDisplayTool.DisplayTime(PlayerManager.Instance.Player1.MouseElapsedTime, 1);
             }
 
             if (PlayerManager.Instance.Player2 != null)
             {
-                txtPlayer2Collectible.text = PlayerManager.Instance.Player2.MouseElapsedTime.ToString();
+                txtPlayer2Collectible.text = TimeDisplayTool.DisplayTime(PlayerManager.Instance.Player2.MouseElapsedTime, 1);
             }
         }
 
