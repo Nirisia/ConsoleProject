@@ -28,10 +28,14 @@ namespace Com.IsartDigital.ChaseTag
             if (collision.collider.CompareTag(playerTag))
             {
                 Player playerCollided = collision.collider.GetComponent<Player>();
-                originPlayerSpeed = playerCollided.currentSpeed;
-                playerCollided.currentSpeed = 0f;
-                StartCoroutine(ReaccelerationPlayer(playerCollided));
-                playerCollided.PlayParticleSlow();
+                if (!playerCollided.isTrapped)
+                {
+                    playerCollided.isTrapped = true;
+                    originPlayerSpeed = playerCollided.currentSpeed;
+                    playerCollided.currentSpeed = 0f;
+                    StartCoroutine(ReaccelerationPlayer(playerCollided));
+                    playerCollided.PlayParticleSlow();
+                }
             }
         }
 
@@ -66,6 +70,7 @@ namespace Com.IsartDigital.ChaseTag
             }
             player.StopParticleSlow();
             player.currentSpeed = originPlayerSpeed;
+            player.isTrapped = false;
             yield return null;
             
         }

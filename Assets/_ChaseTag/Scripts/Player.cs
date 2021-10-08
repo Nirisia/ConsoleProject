@@ -65,6 +65,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		private Action doAction;
 
+		public bool isTrapped = false;
+
 		private void Awake()
 		{
 			rigidbody = GetComponent<Rigidbody>();
