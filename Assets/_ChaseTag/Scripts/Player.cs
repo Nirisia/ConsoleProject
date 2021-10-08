@@ -46,6 +46,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		[SerializeField] private ParticleSystem fx_Explosion = default;
 
 		[SerializeField] private Renderer playerRenderer = default;
+		[SerializeField] private SpriteRenderer spriteCrown = default;
 
 		[SerializeField] private Vector3 sizeNormal;
 		[SerializeField] private Vector3 sizeCat;
@@ -53,6 +54,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		[SerializeField] private float rescaleDuration = 1f;
 		[SerializeField] private AnimationCurve rescaleAnimation;
+
 
 		private CameraShake cameraShake = default;
 
@@ -85,11 +87,26 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		private void Update()
 		{
 			doAction();
+			KeepCrownInPlace();
 		}
 
 		void FixedUpdate()
 		{
 			prevSqrMagnitude = rigidbody.velocity.sqrMagnitude;
+		}
+
+		private void KeepCrownInPlace()
+		{
+			var newPos = transform.position;
+			newPos.y = 1f;
+
+			spriteCrown.transform.position = newPos;
+			spriteCrown.transform.LookAt(CameraFollow.Instance.transform);
+
+			var rota = spriteCrown.transform.rotation;
+			rota.x = 0;
+
+			spriteCrown.transform.rotation = rota;
 		}
 
 		public void PlayParticleSlow()
@@ -184,6 +201,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			currentSpeed = playerSpecs.NormalSpeed;
 			rigidbody.drag = playerSpecs.NormalDrag;
 			currentDash = playerSpecs.NormalDash;
+			spriteCrown.enabled = false;
 		}
 
 		public void SetModeCat()
@@ -193,6 +211,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			currentSpeed = playerSpecs.CatSpeed;
 			rigidbody.drag = playerSpecs.CatDrag;
 			currentDash = playerSpecs.CatDash;
+			spriteCrown.enabled = false;
 		}
 
 		public void SetModeMouse()
@@ -202,6 +221,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			currentSpeed = playerSpecs.MouseSpeed;
 			rigidbody.drag = playerSpecs.MouseDrag;
 			currentDash = playerSpecs.MouseDash;
+			spriteCrown.enabled = true;
 		}
 
 		public void Stop()

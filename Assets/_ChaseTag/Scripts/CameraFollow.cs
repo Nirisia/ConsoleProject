@@ -6,6 +6,8 @@ namespace Com.IsartDigital.ChaseTag
 {
     public class CameraFollow : MonoBehaviour
     {
+        public static CameraFollow Instance { get; private set; }
+
         [SerializeField] private Transform target = default;
         [SerializeField] private Transform target2 = default;
         [SerializeField] private float offsetZ = -2;
@@ -71,6 +73,23 @@ namespace Com.IsartDigital.ChaseTag
                 targetRotation.z = minZ;
 
             return targetRotation;
+        }
+
+        private void Awake()
+        {
+            if (Instance == null)
+                Instance = this;
+            else
+            {
+                Debug.LogWarning("Trying to create multiple instances of singleton script, creation denied");
+                Destroy(gameObject);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+                Instance = null;
         }
     }
 }
