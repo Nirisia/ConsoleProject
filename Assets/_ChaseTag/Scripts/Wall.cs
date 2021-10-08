@@ -29,10 +29,8 @@ namespace Com.IsartDigital.ChaseTag
             {
                 Player player = collision.collider.GetComponent<Player>();
 
-                if (player.NumCollectiblesCollected > 0 && player.CurrentState == PlayerState.CAT && player.prevSqrMagnitude > playerMagnitudeSpeedForMovingWall)
+                if (player.CurrentState == PlayerState.CAT && player.prevSqrMagnitude > playerMagnitudeSpeedForMovingWall)
                 {
-                    player.RemoveCollectible(1);
-
                     if (collision.GetContact(0).thisCollider == collider_top)
                         StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(-transform.forward)));
                     else if (collision.GetContact(0).thisCollider == collider_bottom)
@@ -43,6 +41,20 @@ namespace Com.IsartDigital.ChaseTag
                         StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(-transform.right)));
 
                     fx_dust.Play();
+                }
+            }
+        }
+
+        private void OnCollisionStay(Collision collision)
+        {
+            if (collision.collider.CompareTag("Player") && isMoving)
+            {
+                Player player = collision.collider.GetComponent<Player>();
+
+                if (player.CurrentState == PlayerState.MOUSE)
+                {
+                    player.RemoveCollectible(1);
+                    CollectibleManager.Instance.SpawnCollectible();
                 }
             }
         }
