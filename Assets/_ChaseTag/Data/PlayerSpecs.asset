@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalSpeed: 30
   catSpeed: 5
-  mouseSpeed: 7
+  mouseSpeed: 14
   normalDrag: 5
   catDrag: 1
   mouseDrag: 1
