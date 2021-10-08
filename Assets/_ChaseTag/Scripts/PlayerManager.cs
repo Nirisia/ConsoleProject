@@ -17,6 +17,11 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         [SerializeField] private Color colorPlayer2 = default;
         [SerializeField] private Text txtStatePlayer1 = default;
         [SerializeField] private Text txtStatePlayer2 = default;
+
+        [Header("State name")]
+        [SerializeField] private string txtStateNormal = "GET ITEM FIRST";
+        [SerializeField] private string txtStateCat = "CAT";
+        [SerializeField] private string txtStateMouse = "MOUSE";
         //[SerializeField] private Text txtCollectiblePlayer1 = default;
         //[SerializeField] private Text txtCollectiblePlayer2 = default;
 
@@ -56,8 +61,19 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
             Player.OnCollectibleCollected -= Player_OnCollectibleCollected;
         }
+
+        public void ReturnPlayerToNormal()
+        {
+            player1.haveCrown = false;
+            player2.haveCrown = false;
+
+            player1.SetModeNormal();
+            player2.SetModeNormal();
+
+            Player_OnCollectibleCollected();
+        }
  
-        private void Player_OnCollectibleCollected(Player player)
+        private void Player_OnCollectibleCollected(Player player = default)
         {
             if (/*player1.NumCollectiblesCollected < player2.NumCollectiblesCollected*/ player2.haveCrown)
             {
@@ -67,8 +83,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
                 player1.SetSize(PlayerState.CAT);
                 player2.SetSize(PlayerState.MOUSE);
 
-                txtStatePlayer1.text = "CAT";
-                txtStatePlayer2.text = "MOUSE";
+                txtStatePlayer1.text = txtStateCat;
+                txtStatePlayer2.text = txtStateMouse;
             }
             else if (/*player1.NumCollectiblesCollected > player2.NumCollectiblesCollected*/ player1.haveCrown)
             {
@@ -78,8 +94,16 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
                 player1.SetSize(PlayerState.MOUSE);
                 player2.SetSize(PlayerState.CAT);
 
-                txtStatePlayer1.text = "MOUSE";
-                txtStatePlayer2.text = "CAT";
+                txtStatePlayer1.text = txtStateMouse;
+                txtStatePlayer2.text = txtStateCat;
+            }
+            else if (!player1.haveCrown && !player2.haveCrown)
+            {
+                player1.SetSize(PlayerState.NORMAL);
+                player2.SetSize(PlayerState.NORMAL);
+
+                txtStatePlayer1.text = txtStateNormal;
+                txtStatePlayer2.text = txtStateNormal;
             }
 
             //txtCollectiblePlayer1.text = player1.NumCollectiblesCollected.ToString();
