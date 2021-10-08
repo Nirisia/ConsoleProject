@@ -58,6 +58,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		private CameraShake cameraShake = default;
 
+		private Coroutine stunCoroutine;
+
 		//private int numCollectiblesCollected = 0;
 		//public int NumCollectiblesCollected => numCollectiblesCollected;
 
@@ -154,10 +156,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         {
 			haveCrown = !haveCrown;
 			if (!haveCrown)
-            {
-				StartCoroutine(StunAfterCollision());
-            }
-
+				stunCoroutine = StartCoroutine(StunAfterCollision());
 			else
 				AddCollectible();
 		}
@@ -180,7 +179,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			if (collision.collider.CompareTag(playerTag) || collision.collider.CompareTag(wallTag))
 				cameraShake.enabled = true;
 
-			if (currentState == PlayerState.CAT && collision.collider.CompareTag(playerTag))
+			if (currentState == PlayerState.CAT && collision.collider.CompareTag(playerTag) && stunCoroutine == null)
 			{
 				Debug.Log("j'ai eu la souris !");
 				//OnMouseCaught?.Invoke(this);
@@ -306,6 +305,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			yield return new WaitForSeconds(secondStunAfterCollision);
 			SetModeCat();
 			Resume();
+			stunCoroutine = null;
 		}
 
 		public void OnMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
