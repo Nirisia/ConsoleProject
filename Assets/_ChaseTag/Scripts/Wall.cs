@@ -54,7 +54,7 @@ namespace Com.IsartDigital.ChaseTag
                 if (player.CurrentState == PlayerState.MOUSE)
                 {
                     player.RemoveCollectible(1);
-                    CollectibleManager.Instance.SpawnCollectible();
+                    CollectibleManager.Instance.ResetCollectible();
                 }
             }
         }
