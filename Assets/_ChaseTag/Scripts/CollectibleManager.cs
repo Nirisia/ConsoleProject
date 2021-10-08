@@ -48,11 +48,10 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         {
             collectibles.Remove(collectible);
 
-            Debug.Log("spawn new collectible");
-            if (collectibles.Count < numSimultaneousCollectibles && respawnCoroutine == null)
-            {
-                respawnCoroutine = StartCoroutine(SpawnNewCollectible());
-            }
+            //if (collectibles.Count < numSimultaneousCollectibles && respawnCoroutine == null)
+            //{
+            //    respawnCoroutine = StartCoroutine(SpawnNewCollectible());
+            //}
         }
 
         private void OnDestroy()
@@ -103,6 +102,14 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             respawnCoroutine = null;
 
             if (collectibles.Count < numSimultaneousCollectibles)
+            {
+                respawnCoroutine = StartCoroutine(SpawnNewCollectible());
+            }
+        }
+
+        public void ResetCollectible()
+        {
+            if (respawnCoroutine == null)
             {
                 respawnCoroutine = StartCoroutine(SpawnNewCollectible());
             }
