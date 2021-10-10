@@ -46,6 +46,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		[SerializeField] private ParticleSystem fx_Dash = default;
 		[SerializeField] private ParticleSystem fx_Explosion = default;
 		[SerializeField] private ParticleSystem fx_Shield = default;
+		[SerializeField] private ParticleSystem fx_StolenCrown = default;
+		[SerializeField] private ParticleSystem fx_Crown = default;
+		[SerializeField] private ParticleSystemForceField fx_particleAttractor = default;
 
 		[SerializeField] private Renderer playerRenderer = default;
 		[SerializeField] private SpriteRenderer spriteCrown = default;
@@ -181,6 +184,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			if (other.CompareTag(collectibleTag))
 			{
 				ChangeCrown();
+				fx_Crown.Play();
 			}
 		}
 
@@ -195,10 +199,16 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 				//OnMouseCaught?.Invoke(this);
 
 				Player playerCollided = collision.gameObject.GetComponent<Player>();
-				playerCollided.Explode();
 				
 				playerCollided.ChangeCrown();
 				ChangeCrown();
+
+				fx_particleAttractor.gameObject.SetActive(true);
+				fx_Crown.Play();
+
+				playerCollided.fx_StolenCrown.Play();
+				playerCollided.fx_particleAttractor.gameObject.SetActive(false);
+				playerCollided.fx_Crown.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
 
 				ParticleSystem.MainModule main = fx_Shield.main;
 				main.duration = secondStunAfterCollision;
