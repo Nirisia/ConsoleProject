@@ -14781,6 +14781,7 @@ MonoBehaviour:
   playerTag: Player
   wallTag: Wall
   secondStunAfterCollision: 4
+  respawnPosition: {x: 0, y: 5, z: 0}
   fx_Slow: {fileID: 5837246514943736875}
   fx_Dash: {fileID: 1493922511621233128}
   fx_Explosion: {fileID: 8710129108750823602}
@@ -24659,6 +24660,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8937068845598575964}
     m_Modifications:
+    - target: {fileID: 3226261295499886700, guid: 798efd095689891418d837d3c66184d1, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3785280792434947098, guid: 798efd095689891418d837d3c66184d1, type: 3}
       propertyPath: m_RootOrder
       value: 4

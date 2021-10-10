@@ -39,6 +39,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		[SerializeField] private string playerTag = "Player";
 		[SerializeField] private string wallTag = "Wall";
 		[SerializeField,Range(0.1f,4f)] private float secondStunAfterCollision = default;
+		[SerializeField] private Vector3 respawnPosition;
 
 		[Header("Particles")]
 		[SerializeField] private ParticleSystem fx_Slow = default;
@@ -110,6 +111,14 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			rota.x = 0;
 
 			spriteCrown.transform.rotation = rota;
+		}
+
+		public void RespawnToPosition()
+        {
+			Explode();
+			GetComponentInChildren<TrailRenderer>().emitting = false;
+			transform.position = respawnPosition;
+			GetComponentInChildren<TrailRenderer>().emitting = true;
 		}
 
 		public void PlayParticleSlow()

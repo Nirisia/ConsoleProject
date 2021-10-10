@@ -64,6 +64,9 @@ namespace Com.IsartDigital.ChaseTag
             if ((other.CompareTag("Wall") && !isMoving) || other.CompareTag("Border"))
             {
                 StartCoroutine(Explode());
+            } else if (other.CompareTag("Player"))
+            {
+                other.GetComponent<Player>().RespawnToPosition();
             }
         }
 
