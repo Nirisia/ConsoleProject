@@ -38,12 +38,13 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		[SerializeField] private string collectibleTag = "Collectible";
 		[SerializeField] private string playerTag = "Player";
 		[SerializeField] private string wallTag = "Wall";
-		[SerializeField,Range(0.1f,2f)] private float secondStunAfterCollision = default;
+		[SerializeField,Range(0.1f,4f)] private float secondStunAfterCollision = default;
 
 		[Header("Particles")]
 		[SerializeField] private ParticleSystem fx_Slow = default;
 		[SerializeField] private ParticleSystem fx_Dash = default;
 		[SerializeField] private ParticleSystem fx_Explosion = default;
+		[SerializeField] private ParticleSystem fx_Shield = default;
 
 		[SerializeField] private Renderer playerRenderer = default;
 		[SerializeField] private SpriteRenderer spriteCrown = default;
@@ -189,6 +190,11 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 				
 				playerCollided.ChangeCrown();
 				ChangeCrown();
+
+				ParticleSystem.MainModule main = fx_Shield.main;
+				main.duration = secondStunAfterCollision;
+
+				fx_Shield.Play();
 			}
 		}
 
@@ -302,9 +308,11 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		public IEnumerator StunAfterCollision()
         {
 			SetModeVoid();
+			PlayParticleSlow();
 			yield return new WaitForSeconds(secondStunAfterCollision);
 			SetModeCat();
 			Resume();
+			StopParticleSlow();
 			stunCoroutine = null;
 		}
 
