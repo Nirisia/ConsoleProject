@@ -48,6 +48,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		[SerializeField] private ParticleSystem fx_Shield = default;
 		[SerializeField] private ParticleSystem fx_StolenCrown = default;
 		[SerializeField] private ParticleSystem fx_Crown = default;
+		[SerializeField] private TrailRenderer fx_CrownTrail = default;
 		[SerializeField] private ParticleSystemForceField fx_particleAttractor = default;
 
 		[SerializeField] private Renderer playerRenderer = default;
@@ -185,6 +186,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			{
 				ChangeCrown();
 				fx_Crown.Play();
+				fx_CrownTrail.enabled = true;
 			}
 		}
 
@@ -205,10 +207,12 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 				fx_particleAttractor.gameObject.SetActive(true);
 				fx_Crown.Play();
+				fx_CrownTrail.enabled = true;
 
 				playerCollided.fx_StolenCrown.Play();
 				playerCollided.fx_particleAttractor.gameObject.SetActive(false);
 				playerCollided.fx_Crown.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+				playerCollided.fx_CrownTrail.enabled = false;
 
 				ParticleSystem.MainModule main = fx_Shield.main;
 				main.duration = secondStunAfterCollision;
