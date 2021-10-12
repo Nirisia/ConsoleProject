@@ -86,7 +86,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		{
 			rigidbody = GetComponent<Rigidbody>();
 
-			SetModeNormal();
+			SetModeVoid();
 			Resume();
 
 			cameraShake = Camera.main.GetComponentInParent<CameraShake>();

@@ -15,6 +15,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
         [SerializeField] private Timer timerPrefab = default;
         [SerializeField] private int timeLimit = 300;
+        [SerializeField] private GameObject wallStartBlock = default;
+
         public Timer GameTimer { get; private set; }
 
         public event EndGameEventHandler OnWin;
@@ -42,16 +44,13 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             OnTie = null;
         }
 
-        private void Start()
-        {
-            StartGame();
-        }
-
-        private void StartGame()
+        public void StartGame()
         {
             GameTimer = Instantiate(timerPrefab);
             GameTimer.Init(timeLimit);
             GameTimer.OnTimerCompleted += GameTimer_OnTimerCompleted;
+
+            wallStartBlock.SetActive(false);
         }
 
         private void GameTimer_OnTimerCompleted()

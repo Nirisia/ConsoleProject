@@ -70,6 +70,11 @@ namespace Com.IsartDigital.ChaseTag
             DisplayTimeUpdate();
         }
 
+        public void StartTimer()
+        {
+            GameManager.Instance.StartGame();
+        }
+
         private void DisplayTimeUpdate()
         {
             if (GameManager.Instance.GameTimer != null)
