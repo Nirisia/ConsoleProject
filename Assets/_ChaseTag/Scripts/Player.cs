@@ -33,11 +33,16 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		// [SerializeField] private string horizontalInput = "Horizontal";
 		// [SerializeField] private string verticalInput = "Vertical";
 		// [SerializeField] private KeyCode dashInput = default;
+		[Header("Sound")]
+		[SerializeField] private AudioSource audioSource = default;
+		[SerializeField] private AudioClip[] sounds_dash = default;
+		[SerializeField] private AudioClip[] sounds_collision = default;
 
 		[Header("Collisions")]
 		[SerializeField] private string collectibleTag = "Collectible";
 		[SerializeField] private string playerTag = "Player";
 		[SerializeField] private string wallTag = "Wall";
+		[SerializeField] private string borderTag = "Border";
 		[SerializeField,Range(0.1f,4f)] private float secondStunAfterCollision = default;
 		[SerializeField] private Vector3 respawnPosition;
 
@@ -88,6 +93,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 			SetModeVoid();
 			Resume();
+			audioSource.clip = sounds_collision[1];
+			audioSource.Play();
 
 			cameraShake = Camera.main.GetComponentInParent<CameraShake>();
 		}
@@ -192,8 +199,12 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		private void OnCollisionEnter(Collision collision)
 		{
-			if (collision.collider.CompareTag(playerTag) || collision.collider.CompareTag(wallTag))
+			if (collision.collider.CompareTag(playerTag) || collision.collider.CompareTag(wallTag) || collision.collider.CompareTag(borderTag))
+			{
 				cameraShake.enabled = true;
+				audioSource.clip = sounds_collision[0];
+				audioSource.Play();
+			}
 
 			if (currentState == PlayerState.CAT && collision.collider.CompareTag(playerTag) && stunCoroutine == null)
 			{
@@ -218,6 +229,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 				main.duration = secondStunAfterCollision;
 
 				fx_Shield.Play();
+
+				audioSource.clip = sounds_collision[1];
+				audioSource.Play();
 			}
 		}
 
@@ -349,6 +363,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 				StartCoroutine(DashCooldown());
 
 				fx_Dash.Play();
+
+				audioSource.clip = sounds_dash[UnityEngine.Random.Range(0, sounds_dash.Length)];
+				audioSource.Play();
 			}
 		}
 	}

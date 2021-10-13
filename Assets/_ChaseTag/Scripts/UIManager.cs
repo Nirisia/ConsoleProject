@@ -33,6 +33,13 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private Text txtPlayer1Collectible = default;
         [SerializeField] private Text txtPlayer2Collectible = default;
 
+        [SerializeField] private AudioSource audioSourceMusic = default;
+        [SerializeField] private AudioSource audioSourceFx = default;
+        [SerializeField] private AudioClip win = default;
+        [SerializeField] private AudioClip cheers = default;
+        [SerializeField] private AudioClip boo = default;
+
+
         private Animator animator;
         private bool isPlayer1Ready = false;
         private bool isPlayer2Ready = false;
@@ -73,6 +80,7 @@ namespace Com.IsartDigital.ChaseTag
         public void StartTimer()
         {
             GameManager.Instance.StartGame();
+            audioSourceMusic.Play();
         }
 
         private void DisplayTimeUpdate()
@@ -158,6 +166,7 @@ namespace Com.IsartDigital.ChaseTag
                 PlayerManager.Instance.Player1.GetComponent<Player>().Resume();
                 PlayerManager.Instance.Player2.GetComponent<Player>().Resume();
 
+                audioSourceFx.Play();
             }
         }
 
@@ -166,6 +175,11 @@ namespace Com.IsartDigital.ChaseTag
             txt_GameOverPlayer1.text = "TIE";
             txt_GameOverPlayer2.text = "TIE";
             animator.SetTrigger(txtAnimGameOver);
+
+            audioSourceMusic.Stop();
+
+            audioSourceFx.clip = boo;
+            audioSourceFx.Play();
         }
 
         private void DisplayWin(int playerId, float elapsedTime)
@@ -184,6 +198,15 @@ namespace Com.IsartDigital.ChaseTag
             }
 
             animator.SetTrigger(txtAnimGameOver);
+
+            audioSourceMusic.Stop();
+            audioSourceMusic.clip = win;
+            audioSourceMusic.loop = false;
+            audioSourceMusic.Play();
+
+            audioSourceFx.clip = cheers;
+            audioSourceFx.Play();
+
         }
 
         public void Pause()
