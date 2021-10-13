@@ -38,6 +38,7 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private AudioClip win = default;
         [SerializeField] private AudioClip cheers = default;
         [SerializeField] private AudioClip boo = default;
+        [SerializeField] private AudioClip lastSeconds = default;
 
 
         private Animator animator;
@@ -89,6 +90,12 @@ namespace Com.IsartDigital.ChaseTag
             {
                 int remainingTime = (int)GameManager.Instance.GameTimer.InvertedElapsedTime;
                 txt_timer.text = remainingTime.ToString();
+
+                if (remainingTime == 10)
+                {
+                    audioSourceFx.clip = lastSeconds;
+                    audioSourceFx.Play();
+                }
             }
 
             if (PlayerManager.Instance.Player1 != null)

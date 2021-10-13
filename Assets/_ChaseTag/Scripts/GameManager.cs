@@ -68,6 +68,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             {
                 OnTie?.Invoke();
             }
+
+            PlayerManager.Instance.DestroyPlayer();
         }
     }
 }

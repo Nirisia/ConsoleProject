@@ -129,6 +129,12 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             }
         }
 
+        public void DestroyPlayer()
+        {
+            Destroy(player1.gameObject);
+            Destroy(player2.gameObject);
+        }
+
         public int GetPlayerId(Player player)
         {
             if (player == player1) return 1;

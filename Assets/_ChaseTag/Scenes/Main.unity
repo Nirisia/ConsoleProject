@@ -2786,7 +2786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerPrefab: {fileID: 7531695272994752963, guid: c969f20bc49ea8f4882346f3652d87b3, type: 3}
-  timeLimit: 300
+  timeLimit: 15
   wallStartBlock: {fileID: 635663893}
 --- !u!4 &1772121682
 Transform:
@@ -3616,6 +3616,10 @@ PrefabInstance:
       propertyPath: cheers
       value: 
       objectReference: {fileID: 8300000, guid: f671de3893650374e83904389fb36a19, type: 3}
+    - target: {fileID: 3256751465592943894, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: lastSeconds
+      value: 
+      objectReference: {fileID: 8300000, guid: 315a5a29d189b24408b3fd1fd1a309ed, type: 3}
     - target: {fileID: 3256751465592943894, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: audioSourceFx
       value: 
