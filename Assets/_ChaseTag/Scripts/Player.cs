@@ -194,6 +194,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 				ChangeCrown();
 				fx_Crown.Play();
 				fx_CrownTrail.enabled = true;
+
+				audioSource.clip = sounds_collision[1];
+				audioSource.Play();
 			}
 		}
 
