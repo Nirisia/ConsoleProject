@@ -21,6 +21,8 @@ namespace Com.IsartDigital.ChaseTag
 
         [SerializeField] private float playerMagnitudeSpeedForMovingWall = 0.5f;
 
+        [SerializeField] private AudioSource audioSourceSlide = default;
+
         private bool isMoving = false;
 
         private void OnCollisionEnter(Collision collision)
@@ -41,6 +43,8 @@ namespace Com.IsartDigital.ChaseTag
                         StartCoroutine(AnimateMove(transform.position, transform.TransformPoint(-transform.right)));
 
                     fx_dust.Play();
+
+                    audioSourceSlide.Play();
                 }
             }
         }

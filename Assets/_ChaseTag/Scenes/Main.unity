@@ -2786,7 +2786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerPrefab: {fileID: 7531695272994752963, guid: c969f20bc49ea8f4882346f3652d87b3, type: 3}
-  timeLimit: 15
+  timeLimit: 114
   wallStartBlock: {fileID: 635663893}
 --- !u!4 &1772121682
 Transform:
