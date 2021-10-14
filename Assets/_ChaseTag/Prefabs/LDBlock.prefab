@@ -5021,7 +5021,9 @@ MonoBehaviour:
   fx_explosion: {fileID: 8947605390600148723}
   fx_dust: {fileID: 1335919321142963817}
   playerMagnitudeSpeedForMovingWall: 30
-  audioSourceSlide: {fileID: 5786721773771086267}
+  audioSource: {fileID: 5786721773771086267}
+  sfx_Slide: {fileID: 8300000, guid: ada6b51d2d3eddd44abd1d1684025a71, type: 3}
+  sfx_Explode: {fileID: 8300000, guid: ba9ba2e9270a46a46a0cd1634c81fef4, type: 3}
 --- !u!54 &8501222562656329880
 Rigidbody:
   m_ObjectHideFlags: 0

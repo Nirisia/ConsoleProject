@@ -21,7 +21,9 @@ namespace Com.IsartDigital.ChaseTag
 
         [SerializeField] private float playerMagnitudeSpeedForMovingWall = 0.5f;
 
-        [SerializeField] private AudioSource audioSourceSlide = default;
+        [SerializeField] private AudioSource audioSource = default;
+        [SerializeField] private AudioClip sfx_Slide = default;
+        [SerializeField] private AudioClip sfx_Explode = default;
 
         private bool isMoving = false;
 
@@ -44,7 +46,8 @@ namespace Com.IsartDigital.ChaseTag
 
                     fx_dust.Play();
 
-                    audioSourceSlide.Play();
+                    audioSource.clip = sfx_Slide;
+                    audioSource.Play();
                 }
             }
         }
@@ -68,6 +71,8 @@ namespace Com.IsartDigital.ChaseTag
             if ((other.CompareTag("Wall") && !isMoving) || other.CompareTag("Border"))
             {
                 StartCoroutine(Explode());
+                audioSource.clip = sfx_Explode;
+                audioSource.Play();
             } else if (other.CompareTag("Player"))
             {
                 other.GetComponent<Player>().RespawnToPosition();

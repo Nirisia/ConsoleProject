@@ -66,6 +66,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		[SerializeField] private float rescaleDuration = 1f;
 		[SerializeField] private AnimationCurve rescaleAnimation;
 
+		[SerializeField] private TrailRenderer trail = default;
+		[SerializeField] private AnimationCurve[] trailWidth3Mode = default;
+
 
 		private CameraShake cameraShake = default;
 
@@ -247,6 +250,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			rigidbody.drag = playerSpecs.NormalDrag;
 			currentDash = playerSpecs.NormalDash;
 			spriteCrown.enabled = false;
+
+			trail.widthCurve = trailWidth3Mode[0];
 		}
 
 		public void SetModeCat()
@@ -257,6 +262,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			rigidbody.drag = playerSpecs.CatDrag;
 			currentDash = playerSpecs.CatDash;
 			spriteCrown.enabled = false;
+
+			trail.widthCurve = trailWidth3Mode[1];
 		}
 
 		public void SetModeMouse()
@@ -267,6 +274,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			rigidbody.drag = playerSpecs.MouseDrag;
 			currentDash = playerSpecs.MouseDash;
 			spriteCrown.enabled = true;
+
+			trail.widthCurve = trailWidth3Mode[2];
 		}
 
 		public void Stop()

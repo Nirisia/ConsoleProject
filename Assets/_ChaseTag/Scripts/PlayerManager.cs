@@ -15,6 +15,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         [SerializeField] private Player player2 = default;
         [SerializeField] private Color colorPlayer1 = default;
         [SerializeField] private Color colorPlayer2 = default;
+        [SerializeField] private Gradient gradientPlayer1 = default;
+        [SerializeField] private Gradient gradientPlayer2 = default;
         [SerializeField] private Text txtStatePlayer1 = default;
         [SerializeField] private Text txtStatePlayer2 = default;
 
@@ -30,6 +32,13 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             set { 
                 player1 = value;
                 player1.GetComponentInChildren<Renderer>().material.color = colorPlayer1;
+                player1.GetComponentInChildren<TrailRenderer>().startColor = colorPlayer1;
+
+                var col = player1.GetComponentInChildren<ParticleSystem>().colorOverLifetime;
+                col.color = gradientPlayer1;
+
+                ParticleSystem.MainModule main = player1.GetComponentInChildren<ParticleSystem>().main;
+                main.startColor = colorPlayer1;
             }
         }
         public Player Player2
@@ -38,6 +47,13 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             set { 
                 player2 = value;
                 player2.GetComponentInChildren<Renderer>().material.color = colorPlayer2;
+                player2.GetComponentInChildren<TrailRenderer>().startColor = colorPlayer2;
+
+                var col = player2.GetComponentInChildren<ParticleSystem>().colorOverLifetime;
+                col.color = gradientPlayer2;
+
+                ParticleSystem.MainModule main = player2.GetComponentInChildren<ParticleSystem>().main;
+                main.startColor = colorPlayer2;
             }
         }
 

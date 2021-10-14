@@ -21,6 +21,8 @@ namespace Com.IsartDigital.ChaseTag
 
         [SerializeField] private ParticleSystem fx_explosion;
 
+        [SerializeField] private AudioSource audioSourceExplode = default;
+
         private float originPlayerSpeed = default;
 
         private void OnCollisionEnter(Collision collision)
@@ -44,6 +46,7 @@ namespace Com.IsartDigital.ChaseTag
             if (other.CompareTag("Wall"))
             {
                 StartCoroutine(Explode());
+                audioSourceExplode.Play();
             }
         }
 
