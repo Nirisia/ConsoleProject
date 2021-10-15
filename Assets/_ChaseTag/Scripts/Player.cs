@@ -252,6 +252,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 			spriteCrown.enabled = false;
 
 			trail.widthCurve = trailWidth3Mode[0];
+			fx_Crown.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
 		}
 
 		public void SetModeCat()
