@@ -1107,16 +1107,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_JoinAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
-      m_Name: 
+      m_Name: Join
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: e9e18112-2f6b-4266-9a9d-5232fd2f8538
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: 2794048886926873403, guid: 409a681433bcb984785948c7230d9eb9, type: 3}
   m_PlayerPrefab: {fileID: 5932366599267494352, guid: ebf05653ae809d648b48e4735434d1fe, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
@@ -2718,6 +2718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInputmanager: {fileID: 669529902}
   playerPrefab: {fileID: 5932366599267494352, guid: ebf05653ae809d648b48e4735434d1fe, type: 3}
+  withJoyCon: 0
 --- !u!4 &1735646301
 Transform:
   m_ObjectHideFlags: 0

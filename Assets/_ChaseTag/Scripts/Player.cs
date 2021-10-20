@@ -24,7 +24,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		[HideInInspector] public float currentSpeed;
 
-		private Vector3 movementInput;
+		public Vector3 movementInput;
 
 		new private Rigidbody rigidbody;
 		private Vector3 velocity = Vector3.zero;
@@ -369,6 +369,11 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		public void OnMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
 		public void OnDash(InputAction.CallbackContext ctx)
 		{
+			Dash();
+		}
+
+		public void Dash()
+        {
 			if (canDash)
 			{
 				rigidbody.AddForce(velocity.normalized * currentDash, ForceMode.Impulse);

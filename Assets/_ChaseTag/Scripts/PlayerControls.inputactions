@@ -36,22 +36,22 @@
                 },
                 {
                     "name": "",
-                    "id": "0d5e48b8-3080-4bf7-8b26-7f6dd0e3705f",
-                    "path": "<Gamepad>/buttonSouth",
+                    "id": "19fc35df-0b7b-4a2c-94dc-01ee168f84ed",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player;Player2",
+                    "groups": "Player2",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "19fc35df-0b7b-4a2c-94dc-01ee168f84ed",
-                    "path": "<Keyboard>/space",
+                    "id": "432b6978-507e-4bf2-ab31-53fd03f3bdaf",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button3",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player2",
+                    "groups": "Player",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -112,17 +112,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "56a0fb88-bdb3-4da8-8805-760cf2c4c28d",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Player;Player2",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "wasd",
                     "id": "759fe868-2161-4d26-902a-aa2cfabb40fc",
                     "path": "2DVector",
@@ -176,6 +165,61 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "3dd36e0d-e417-4faf-aeb9-bb416401bd8d",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "4a155e31-25a7-4059-8845-822c437d0e87",
+                    "path": "<HID::Nintendo Wireless Gamepad>/stick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player;Player2",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "f0ec4b19-36ed-4968-9439-d59da18f197a",
+                    "path": "<HID::Nintendo Wireless Gamepad>/stick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player;Player2",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "710d1bde-443e-46a1-b79d-13beb6ea6516",
+                    "path": "<HID::Nintendo Wireless Gamepad>/stick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player;Player2",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "2bf4d61c-ad20-4bc6-81af-d3665cf33d89",
+                    "path": "<HID::Nintendo Wireless Gamepad>/stick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player;Player2",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
@@ -192,6 +236,16 @@
                 },
                 {
                     "devicePath": "<Gamepad>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<NPad>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<HID::Nintendo Wireless Gamepad>",
                     "isOptional": true,
                     "isOR": false
                 }
