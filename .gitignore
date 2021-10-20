@@ -64,3 +64,8 @@ sysinfo.txt
 crashlytics-build.properties
 *.aab
 Assets/Resources/DOTweenSettings.asset
+
+Build/
+SwitchIL2CPPCache/
+SwitchIL2CPPStats/
+UIElementsSchema/

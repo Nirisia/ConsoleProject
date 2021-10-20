@@ -2341,6 +2341,12 @@ MonoBehaviour:
   fx_spawnP2: {fileID: 1783478380824119792}
   txtPlayer1Collectible: {fileID: 7733137858906247845}
   txtPlayer2Collectible: {fileID: 4075581628659369814}
+  audioSourceMusic: {fileID: 0}
+  audioSourceFx: {fileID: 0}
+  win: {fileID: 0}
+  cheers: {fileID: 0}
+  boo: {fileID: 0}
+  lastSeconds: {fileID: 0}
   gameOver: 0
   gameStarted: 0
   isQuitting: 0
@@ -2898,7 +2904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

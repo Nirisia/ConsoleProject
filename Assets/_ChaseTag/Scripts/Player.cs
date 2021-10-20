@@ -14,7 +14,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 	public class Player : MonoBehaviour {
 
 		public static event PlayerEventHandler OnCollectibleCollected;
-		public static event PlayerEventHandler OnMouseCaught;
+		//public static event PlayerEventHandler OnMouseCaught;
 
 		[Header("States")]
 		[SerializeField] private PlayerSpecs playerSpecs = default;
@@ -26,7 +26,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		private Vector3 movementInput;
 
-		new private Rigidbody rigidbody;
+		private Rigidbody rigidbody;
 		private Vector3 velocity = Vector3.zero;
 
 		// [Header("Inputs")]

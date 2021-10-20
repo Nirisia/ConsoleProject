@@ -29,18 +29,7 @@
                     "path": "<Keyboard>/rightShift",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0d5e48b8-3080-4bf7-8b26-7f6dd0e3705f",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Player;Player2",
+                    "groups": "JoyconLeft",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -51,7 +40,29 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player2",
+                    "groups": "JoyconRight",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d13dd44-95a7-4159-ba4c-9ab9fcf5463c",
+                    "path": "<NPad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "JoyconRight",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "630399be-9156-4c38-8963-f3c9453f0b28",
+                    "path": "<NPad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "JoyconLeft",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -73,7 +84,7 @@
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player",
+                    "groups": "JoyconLeft",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -84,7 +95,7 @@
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player",
+                    "groups": "JoyconLeft",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -95,7 +106,7 @@
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player",
+                    "groups": "JoyconLeft",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -106,7 +117,7 @@
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player",
+                    "groups": "JoyconLeft",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -114,10 +125,10 @@
                 {
                     "name": "",
                     "id": "56a0fb88-bdb3-4da8-8805-760cf2c4c28d",
-                    "path": "<Gamepad>/leftStick",
+                    "path": "<NPad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player;Player2",
+                    "groups": "JoyconLeft",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -139,7 +150,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player2",
+                    "groups": "JoyconRight",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -150,7 +161,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player2",
+                    "groups": "JoyconRight",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -161,7 +172,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player2",
+                    "groups": "JoyconRight",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -172,43 +183,44 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player2",
+                    "groups": "JoyconRight",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "ccbe694c-a1c1-45cd-87f9-311fdfcfccd6",
+                    "path": "<NPad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "JoyconRight",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
     ],
     "controlSchemes": [
         {
-            "name": "Player",
-            "bindingGroup": "Player",
+            "name": "JoyconLeft",
+            "bindingGroup": "JoyconLeft",
             "devices": [
                 {
-                    "devicePath": "<Keyboard>",
-                    "isOptional": true,
-                    "isOR": false
-                },
-                {
-                    "devicePath": "<Gamepad>",
-                    "isOptional": true,
+                    "devicePath": "<NPad>",
+                    "isOptional": false,
                     "isOR": false
                 }
             ]
         },
         {
-            "name": "Player2",
-            "bindingGroup": "Player2",
+            "name": "JoyconRight",
+            "bindingGroup": "JoyconRight",
             "devices": [
                 {
-                    "devicePath": "<Gamepad>",
-                    "isOptional": true,
-                    "isOR": false
-                },
-                {
-                    "devicePath": "<Keyboard>",
-                    "isOptional": true,
+                    "devicePath": "<NPad>",
+                    "isOptional": false,
                     "isOR": false
                 }
             ]
