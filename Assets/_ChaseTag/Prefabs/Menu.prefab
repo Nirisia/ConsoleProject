@@ -2251,10 +2251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2341,6 +2341,12 @@ MonoBehaviour:
   fx_spawnP2: {fileID: 1783478380824119792}
   txtPlayer1Collectible: {fileID: 7733137858906247845}
   txtPlayer2Collectible: {fileID: 4075581628659369814}
+  audioSourceMusic: {fileID: 0}
+  audioSourceFx: {fileID: 0}
+  win: {fileID: 0}
+  cheers: {fileID: 0}
+  boo: {fileID: 0}
+  lastSeconds: {fileID: 0}
   gameOver: 0
   gameStarted: 0
   isQuitting: 0

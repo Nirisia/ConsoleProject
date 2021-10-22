@@ -3490,6 +3490,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1357933266, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -353.50003
+      objectReference: {fileID: 0}
     - target: {fileID: 3034856237308546820, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_Name
       value: Menu
@@ -3577,6 +3581,14 @@ PrefabInstance:
     - target: {fileID: 3034856237308546824, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3034856237308546826, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3034856237308546826, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 3034856237308546827, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_Camera
