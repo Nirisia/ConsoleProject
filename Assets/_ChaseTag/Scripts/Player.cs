@@ -6,6 +6,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag {
@@ -74,6 +75,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		private Coroutine stunCoroutine;
 
+
 		//private int numCollectiblesCollected = 0;
 		//public int NumCollectiblesCollected => numCollectiblesCollected;
 
@@ -86,7 +88,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
 		private Action doAction;
 
-		public bool isTrapped = false;
+		public Coroutine trapCoroutine;
+		public Trap trap;
 
 		public float MouseElapsedTime { get; private set; } = 0f;
 
@@ -271,6 +274,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		{
 			currentState = PlayerState.MOUSE;
 
+			if (trap)
+				trap.CancelTrap(this);
+			
 			currentSpeed = playerSpecs.MouseSpeed;
 			rigidbody.drag = playerSpecs.MouseDrag;
 			currentDash = playerSpecs.MouseDash;
