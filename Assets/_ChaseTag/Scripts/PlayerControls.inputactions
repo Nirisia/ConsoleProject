@@ -25,28 +25,6 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "5fb587bb-a565-4619-a17e-ee20666757cf",
-                    "path": "<Keyboard>/rightShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "JoyconLeft",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "19fc35df-0b7b-4a2c-94dc-01ee168f84ed",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "JoyconRight",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "3d13dd44-95a7-4159-ba4c-9ab9fcf5463c",
                     "path": "<NPad>/buttonEast",
                     "interactions": "",
@@ -68,59 +46,37 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Arrowkey",
-                    "id": "df262a57-12c6-47b3-9774-5ff77f31ce14",
-                    "path": "2DVector",
+                    "name": "",
+                    "id": "5e65e70d-9119-4ccb-82b2-fae6428729a9",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": true,
+                    "groups": "EditorKeyboard",
+                    "action": "Dash",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "59c66df1-746f-4002-9613-29e1cd08260d",
-                    "path": "<Keyboard>/upArrow",
+                    "name": "",
+                    "id": "c189c314-4026-48ea-803d-62ec4b64a479",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "JoyconLeft",
-                    "action": "Movement",
+                    "groups": "EditorGamepad",
+                    "action": "Dash",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "down",
-                    "id": "e7a5960b-42b0-4dbd-a5ad-6ac149c27480",
-                    "path": "<Keyboard>/downArrow",
+                    "name": "",
+                    "id": "df9ed6bb-0776-45dd-8caf-ebf5cb7dbf8d",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "JoyconLeft",
-                    "action": "Movement",
+                    "groups": "EditorGamepad",
+                    "action": "Dash",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "55e60f37-d217-44a8-ae07-5313792bf334",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "JoyconLeft",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "23584dc5-45a4-47cc-925f-c9109d44756b",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "JoyconLeft",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -134,8 +90,19 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "wasd",
-                    "id": "759fe868-2161-4d26-902a-aa2cfabb40fc",
+                    "name": "",
+                    "id": "ccbe694c-a1c1-45cd-87f9-311fdfcfccd6",
+                    "path": "<NPad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "JoyconRight",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Arrow",
+                    "id": "45e03bee-013f-457f-a77a-dc003b605c43",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -146,56 +113,176 @@
                 },
                 {
                     "name": "up",
-                    "id": "552943f3-21c1-4278-afc3-de2e107fda72",
+                    "id": "f73d6cee-f355-4840-81b4-b1a5246945d0",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "JoyconRight",
+                    "groups": "EditorKeyboard",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "dd4d88cc-0d7a-4a15-ac8c-5140470d03a4",
+                    "id": "e0f0008b-c7f5-4a9a-84e1-e5bc5fe6cca6",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "JoyconRight",
+                    "groups": "EditorKeyboard",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "991beaed-9740-4173-ba6b-cb4fa97551a8",
+                    "id": "37c05269-64bc-41e9-91e9-47c159a00450",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "JoyconRight",
+                    "groups": "EditorKeyboard",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "61af91a9-5c85-4751-bfbd-5a44f36b3c18",
+                    "id": "d6aa7c35-d540-4303-a22f-bda94e117785",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "JoyconRight",
+                    "groups": "EditorKeyboard",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "ccbe694c-a1c1-45cd-87f9-311fdfcfccd6",
-                    "path": "<NPad>/rightStick",
+                    "id": "6b0f7b87-2e10-4602-842e-45cc5f7a9a90",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "JoyconRight",
+                    "groups": "EditorGamepad",
                     "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "53deb933-ec21-4407-b273-7bd9062ad2ac",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "EditorGamepad",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "e498c4e7-6757-410a-8b50-f2e115d2e3b9",
+            "actions": [
+                {
+                    "name": "Join",
+                    "type": "Button",
+                    "id": "014bebd4-6869-48e4-af4b-041edb411e05",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c9c523ac-1bd1-4dec-a9d5-35d2851eb5db",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "EditorKeyboard",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5aead902-0e8f-4dea-ae04-48377363b6eb",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "JoyconLeft;JoyconRight",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca013f16-166e-42e5-9140-0251a7a5a01c",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "EditorGamepad",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09a61a97-a6ad-4827-8c08-bd60b0bef9e5",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "EditorGamepad",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "No Input",
+            "id": "8e8ee27f-3fde-43f3-b689-2d24e3bfa950",
+            "actions": [
+                {
+                    "name": "ToggleMenuMode",
+                    "type": "Button",
+                    "id": "17310520-54b6-40ee-b738-42da19eb58f9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "04e84fdf-173d-49a6-8919-d4e9d4fa99fe",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "EditorKeyboard",
+                    "action": "ToggleMenuMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "19622b4c-6e74-4683-b76e-2283fba3ac17",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "JoyconLeft;JoyconRight",
+                    "action": "ToggleMenuMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bc4e258d-d8c3-4fb8-9b51-33c6ca035c32",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "EditorGamepad",
+                    "action": "ToggleMenuMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -220,6 +307,33 @@
             "devices": [
                 {
                     "devicePath": "<NPad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "EditorGamepad",
+            "bindingGroup": "EditorGamepad",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "EditorKeyboard",
+            "bindingGroup": "EditorKeyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
                     "isOptional": false,
                     "isOR": false
                 }
