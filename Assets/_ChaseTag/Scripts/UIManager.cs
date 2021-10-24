@@ -17,8 +17,6 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private string txtAnimGameOver = "GameOver";
         [SerializeField] private string txtAnimQuit = "Quit";
         [SerializeField] private string txtAnimReturnToTitlecard = "ReturnToTitlecard";
-        [SerializeField] private string txtReady = "Ready";
-        [SerializeField] private string txtNotReady = "Press A ...";
         [SerializeField] private Button btnPlay = default;
         [SerializeField] private Text txt_timer = default;
 
@@ -62,11 +60,6 @@ namespace Com.IsartDigital.ChaseTag
         {
             animator = GetComponent<Animator>();
             btnPlay.interactable = false;
-
-            foreach (var playerUIInfo in playerUIInfos)
-            {
-                playerUIInfo.txtPlayerReady.text = txtNotReady;
-            }
 
             GameManager.Instance.OnWin += DisplayWin;
             GameManager.Instance.OnTie += DisplayTie;
@@ -120,9 +113,9 @@ namespace Com.IsartDigital.ChaseTag
             if (PlayerId < 0 || PlayerId >= PlayerManager.Instance.playerCount) return;
 
             if (isReady)
-                SetReady(PlayerId, isReady, txtReady);
+                SetReady(PlayerId, isReady);
             else
-                SetReady(PlayerId, isReady, txtNotReady);
+                SetReady(PlayerId, isReady);
 
             if (PlayerManager.Instance.AllPlayersReady())
                 btnPlay.interactable = true;
@@ -130,7 +123,7 @@ namespace Com.IsartDigital.ChaseTag
                 btnPlay.interactable = false;
         }
 
-        private void SetReady(int PlayerId, bool isReady, string txtIsReady)
+        private void SetReady(int PlayerId, bool isReady)
         {
             PlayerManager.Instance.playerInfos[PlayerId].isReady = isReady;
         }
