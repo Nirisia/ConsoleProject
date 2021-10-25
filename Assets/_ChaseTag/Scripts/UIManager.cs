@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Com.IsartDigital.ChaseTag
@@ -42,6 +43,8 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private AudioClip boo = default;
         [SerializeField] private AudioClip lastSeconds = default;
 
+        [SerializeField] private InputAction inputPause = default;
+        [SerializeField] private InputAction inputQuit = default;
 
         private Animator animator;
 
@@ -67,17 +70,24 @@ namespace Com.IsartDigital.ChaseTag
 
             GameManager.Instance.OnWin += DisplayWin;
             GameManager.Instance.OnTie += DisplayTie;
+
+            inputPause.performed += DisplayQuit;
+            inputQuit.performed += Quit;
         }
 
         private void Update()
         {
             DisplayTimeUpdate();
+
+            
         }
 
         public void StartTimer()
         {
             GameManager.Instance.StartGame();
             audioSourceMusic.Play();
+
+            inputPause.Enable();
         }
 
         public void StartPlayerInStage()
@@ -210,23 +220,33 @@ namespace Com.IsartDigital.ChaseTag
         public void Pause()
         {
             Time.timeScale = 0;
+            audioSourceMusic.Pause();
         }
 
         public void UnPause()
         {
             Time.timeScale = 1;
+            audioSourceMusic.UnPause();
         }
 
-        public void DisplayQuit()
+        public void DisplayQuit(InputAction.CallbackContext callback)
         {
-            isQuitting = true;
+            if (!isQuitting)
+                inputQuit.Enable();
+            else
+                inputQuit.Disable();
+
+            isQuitting = !isQuitting;
             animator.SetTrigger(txtAnimQuit);
         }
 
-        public void RemoveQuit()
+        public void Quit(InputAction.CallbackContext callback)
         {
+            UnPause();
             isQuitting = false;
-            animator.SetTrigger(txtAnimQuit);
+            inputPause.Disable();
+            inputQuit.Disable();
+            SceneManager.LoadScene(0);
         }
 
         public void GameOverToTitleCard()
@@ -242,6 +262,7 @@ namespace Com.IsartDigital.ChaseTag
         private void OnDestroy()
         {
             Instance = null;
+
         }
     }
 }

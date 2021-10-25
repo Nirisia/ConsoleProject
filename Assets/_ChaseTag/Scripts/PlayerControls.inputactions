@@ -212,6 +212,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "ff3c4c4a-8d22-4562-9b54-cf741467ea49",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -267,6 +275,28 @@
                     "processors": "",
                     "groups": "WirelessJoycon",
                     "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "57f0b902-a574-4e64-9d07-b0668b382969",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WirelessJoycon",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ce7a1291-f8d9-4dc6-b9cb-14f3fca07fd3",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WirelessJoycon",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

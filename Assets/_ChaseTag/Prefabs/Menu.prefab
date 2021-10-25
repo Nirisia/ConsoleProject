@@ -189,6 +189,7 @@ RectTransform:
   m_Children:
   - {fileID: 958554525}
   - {fileID: 455736840294479414}
+  - {fileID: 2188746677926580618}
   m_Father: {fileID: 1712817265}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -580,6 +581,7 @@ RectTransform:
   m_Children:
   - {fileID: 1679814294}
   - {fileID: 6739571619718703434}
+  - {fileID: 804213996383478207}
   m_Father: {fileID: 1712817265}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2039,6 +2041,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!1 &1301737306505741431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2188746677926580618}
+  - component: {fileID: 5097794690606669919}
+  - component: {fileID: 7361668796431423114}
+  m_Layer: 5
+  m_Name: imgBtn (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2188746677926580618
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301737306505741431}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.000016093254}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 404765221}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 11, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!222 &5097794690606669919
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301737306505741431}
+  m_CullTransparentMesh: 1
+--- !u!114 &7361668796431423114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301737306505741431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 42ba0e89e7ae14a43b4cf36019445d31, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1384951384671258081
 GameObject:
   m_ObjectHideFlags: 0
@@ -3318,13 +3395,101 @@ MonoBehaviour:
     txt_GameOverPlayer: {fileID: 754614348}
     fx_spawn: {fileID: 678297831040860366}
     txtPlayerCollectible: {fileID: 7069981696463690707}
-  offsetPlayerInMenu: {x: 0, y: -0.3, z: 0}
+  offsetPlayerInMenu: {x: 0, y: -0.3, z: 0.025}
   audioSourceMusic: {fileID: 0}
   audioSourceFx: {fileID: 0}
   win: {fileID: 8300000, guid: 69b9d0bea040d8c43bf2c5d14f0b064c, type: 3}
   cheers: {fileID: 8300000, guid: f671de3893650374e83904389fb36a19, type: 3}
   boo: {fileID: 8300000, guid: 0c21530116da7284e9d4c11acb090c5d, type: 3}
   lastSeconds: {fileID: 8300000, guid: 315a5a29d189b24408b3fd1fd1a309ed, type: 3}
+  inputPause:
+    m_Name: Input Pause
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1b87e86b-3de4-455f-8fa9-90bc47b7273f
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 6ddfc106-a832-4cfb-ba85-5f5b1771b4da
+      m_Path: <HID::Nintendo Wireless Gamepad>/button10
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Pause
+      m_Flags: 0
+    - m_Name: 
+      m_Id: c716b8b2-2e4a-4bdf-891a-d0b8d0ab3f6a
+      m_Path: <HID::Nintendo Wireless Gamepad>/button9
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Pause
+      m_Flags: 0
+    - m_Name: 
+      m_Id: edc36141-b72e-4a1d-bf24-c33bb6a91f91
+      m_Path: <NPad>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Pause
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 7d74e325-b002-420c-a2a6-5db39e7efe9a
+      m_Path: <NPad>/select
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Pause
+      m_Flags: 0
+    - m_Name: 
+      m_Id: ffd2a6ea-4fd2-436f-b981-4cc465c69c80
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Pause
+      m_Flags: 0
+  inputQuit:
+    m_Name: Input Quit
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ec8a8d8f-b8a6-46bd-9061-957000e2b5e6
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: db481c21-ca34-4ccf-a2fd-d5c73eea18ec
+      m_Path: <Joystick>/trigger
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Quit
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 06a98471-f166-4900-a504-40b795317a5d
+      m_Path: <Keyboard>/enter
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Quit
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 35551c5e-9995-4788-9432-7401749765ec
+      m_Path: <NPad>/buttonEast
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Quit
+      m_Flags: 0
+    - m_Name: 
+      m_Id: d594f8a8-167a-447b-adf7-e042107a8711
+      m_Path: <Gamepad>/buttonSouth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Quit
+      m_Flags: 0
   gameOver: 0
   gameStarted: 0
   isQuitting: 0
@@ -3340,7 +3505,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 2fecea50d66a0a148a9704f585262108, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -5054,6 +5219,81 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7870543113038251049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 804213996383478207}
+  - component: {fileID: 5369704860756388075}
+  - component: {fileID: 3808754062712106718}
+  m_Layer: 5
+  m_Name: imgBtn (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &804213996383478207
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7870543113038251049}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 938178013}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 7, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!222 &5369704860756388075
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7870543113038251049}
+  m_CullTransparentMesh: 1
+--- !u!114 &3808754062712106718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7870543113038251049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 0e214dda90988f248ba20f122a3d0225, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7996632575292694103
 GameObject:
   m_ObjectHideFlags: 0
@@ -5456,7 +5696,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3a6f363d6b4a8454f9720a6d6eb1143d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42f782f7cc5213340b2fc81f1a11051d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5575,14 +5815,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da18dbf2e6d4b4b4fbe715a1d0e95f7a, type: 3}
---- !u!224 &4717283575413074416 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8814014698332911076, guid: da18dbf2e6d4b4b4fbe715a1d0e95f7a, type: 3}
-  m_PrefabInstance: {fileID: 4262238959258803220}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &8196357719674420273 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 5375552116226711589, guid: da18dbf2e6d4b4b4fbe715a1d0e95f7a, type: 3}
+  m_PrefabInstance: {fileID: 4262238959258803220}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &4717283575413074416 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8814014698332911076, guid: da18dbf2e6d4b4b4fbe715a1d0e95f7a, type: 3}
   m_PrefabInstance: {fileID: 4262238959258803220}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4895413222843162859
