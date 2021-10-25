@@ -80,6 +80,17 @@
                 },
                 {
                     "name": "",
+                    "id": "5417a576-5b23-4bea-83bf-922d2e2a35a3",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WirelessJoycon",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "56a0fb88-bdb3-4da8-8805-760cf2c4c28d",
                     "path": "<NPad>/leftStick",
                     "interactions": "",
@@ -176,6 +187,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e99b1e8b-f4a8-41d1-a82d-dfda4368b502",
+                    "path": "<HID::Nintendo Wireless Gamepad>/hat",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WirelessJoycon",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -185,7 +207,7 @@
             "actions": [
                 {
                     "name": "Join",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "014bebd4-6869-48e4-af4b-041edb411e05",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -229,10 +251,21 @@
                 {
                     "name": "",
                     "id": "09a61a97-a6ad-4827-8c08-bd60b0bef9e5",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "EditorGamepad",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "23281bfa-9976-4990-8a47-9d8f1108ea0a",
+                    "path": "<HID::Nintendo Wireless Gamepad>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WirelessJoycon",
                     "action": "Join",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -334,6 +367,17 @@
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "WirelessJoycon",
+            "bindingGroup": "WirelessJoycon",
+            "devices": [
+                {
+                    "devicePath": "<HID::Nintendo Wireless Gamepad>",
                     "isOptional": false,
                     "isOR": false
                 }

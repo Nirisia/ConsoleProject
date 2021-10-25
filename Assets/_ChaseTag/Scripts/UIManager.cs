@@ -30,6 +30,8 @@ namespace Com.IsartDigital.ChaseTag
         }
 
         [SerializeField] private List<PlayerUIInfo> playerUIInfos;
+        [SerializeField] private Vector3 offsetPlayerInMenu;
+
 
         [SerializeField] private AudioSource audioSourceMusic = default;
         [SerializeField] private AudioSource audioSourceFx = default;
@@ -103,7 +105,7 @@ namespace Com.IsartDigital.ChaseTag
         {
             if (id > playerUIInfos.Count) return;
 
-            player.position = playerUIInfos[id].fx_spawn.transform.position;
+            player.position = playerUIInfos[id].fx_spawn.transform.position + offsetPlayerInMenu;
             PlayerManager.Instance.playerInfos[id].player.Stop();
             playerUIInfos[id].fx_spawn.Play();
         }
