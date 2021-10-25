@@ -17,6 +17,8 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private string txtAnimGameOver = "GameOver";
         [SerializeField] private string txtAnimQuit = "Quit";
         [SerializeField] private string txtAnimReturnToTitlecard = "ReturnToTitlecard";
+        [SerializeField] private string txtReady = "Ready";
+        [SerializeField] private string txtNotReady = "Press A ...";
         [SerializeField] private Button btnPlay = default;
         [SerializeField] private Text txt_timer = default;
 
@@ -78,6 +80,20 @@ namespace Com.IsartDigital.ChaseTag
             audioSourceMusic.Play();
         }
 
+        public void StartPlayerInStage()
+        {
+            for (int i = 0; i < PlayerManager.Instance.playerCount; i++)
+            {
+                PlayerManager.Instance.playerInfos[i].player.Resume();
+            }
+        }
+
+        public void StartPlayerControls()
+        {
+            PlayerManager.Instance.SetPlayersControlScheme("Player");
+            gameStarted = true;
+        }
+
         private void DisplayTimeUpdate()
         {
             if (!gameStarted) return;
@@ -108,6 +124,7 @@ namespace Com.IsartDigital.ChaseTag
             player.position = playerUIInfos[id].fx_spawn.transform.position + offsetPlayerInMenu;
             PlayerManager.Instance.playerInfos[id].player.Stop();
             playerUIInfos[id].fx_spawn.Play();
+            playerUIInfos[id].txtPlayerReady.text = txtNotReady;
         }
 
         public void IsReady(int PlayerId, bool isReady)
@@ -115,9 +132,9 @@ namespace Com.IsartDigital.ChaseTag
             if (PlayerId < 0 || PlayerId >= PlayerManager.Instance.playerCount) return;
 
             if (isReady)
-                SetReady(PlayerId, isReady);
+                SetReady(PlayerId, isReady, txtReady);
             else
-                SetReady(PlayerId, isReady);
+                SetReady(PlayerId, isReady, txtNotReady);
 
             if (PlayerManager.Instance.AllPlayersReady())
                 btnPlay.interactable = true;
@@ -125,9 +142,10 @@ namespace Com.IsartDigital.ChaseTag
                 btnPlay.interactable = false;
         }
 
-        private void SetReady(int PlayerId, bool isReady)
+        private void SetReady(int PlayerId, bool isReady, string txtIsReady)
         {
             PlayerManager.Instance.playerInfos[PlayerId].isReady = isReady;
+            playerUIInfos[PlayerId].txtPlayerReady.text = txtIsReady;
         }
 
         public void ResetReady()
@@ -146,12 +164,6 @@ namespace Com.IsartDigital.ChaseTag
             {
                 Debug.Log("Game Starting");
                 animator.SetTrigger(txtAnimPlay);
-                gameStarted = true;
-
-                for (int i = 0; i < PlayerManager.Instance.playerCount; i++)
-                {
-                    PlayerManager.Instance.playerInfos[i].player.Resume();
-                }
 
                 audioSourceFx.Play();
             }

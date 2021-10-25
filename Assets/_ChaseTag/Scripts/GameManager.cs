@@ -49,7 +49,6 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             GameTimer = Instantiate(timerPrefab);
             GameTimer.Init(timeLimit);
             GameTimer.OnTimerCompleted += GameTimer_OnTimerCompleted;
-            PlayerManager.Instance.SetPlayersControlScheme("Player");
             wallStartBlock.SetActive(false);
         }
 
