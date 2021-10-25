@@ -59,7 +59,7 @@ namespace Com.IsartDigital.ChaseTag
             Destroy(transform.parent.gameObject);
         }
 
-        private IEnumerator ReaccelerationPlayer(Player player) 
+        private IEnumerator ReaccelerationPlayer(Player player)
         {
             float elapsedTime = 0f;
             float actualSpeedPlayer = player.currentSpeed;
@@ -80,7 +80,7 @@ namespace Com.IsartDigital.ChaseTag
         public void CancelTrap(Player player)
         {
             StopCoroutine(player.trapCoroutine);
-            
+
             player.StopParticleSlow();
             player.trap = null;
         }

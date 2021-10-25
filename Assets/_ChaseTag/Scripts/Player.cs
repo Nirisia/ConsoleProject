@@ -86,6 +86,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
 
         private Action doAction;
 
+        public Coroutine trapCoroutine;
+        public Trap trap;
+
         public bool isTrapped = false;
 
         public float MouseElapsedTime { get; private set; } = 0f;
@@ -279,6 +282,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         public void SetModeMouse()
         {
             currentState = PlayerState.MOUSE;
+
+            if (trap)
+                trap.CancelTrap(this);
 
             currentSpeed = playerSpecs.MouseSpeed;
             rb.drag = playerSpecs.MouseDrag;
