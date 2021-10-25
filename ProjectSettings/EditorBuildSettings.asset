@@ -4,6 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_ChaseTag/Scenes/Main.unity
+    guid: 7b7c31f9bb860f34f932a202be34cdd4
+  - enabled: 0
+    path: Assets/_ChaseTag/Scenes/yolo.unity
+    guid: 94a8cd804f99c5545b608b1eca6b974c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2a715e5f3a24753479789f72518fd850, type: 2}

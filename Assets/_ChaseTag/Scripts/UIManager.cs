@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Com.IsartDigital.ChaseTag
@@ -13,7 +14,6 @@ namespace Com.IsartDigital.ChaseTag
     {
         public static UIManager Instance { get; private set; }
 
-        [SerializeField] private InputAction select;
         [SerializeField] private string txtAnimPlay = "FadeOut";
         [SerializeField] private string txtAnimGameOver = "GameOver";
         [SerializeField] private string txtAnimQuit = "Quit";
@@ -21,17 +21,20 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private string txtReady = "Ready";
         [SerializeField] private string txtNotReady = "Press A ...";
         [SerializeField] private Button btnPlay = default;
-        [SerializeField] private Text txtPlayer1Ready = default;
-        [SerializeField] private Text txtPlayer2Ready = default;
-        [SerializeField] private Vector3 player1Pos = default;
-        [SerializeField] private Vector3 player2Pos = default;
         [SerializeField] private Text txt_timer = default;
-        [SerializeField] private Text txt_GameOverPlayer1 = default;
-        [SerializeField] private Text txt_GameOverPlayer2 = default;
-        [SerializeField] private ParticleSystem fx_spawnP1 = default;
-        [SerializeField] private ParticleSystem fx_spawnP2 = default;
-        [SerializeField] private Text txtPlayer1Collectible = default;
-        [SerializeField] private Text txtPlayer2Collectible = default;
+
+        [Serializable]
+        public class PlayerUIInfo
+        {
+            [SerializeField] public Text txtPlayerReady = default;
+            [SerializeField] public Text txt_GameOverPlayer = default;
+            [SerializeField] public ParticleSystem fx_spawn = default;
+            [SerializeField] public Text txtPlayerCollectible = default;
+        }
+
+        [SerializeField] private List<PlayerUIInfo> playerUIInfos;
+        [SerializeField] private Vector3 offsetPlayerInMenu;
+
 
         [SerializeField] private AudioSource audioSourceMusic = default;
         [SerializeField] private AudioSource audioSourceFx = default;
@@ -40,11 +43,11 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private AudioClip boo = default;
         [SerializeField] private AudioClip lastSeconds = default;
 
+        [SerializeField] private InputAction inputPause = default;
+        [SerializeField] private InputAction inputQuit = default;
 
         private Animator animator;
-        private bool isPlayer1Ready = false;
-        private bool isPlayer2Ready = false;
-        
+
         public bool gameOver = false;
         public bool gameStarted = false;
         public bool isQuitting = false;
@@ -56,6 +59,7 @@ namespace Com.IsartDigital.ChaseTag
                 Destroy(gameObject);
                 return;
             }
+
             Instance = this;
         }
 
@@ -63,32 +67,50 @@ namespace Com.IsartDigital.ChaseTag
         {
             animator = GetComponent<Animator>();
             btnPlay.interactable = false;
-            txtPlayer1Ready.text = txtNotReady;
-            txtPlayer2Ready.text = txtNotReady;
-
-            select.performed += ctx => BtnPlay();
-            select.Enable();
 
             GameManager.Instance.OnWin += DisplayWin;
             GameManager.Instance.OnTie += DisplayTie;
+
+            inputPause.performed += DisplayQuit;
+            inputQuit.performed += Quit;
         }
 
         private void Update()
         {
             DisplayTimeUpdate();
+
+            
         }
 
         public void StartTimer()
         {
             GameManager.Instance.StartGame();
             audioSourceMusic.Play();
+
+            inputPause.Enable();
+        }
+
+        public void StartPlayerInStage()
+        {
+            for (int i = 0; i < PlayerManager.Instance.playerCount; i++)
+            {
+                PlayerManager.Instance.playerInfos[i].player.Resume();
+            }
+        }
+
+        public void StartPlayerControls()
+        {
+            PlayerManager.Instance.SetPlayersControlScheme("Player");
+            gameStarted = true;
         }
 
         private void DisplayTimeUpdate()
         {
+            if (!gameStarted) return;
+
             if (GameManager.Instance.GameTimer != null)
             {
-                int remainingTime = (int)GameManager.Instance.GameTimer.InvertedElapsedTime;
+                int remainingTime = (int) GameManager.Instance.GameTimer.InvertedElapsedTime;
                 txt_timer.text = remainingTime.ToString();
 
                 if (remainingTime == 10)
@@ -98,43 +120,33 @@ namespace Com.IsartDigital.ChaseTag
                 }
             }
 
-            if (PlayerManager.Instance.Player1 != null)
+            for (int i = 0; i < PlayerManager.Instance.playerCount; i++)
             {
-                txtPlayer1Collectible.text = TimeDisplayTool.DisplayTime(PlayerManager.Instance.Player1.MouseElapsedTime, 1);
-            }
-
-            if (PlayerManager.Instance.Player2 != null)
-            {
-                txtPlayer2Collectible.text = TimeDisplayTool.DisplayTime(PlayerManager.Instance.Player2.MouseElapsedTime, 1);
+                playerUIInfos[i].txtPlayerCollectible.text =
+                    TimeDisplayTool.DisplayTime(PlayerManager.Instance.playerInfos[i].player.MouseElapsedTime, 1);
             }
         }
 
         public void ReplacePlayerInMenu(int id, Transform player)
         {
-            if (id == 0)
-            {
-                player.position = player1Pos;
-                PlayerManager.Instance.Player1 = player.GetComponent<Player>();
-                PlayerManager.Instance.Player1.GetComponent<Player>().Stop();
-                fx_spawnP1.Play();
-            }
-            else
-            {
-                player.position = player2Pos;
-                PlayerManager.Instance.Player2 = player.GetComponent<Player>();
-                PlayerManager.Instance.Player2.GetComponent<Player>().Stop();
-                fx_spawnP2.Play();
-            }
+            if (id > playerUIInfos.Count) return;
+
+            player.position = playerUIInfos[id].fx_spawn.transform.position + offsetPlayerInMenu;
+            PlayerManager.Instance.playerInfos[id].player.Stop();
+            playerUIInfos[id].fx_spawn.Play();
+            playerUIInfos[id].txtPlayerReady.text = txtNotReady;
         }
 
         public void IsReady(int PlayerId, bool isReady)
         {
+            if (PlayerId < 0 || PlayerId >= PlayerManager.Instance.playerCount) return;
+
             if (isReady)
                 SetReady(PlayerId, isReady, txtReady);
             else
                 SetReady(PlayerId, isReady, txtNotReady);
 
-            if (isPlayer1Ready && isPlayer2Ready)
+            if (PlayerManager.Instance.AllPlayersReady())
                 btnPlay.interactable = true;
             else
                 btnPlay.interactable = false;
@@ -142,36 +154,26 @@ namespace Com.IsartDigital.ChaseTag
 
         private void SetReady(int PlayerId, bool isReady, string txtIsReady)
         {
-            if (PlayerId == 0)
-            {
-                isPlayer1Ready = isReady;
-                txtPlayer1Ready.text = txtIsReady;
-            }
-            else
-            {
-                isPlayer2Ready = isReady;
-                txtPlayer2Ready.text = txtIsReady;
-            }
+            PlayerManager.Instance.playerInfos[PlayerId].isReady = isReady;
+            playerUIInfos[PlayerId].txtPlayerReady.text = txtIsReady;
         }
 
         public void ResetReady()
         {
-            isPlayer1Ready = false;
-            isPlayer2Ready = false;
+            for (int i = 0; i < 4; i++)
+            {
+                PlayerManager.Instance.playerInfos[i].isReady = false;
+            }
+
             btnPlay.interactable = false;
         }
 
         public void BtnPlay()
         {
-            if (isPlayer1Ready && isPlayer2Ready && !gameStarted)
+            if (PlayerManager.Instance.AllPlayersReady() && !gameStarted)
             {
+                Debug.Log("Game Starting");
                 animator.SetTrigger(txtAnimPlay);
-                gameStarted = true;
-
-                select.Disable();
-
-                PlayerManager.Instance.Player1.GetComponent<Player>().Resume();
-                PlayerManager.Instance.Player2.GetComponent<Player>().Resume();
 
                 audioSourceFx.Play();
             }
@@ -179,8 +181,11 @@ namespace Com.IsartDigital.ChaseTag
 
         public void DisplayTie()
         {
-            txt_GameOverPlayer1.text = "TIE";
-            txt_GameOverPlayer2.text = "TIE";
+            foreach (var playerUIInfo in playerUIInfos)
+            {
+                playerUIInfo.txt_GameOverPlayer.text = "TIE";
+            }
+
             animator.SetTrigger(txtAnimGameOver);
 
             audioSourceMusic.Stop();
@@ -193,15 +198,12 @@ namespace Com.IsartDigital.ChaseTag
         {
             Debug.Log(playerId + " : " + elapsedTime);
 
-            if (playerId == 1)
+            for (int i = 0; i < PlayerManager.Instance.playerCount; i++)
             {
-                txt_GameOverPlayer1.text = "WIN";
-                txt_GameOverPlayer2.text = "LOSE";
-            }
-            else
-            {
-                txt_GameOverPlayer1.text = "LOSE";
-                txt_GameOverPlayer2.text = "WIN";
+                if (playerId == i)
+                    playerUIInfos[i].txt_GameOverPlayer.text = "WIN";
+                else
+                    playerUIInfos[i].txt_GameOverPlayer.text = "LOSe";
             }
 
             animator.SetTrigger(txtAnimGameOver);
@@ -213,29 +215,38 @@ namespace Com.IsartDigital.ChaseTag
 
             audioSourceFx.clip = cheers;
             audioSourceFx.Play();
-
         }
 
         public void Pause()
         {
             Time.timeScale = 0;
+            audioSourceMusic.Pause();
         }
 
         public void UnPause()
         {
             Time.timeScale = 1;
+            audioSourceMusic.UnPause();
         }
 
-        public void DisplayQuit()
+        public void DisplayQuit(InputAction.CallbackContext callback)
         {
-            isQuitting = true;
+            if (!isQuitting)
+                inputQuit.Enable();
+            else
+                inputQuit.Disable();
+
+            isQuitting = !isQuitting;
             animator.SetTrigger(txtAnimQuit);
         }
 
-        public void RemoveQuit()
+        public void Quit(InputAction.CallbackContext callback)
         {
+            UnPause();
             isQuitting = false;
-            animator.SetTrigger(txtAnimQuit);
+            inputPause.Disable();
+            inputQuit.Disable();
+            SceneManager.LoadScene(0);
         }
 
         public void GameOverToTitleCard()
@@ -251,6 +262,7 @@ namespace Com.IsartDigital.ChaseTag
         private void OnDestroy()
         {
             Instance = null;
+
         }
     }
 }

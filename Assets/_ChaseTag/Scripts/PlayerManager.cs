@@ -3,7 +3,10 @@
 /// Date : 29/09/2021 18:05
 ///-----------------------------------------------------------------
 
+using System;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag {
@@ -11,14 +14,18 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 	
 		public static PlayerManager Instance { get; private set; }
 
-        [SerializeField] private Player player1 = default;
-        [SerializeField] private Player player2 = default;
-        [SerializeField] private Color colorPlayer1 = default;
-        [SerializeField] private Color colorPlayer2 = default;
-        [SerializeField] private Gradient gradientPlayer1 = default;
-        [SerializeField] private Gradient gradientPlayer2 = default;
-        [SerializeField] private Text txtStatePlayer1 = default;
-        [SerializeField] private Text txtStatePlayer2 = default;
+        [Serializable]
+        public class PlayerInfo
+        {
+            [SerializeField] public Player player = null;
+            [SerializeField] public Color color = default;
+            [SerializeField] public Gradient gradient = default;
+            [SerializeField] public Text txtState = default;
+            [SerializeField] public bool isReady = false;
+        }
+
+        public int playerCount = 0;
+        public PlayerInfo[] playerInfos;
 
         [Header("State name")]
         [SerializeField] private string txtStateNormal = "GET ITEM FIRST";
@@ -27,34 +34,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         //[SerializeField] private Text txtCollectiblePlayer1 = default;
         //[SerializeField] private Text txtCollectiblePlayer2 = default;
 
-        public Player Player1 {
-            get { return player1; }
-            set { 
-                player1 = value;
-                player1.GetComponentInChildren<Renderer>().material.color = colorPlayer1;
-                player1.GetComponentInChildren<TrailRenderer>().startColor = colorPlayer1;
 
-                var col = player1.GetComponentInChildren<ParticleSystem>().colorOverLifetime;
-                col.color = gradientPlayer1;
-
-                ParticleSystem.MainModule main = player1.GetComponentInChildren<ParticleSystem>().main;
-                main.startColor = colorPlayer1;
-            }
-        }
-        public Player Player2
+        private void Start()
         {
-            get { return player2; }
-            set { 
-                player2 = value;
-                player2.GetComponentInChildren<Renderer>().material.color = colorPlayer2;
-                player2.GetComponentInChildren<TrailRenderer>().startColor = colorPlayer2;
-
-                var col = player2.GetComponentInChildren<ParticleSystem>().colorOverLifetime;
-                col.color = gradientPlayer2;
-
-                ParticleSystem.MainModule main = player2.GetComponentInChildren<ParticleSystem>().main;
-                main.startColor = colorPlayer2;
-            }
         }
 
         private void Awake()
@@ -80,101 +62,112 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
         public void ReturnPlayerToNormal()
         {
-            player1.haveCrown = false;
-            player2.haveCrown = false;
-
-            player1.SetModeNormal();
-            player2.SetModeNormal();
-
+            for (int i = 0; i < playerCount; i++)
+            {
+                playerInfos[i].player.haveCrown = false;
+                playerInfos[i].player.SetModeNormal();
+                
+            }
             Player_OnCollectibleCollected();
         }
  
-        private void Player_OnCollectibleCollected(Player player = default)
+        private void Player_OnCollectibleCollected(Player _ = default)
         {
-            if (/*player1.NumCollectiblesCollected < player2.NumCollectiblesCollected*/ player2.haveCrown)
+            for (int i = 0; i < playerCount; i++)
             {
-                player1.SetModeCat();
-                player2.SetModeMouse();
-
-                player1.SetSize(PlayerState.CAT);
-                player2.SetSize(PlayerState.MOUSE);
-
-                txtStatePlayer1.text = txtStateCat;
-                txtStatePlayer2.text = txtStateMouse;
+                var player = playerInfos[i].player;
+                if (player.haveCrown)
+                {
+                    player.SetModeMouse();
+                    player.SetSize(PlayerState.MOUSE);
+                    playerInfos[i].txtState.text = txtStateMouse;
+                }
+                else
+                {
+                    player.SetModeCat();
+                    player.SetSize(PlayerState.CAT);
+                    playerInfos[i].txtState.text = txtStateCat;
+                }
+                
             }
-            else if (/*player1.NumCollectiblesCollected > player2.NumCollectiblesCollected*/ player1.haveCrown)
-            {
-                player1.SetModeMouse();
-                player2.SetModeCat();
-
-                player1.SetSize(PlayerState.MOUSE);
-                player2.SetSize(PlayerState.CAT);
-
-                txtStatePlayer1.text = txtStateMouse;
-                txtStatePlayer2.text = txtStateCat;
-            }
-            else if (!player1.haveCrown && !player2.haveCrown)
-            {
-                player1.SetSize(PlayerState.NORMAL);
-                player2.SetSize(PlayerState.NORMAL);
-
-                txtStatePlayer1.text = txtStateNormal;
-                txtStatePlayer2.text = txtStateNormal;
-            }
-
-            //txtCollectiblePlayer1.text = player1.NumCollectiblesCollected.ToString();
-            //txtCollectiblePlayer2.text = player2.NumCollectiblesCollected.ToString();
         }
 
         public bool TryGetMousePlayer(out Player player)
         {
-            if (player1.CurrentState == PlayerState.MOUSE)
+            for (int i = 0; i < playerCount; i++)
             {
-                player = player1;
-                return true;
+                var playerI = playerInfos[i].player;
+                if (playerI.haveCrown)
+                {
+                    player = playerI;
+                    return true;
+                }
             }
-            else if (player2.CurrentState == PlayerState.CAT)
-            {
-                player = player2;
-                return true;
-            }
-            else
-            {
-                player = null;
-                return false;
-            }
+
+            player = null;
+            return false;
         }
 
         public void DestroyPlayer()
         {
-            Destroy(player1.gameObject);
-            Destroy(player2.gameObject);
+            for (int i = 0; i < playerCount; i++)
+            {
+                Destroy(playerInfos[i].player.gameObject);
+            }
         }
 
         public int GetPlayerId(Player player)
         {
-            if (player == player1) return 1;
-            else return 2;
+            for (int i = 0; i < playerCount; i++)
+            {
+                if (player == playerInfos[i].player)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
         }
 
         public bool TryGetPlayerWithMostElapsedTime(out Player player)
         {
-            if (player1.MouseElapsedTime == player2.MouseElapsedTime)
+            player = playerInfos[0].player;
+            for (int i = 1; i < playerCount; i++)
             {
-                player = null;
-                return false;
+                if (playerInfos[i].player.MouseElapsedTime > player.MouseElapsedTime)
+                    player = playerInfos[i].player;
             }
-
-            player = player1.MouseElapsedTime > player2.MouseElapsedTime ? player1 : player2;
             return true;
         }
 
         public float GetPlayerMouseElapsedTime(int playerId)
         {
-            if (playerId == 1) return player1.MouseElapsedTime;
-            if (playerId == 2) return player2.MouseElapsedTime;
+            return playerInfos[playerId].player.MouseElapsedTime;
+        }
+        
+        public bool AllPlayersReady()
+        {
+            for (int i = 0; i < playerCount; i++)
+            {
+                if (!playerInfos[i].isReady)
+                    return false;
+            }
 
-            return 0;
+            return true;
+        }
+
+        public void SetPlayersControlScheme(string actionMap)
+        {
+            for (int i = 0; i < playerCount; i++)
+            {
+                playerInfos[i].player.GetComponent<PlayerInput>().SwitchCurrentActionMap(actionMap);
+            }
+        }
+
+        public void PlayerJoined(int playerID)
+        {
+            playerCount++;
+            playerInfos[playerID].player.GetComponentInChildren<Renderer>().material.color = playerInfos[playerID].color;
         }
     }
 }

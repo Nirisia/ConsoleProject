@@ -8,8 +8,7 @@ namespace Com.IsartDigital.ChaseTag
     {
         public static CameraFollow Instance { get; private set; }
 
-        [SerializeField] private Transform target = default;
-        [SerializeField] private Transform target2 = default;
+        [SerializeField] private List<Transform> targets = new List<Transform>();
         [SerializeField] private float offsetZ = -2;
         [SerializeField] private float offsetY = 5;
         [SerializeField] private float heightMultiplicator = 0.1f;
@@ -24,25 +23,27 @@ namespace Com.IsartDigital.ChaseTag
 
         private void Update()
         {
-            if(target != null && target2 != null && UIManager.Instance.gameStarted)
+            if(targets.Count != 0 && UIManager.Instance.gameStarted)
                 MoveCamera();
             else
             {
-                var players = GameObject.FindGameObjectsWithTag("Player");
-
-                if (players.Length > 1)
+                foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
                 {
-                    target = players[0].transform;
-                    target2 = players[1].transform;
+                    targets.Add(player.transform);
                 }
             }
         }
 
         private void MoveCamera()
         {
-            Vector3 newPos = target.position;
-            float distance = Vector3.Distance(target.position, target2.position);
-            newPos = (target.position + target2.position) / 2;
+            Vector3 newPos = Vector3.zero;
+            float distance = 1; //Distance(target.position, target2.position);
+            foreach (var target in targets)
+            {
+                newPos += target.position;
+            }
+
+            newPos /= targets.Count;
             
             Vector3 targetPosition = new Vector3(newPos.x, newPos.y + offsetY + (distance * heightMultiplicator), newPos.z + offsetZ + (distance * widthMultiplicator));
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
