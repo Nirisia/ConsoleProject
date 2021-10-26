@@ -8,7 +8,7 @@ namespace Com.IsartDigital.ChaseTag
     {
         public static CameraFollow Instance { get; private set; }
 
-        [SerializeField] private List<Transform> targets = new List<Transform>();
+        [SerializeField] public List<Transform> targets = new List<Transform>();
         [SerializeField] private float offsetZ = -2;
         [SerializeField] private float offsetY = 5;
         [SerializeField] private float heightMultiplicator = 0.1f;
@@ -25,13 +25,6 @@ namespace Com.IsartDigital.ChaseTag
         {
             if(targets.Count != 0 && UIManager.Instance.gameStarted)
                 MoveCamera();
-            else
-            {
-                foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
-                {
-                    targets.Add(player.transform);
-                }
-            }
         }
 
         private void MoveCamera()

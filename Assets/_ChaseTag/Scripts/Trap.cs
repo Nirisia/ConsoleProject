@@ -27,18 +27,7 @@ namespace Com.IsartDigital.ChaseTag
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.collider.CompareTag(playerTag))
-            {
-                Player playerCollided = collision.collider.GetComponent<Player>();
-                if (!playerCollided.trap)
-                {
-                    originPlayerSpeed = playerCollided.currentSpeed;
-                    playerCollided.currentSpeed = 0f;
-                    playerCollided.trap = this;
-                    playerCollided.trapCoroutine = StartCoroutine(ReaccelerationPlayer(playerCollided));
-                    playerCollided.PlayParticleSlow();
-                }
-            }
+            
         }
 
         private void OnTriggerEnter(Collider other)
@@ -47,6 +36,19 @@ namespace Com.IsartDigital.ChaseTag
             {
                 StartCoroutine(Explode());
                 audioSourceExplode.Play();
+            }
+
+            if (other.CompareTag(playerTag))
+            {
+                Player playerCollided = other.GetComponent<Player>();
+                if (!playerCollided.trap)
+                {
+                    originPlayerSpeed = playerCollided.currentSpeed;
+                    playerCollided.currentSpeed = 0f;
+                    playerCollided.trap = this;
+                    playerCollided.trapCoroutine = StartCoroutine(ReaccelerationPlayer(playerCollided));
+                    playerCollided.PlayParticleSlow();
+                }
             }
         }
 

@@ -34,15 +34,22 @@ namespace Com.IsartDigital.ChaseTag
         public void OnPlayerJoined(PlayerInput playerInput)
         {
             Debug.Log("Player Joined");
-            PlayerManager.Instance.playerInfos[playerInput.playerIndex].player = playerInput.gameObject.GetComponent<Player>();
+            Player myPlayer = playerInput.gameObject.GetComponent<Player>();
+
+            PlayerManager.Instance.playerInfos[playerInput.playerIndex].player = myPlayer;
             PlayerManager.Instance.PlayerJoined(playerInput.playerIndex);
             UIManager.Instance.ReplacePlayerInMenu(playerInput.playerIndex, playerInput.gameObject.transform);
+            CameraFollow.Instance.targets.Add(myPlayer.transform);
         }
 
         public void OnPlayerLeft(PlayerInput playerInput)
         {
             Debug.Log("Player Left");
+            Player myPlayer = playerInput.gameObject.GetComponent<Player>();
+
             PlayerManager.Instance.playerCount--;
+
+            CameraFollow.Instance.targets.Remove(myPlayer.transform);
         }
 
         public void OnDestroy()
