@@ -45,6 +45,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         [SerializeField] private string wallTag = "Wall";
         [SerializeField] private string borderTag = "Border";
         [SerializeField, Range(0.1f, 4f)] private float secondStunAfterCollision = default;
+        [SerializeField] private float stunDrag = 10000;
+
         [SerializeField] private Vector3 respawnPosition;
 
         [Header("Particles")] [SerializeField] private ParticleSystem fx_Slow = default;
@@ -225,30 +227,35 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
 
             if (currentState == PlayerState.CAT && collision.collider.CompareTag(playerTag) && stunCoroutine == null)
             {
-                Debug.Log("j'ai eu la souris !");
                 //OnMouseCaught?.Invoke(this);
 
                 Player playerCollided = collision.gameObject.GetComponent<Player>();
 
-                playerCollided.ChangeCrown();
-                ChangeCrown();
+                // Change state only if the other player is mouse
+                if (playerCollided.currentState == PlayerState.MOUSE)
+                {
+                    Debug.Log("j'ai eu la souris !");
 
-                fx_particleAttractor.gameObject.SetActive(true);
-                fx_Crown.Play();
-                fx_CrownTrail.enabled = true;
+                    playerCollided.ChangeCrown();
+                    ChangeCrown();
 
-                playerCollided.fx_StolenCrown.Play();
-                playerCollided.fx_particleAttractor.gameObject.SetActive(false);
-                playerCollided.fx_Crown.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
-                playerCollided.fx_CrownTrail.enabled = false;
+                    fx_particleAttractor.gameObject.SetActive(true);
+                    fx_Crown.Play();
+                    fx_CrownTrail.enabled = true;
 
-                ParticleSystem.MainModule main = fx_Shield.main;
-                main.duration = secondStunAfterCollision;
+                    playerCollided.fx_StolenCrown.Play();
+                    playerCollided.fx_particleAttractor.gameObject.SetActive(false);
+                    playerCollided.fx_Crown.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+                    playerCollided.fx_CrownTrail.enabled = false;
 
-                fx_Shield.Play();
+                    ParticleSystem.MainModule main = fx_Shield.main;
+                    main.duration = secondStunAfterCollision;
 
-                audioSource.clip = sounds_collision[1];
-                audioSource.Play();
+                    fx_Shield.Play();
+
+                    audioSource.clip = sounds_collision[1];
+                    audioSource.Play();
+                }
             }
         }
 
@@ -378,9 +385,15 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
 
         public IEnumerator StunAfterCollision()
         {
+            float originalAngularDrag = rb.angularDrag;
+
             SetModeVoid();
             PlayParticleSlow();
+            rb.angularDrag = stunDrag;
+
             yield return new WaitForSeconds(secondStunAfterCollision);
+
+            rb.angularDrag = originalAngularDrag;
             SetModeCat();
             Resume();
             StopParticleSlow();
