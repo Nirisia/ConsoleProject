@@ -37,6 +37,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         //[SerializeField] private Text txtCollectiblePlayer1 = default;
         //[SerializeField] private Text txtCollectiblePlayer2 = default;
 
+        [SerializeField] private Vector3[] podiumPosition = new Vector3[4];
+
 
         private void Awake()
         {
@@ -199,7 +201,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             }
         }
 
-        public PlayerInfo[] getLeaderboard()
+        public void setOnPodium()
         {
             PlayerInfo[] leaderboard = new PlayerInfo[playerCount];
 
@@ -210,7 +212,16 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             
             leaderboard = leaderboard.OrderBy(x => x.score).ToArray();
 
-            return leaderboard;
+            leaderboard[0].player.transform.position = podiumPosition[3];
+            CameraFollow.Instance.targets.Remove(leaderboard[0].player.transform);
+
+            var countPodiumPod = 0;
+
+            for (int i = leaderboard.Length - 1; i >= 1; i--)
+            {
+                leaderboard[i].player.transform.position = podiumPosition[countPodiumPod];
+                countPodiumPod++;
+            }
         }
     }
 }

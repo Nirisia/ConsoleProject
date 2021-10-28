@@ -5,6 +5,7 @@
 
 using Com.IsartDigital.Common;
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag {
@@ -19,8 +20,13 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         [Header("Game Settings")]
         [SerializeField] private int timeLimit = 300;
         [SerializeField] private int roundNumber = 6;
+        [SerializeField] private float timeBeforeMovePodium = 3f;
+
+        [SerializeField] private GameObject[] Maps;
 
         private int roundCounter = 1;
+
+        private GameObject currentMap;
 
         public Timer GameTimer { get; private set; }
         public int RoundNumber { get => roundNumber; private set => roundNumber = value; }
@@ -51,6 +57,11 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             OnTie = null;
         }
 
+        private void Start()
+        {
+            currentMap = Instantiate(Maps[0]);
+        }
+
         public void Restart()
         {
             wallStartBlock.SetActive(true);
@@ -59,6 +70,31 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             CollectibleManager.Instance.ResetCollectible();
 
             RoundCounter++;
+
+            Destroy(currentMap);
+            currentMap = Instantiate(Maps[roundCounter-1]);
+        }
+
+        public void FinalMap()
+        {
+            wallStartBlock.SetActive(false);
+
+            CollectibleManager.Instance.DestroyAllCollectibles();
+
+            Destroy(currentMap);
+            currentMap = Instantiate(Maps[roundCounter]);
+
+            StartCoroutine(WinWaitBeforeMoving());
+
+            CameraFollow.Instance.isWinPos = true;
+            CameraFollow.Instance.WinPosition();
+        }
+
+        private IEnumerator WinWaitBeforeMoving()
+        {
+            yield return new WaitForSeconds(timeBeforeMovePodium);
+
+            PlayerManager.Instance.SetPlayersControlScheme("Player");
         }
 
         public void StartGame()

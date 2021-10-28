@@ -282,11 +282,11 @@ namespace Com.IsartDigital.ChaseTag
         {
             Time.timeScale = 1;
             animator.SetTrigger(txtFinalWin);
-            //Position Player on podium + stop move
-            //Wait x seconds and start move
-            //wait x second and reload scene
+            GameManager.Instance.FinalMap();
 
-            PlayerManager.Instance.getLeaderboard();
+            PlayerManager.Instance.setOnPodium();
+
+            //Input to reload game
         }
 
         public void GameOverToTitleCard()

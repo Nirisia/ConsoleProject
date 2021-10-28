@@ -17,14 +17,22 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private float lookSpeed = 5;
         [SerializeField] private Vector3 maxQuaternionRota;
         [SerializeField] private Vector3 minQuaternionRota;
+        [SerializeField] private Transform winTransform;
+        [SerializeField] public bool isWinPos = false;
         [SerializeField] private bool isLookat = true;
 
         private Vector3 velocity = Vector3.zero;
 
         private void Update()
         {
-            if(targets.Count != 0 && UIManager.Instance.gameStarted)
+            if(targets.Count != 0 && UIManager.Instance.gameStarted && !isWinPos)
                 MoveCamera();
+        }
+
+        public void WinPosition()
+        {
+            transform.rotation = winTransform.rotation;
+            transform.position = winTransform.position;
         }
 
         private void MoveCamera()
