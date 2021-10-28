@@ -70,10 +70,13 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
             for (int i = length - 1; i >= 0; i--)
             {
-                Destroy(collectibles[i]);
+                Destroy(collectibles[i].gameObject);
 
                 collectibles.RemoveAt(i);
             }
+
+            StopAllCoroutines();
+            respawnCoroutine = null;
         }
 
         private IEnumerator SpawnNewCollectible()

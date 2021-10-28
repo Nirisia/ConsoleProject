@@ -38,7 +38,7 @@ namespace Com.IsartDigital.ChaseTag
 
             PlayerManager.Instance.playerInfos[playerInput.playerIndex].player = myPlayer;
             PlayerManager.Instance.PlayerJoined(playerInput.playerIndex);
-            UIManager.Instance.ReplacePlayerInMenu(playerInput.playerIndex, playerInput.gameObject.transform);
+            PlayerManager.Instance.ReplacePlayer(playerInput.playerIndex, playerInput.gameObject.transform);
             CameraFollow.Instance.targets.Add(myPlayer.transform);
         }
 

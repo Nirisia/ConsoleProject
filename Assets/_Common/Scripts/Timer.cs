@@ -32,6 +32,7 @@ namespace Com.IsartDigital.Common {
         {
             this.limitDuration = limitDuration;
             SetTimeScale(timeScale);
+            elapsedTime = 0;
         }
 
         private void Update()

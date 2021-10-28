@@ -14,10 +14,17 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 		public static GameManager Instance { get; private set; }
 
         [SerializeField] private Timer timerPrefab = default;
-        [SerializeField] private int timeLimit = 300;
         [SerializeField] private GameObject wallStartBlock = default;
 
+        [Header("Game Settings")]
+        [SerializeField] private int timeLimit = 300;
+        [SerializeField] private int roundNumber = 6;
+
+        private int roundCounter = 1;
+
         public Timer GameTimer { get; private set; }
+        public int RoundNumber { get => roundNumber; private set => roundNumber = value; }
+        public int RoundCounter { get => roundCounter; private set => roundCounter = value; }
 
         public event EndGameEventHandler OnWin;
         public event Action OnTie;
@@ -42,6 +49,16 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
             OnWin = null;
             OnTie = null;
+        }
+
+        public void Restart()
+        {
+            wallStartBlock.SetActive(true);
+
+            CollectibleManager.Instance.DestroyAllCollectibles();
+            CollectibleManager.Instance.ResetCollectible();
+
+            RoundCounter++;
         }
 
         public void StartGame()
@@ -70,7 +87,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
                 OnTie?.Invoke();
             }
 
-            PlayerManager.Instance.DestroyPlayer();
+            //PlayerManager.Instance.DestroyPlayer();
         }
     }
 }

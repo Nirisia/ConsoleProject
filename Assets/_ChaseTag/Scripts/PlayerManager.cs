@@ -4,6 +4,7 @@
 ///-----------------------------------------------------------------
 
 using System;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,6 +23,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             [SerializeField] public Gradient gradient = default;
             [SerializeField] public Text txtState = default;
             [SerializeField] public bool isReady = false;
+            [SerializeField] public Vector3 spawnPosition = default;
+            [SerializeField] public int score = default;
         }
 
         public int playerCount = 0;
@@ -34,10 +37,6 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         //[SerializeField] private Text txtCollectiblePlayer1 = default;
         //[SerializeField] private Text txtCollectiblePlayer2 = default;
 
-
-        private void Start()
-        {
-        }
 
         private void Awake()
         {
@@ -137,6 +136,10 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
                 if (playerInfos[i].player.MouseElapsedTime > player.MouseElapsedTime)
                     player = playerInfos[i].player;
             }
+
+            if (player.MouseElapsedTime == 0)
+                return false;
+
             return true;
         }
 
@@ -168,6 +171,46 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         {
             playerCount++;
             playerInfos[playerID].player.GetComponentInChildren<Renderer>().material.color = playerInfos[playerID].color;
+        }
+
+        public void ReplacePlayer(int id, Transform player)
+        {
+            if (id > playerInfos.Length) return;
+
+            player.position = playerInfos[id].spawnPosition;
+            playerInfos[id].player.Stop();
+            UIManager.Instance.DisplaySpawnEffect(id);
+        }
+
+        public void ReplaceAllPlayer()
+        {
+            for (int i = 0; i < playerCount; i++)
+            {
+                ReplacePlayer(i, playerInfos[i].player.transform);
+                playerInfos[i].player.ResetPlayer();
+            }
+        }
+
+        public void ResetAllPlayer()
+        {
+            for (int i = 0; i < playerCount; i++)
+            {
+                playerInfos[i].player.ResetPlayer();
+            }
+        }
+
+        public PlayerInfo[] getLeaderboard()
+        {
+            PlayerInfo[] leaderboard = new PlayerInfo[playerCount];
+
+            for (int i = 0; i < playerCount; i++)
+            {
+                leaderboard[i] = playerInfos[i];
+            }
+            
+            leaderboard = leaderboard.OrderBy(x => x.score).ToArray();
+
+            return leaderboard;
         }
     }
 }

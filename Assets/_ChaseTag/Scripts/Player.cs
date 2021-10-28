@@ -432,6 +432,20 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
                 UIManager.Instance.IsReady(PlayerManager.Instance.GetPlayerId(this), true);
             }
         }
+
+        public void ResetPlayer()
+        {
+            SetModeNormal();
+            SetSize(PlayerState.NORMAL);
+            haveCrown = false;
+            fx_Crown.Stop();
+            fx_CrownTrail.enabled = false;
+            fx_Shield.Stop();
+            fx_Slow.Stop();
+            fx_StolenCrown.Stop();
+            cameraShake.enabled = false;
+            MouseElapsedTime = 0;
+        }
     }
 
 

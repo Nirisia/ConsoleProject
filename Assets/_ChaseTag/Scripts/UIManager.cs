@@ -18,16 +18,17 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private string txtAnimGameOver = "GameOver";
         [SerializeField] private string txtAnimQuit = "Quit";
         [SerializeField] private string txtAnimReturnToTitlecard = "ReturnToTitlecard";
+        [SerializeField] private string txtFinalWin = "FinalWin";
         [SerializeField] private string txtReady = "Ready";
         [SerializeField] private string txtNotReady = "Press A ...";
         [SerializeField] private Button btnPlay = default;
         [SerializeField] private Text txt_timer = default;
+        [SerializeField] public Text txt_GameOverPlayer = default;
 
         [Serializable]
         public class PlayerUIInfo
         {
             [SerializeField] public Text txtPlayerReady = default;
-            [SerializeField] public Text txt_GameOverPlayer = default;
             [SerializeField] public ParticleSystem fx_spawn = default;
             [SerializeField] public Text txtPlayerCollectible = default;
         }
@@ -39,12 +40,15 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private AudioSource audioSourceMusic = default;
         [SerializeField] private AudioSource audioSourceFx = default;
         [SerializeField] private AudioClip win = default;
+        [SerializeField] private AudioClip music = default;
+        [SerializeField] private AudioClip introMusic = default;
         [SerializeField] private AudioClip cheers = default;
         [SerializeField] private AudioClip boo = default;
         [SerializeField] private AudioClip lastSeconds = default;
 
         [SerializeField] private InputAction inputPause = default;
         [SerializeField] private InputAction inputQuit = default;
+        [SerializeField] private InputAction inputNextRound = default;
 
         private Animator animator;
 
@@ -73,6 +77,7 @@ namespace Com.IsartDigital.ChaseTag
 
             inputPause.performed += DisplayQuit;
             inputQuit.performed += Quit;
+            inputNextRound.performed += NextRound;
         }
 
         private void Update()
@@ -85,6 +90,7 @@ namespace Com.IsartDigital.ChaseTag
         public void StartTimer()
         {
             GameManager.Instance.StartGame();
+            audioSourceMusic.clip = music;
             audioSourceMusic.Play();
 
             inputPause.Enable();
@@ -102,6 +108,7 @@ namespace Com.IsartDigital.ChaseTag
         {
             PlayerManager.Instance.SetPlayersControlScheme("Player");
             gameStarted = true;
+            StartPlayerInStage();
         }
 
         private void DisplayTimeUpdate()
@@ -127,12 +134,8 @@ namespace Com.IsartDigital.ChaseTag
             }
         }
 
-        public void ReplacePlayerInMenu(int id, Transform player)
+        public void DisplaySpawnEffect(int id)
         {
-            if (id > playerUIInfos.Count) return;
-
-            player.position = playerUIInfos[id].fx_spawn.transform.position + offsetPlayerInMenu;
-            PlayerManager.Instance.playerInfos[id].player.Stop();
             playerUIInfos[id].fx_spawn.Play();
             playerUIInfos[id].txtPlayerReady.text = txtNotReady;
         }
@@ -176,15 +179,14 @@ namespace Com.IsartDigital.ChaseTag
                 animator.SetTrigger(txtAnimPlay);
 
                 audioSourceFx.Play();
+
+                CollectibleManager.Instance.ResetCollectible();
             }
         }
 
         public void DisplayTie()
         {
-            foreach (var playerUIInfo in playerUIInfos)
-            {
-                playerUIInfo.txt_GameOverPlayer.text = "TIE";
-            }
+            txt_GameOverPlayer.text = "NOBODY";
 
             animator.SetTrigger(txtAnimGameOver);
 
@@ -192,19 +194,19 @@ namespace Com.IsartDigital.ChaseTag
 
             audioSourceFx.clip = boo;
             audioSourceFx.Play();
+
+            Time.timeScale = 0;
+
+            inputQuit.Disable();
+            inputNextRound.Enable();
         }
 
         private void DisplayWin(int playerId, float elapsedTime)
         {
-            Debug.Log(playerId + " : " + elapsedTime);
+            PlayerManager.Instance.playerInfos[playerId].score++;
+            PlayerManager.Instance.ResetAllPlayer();
 
-            for (int i = 0; i < PlayerManager.Instance.playerCount; i++)
-            {
-                if (playerId == i)
-                    playerUIInfos[i].txt_GameOverPlayer.text = "WIN";
-                else
-                    playerUIInfos[i].txt_GameOverPlayer.text = "LOSe";
-            }
+            txt_GameOverPlayer.text = "PLAYER   " + (playerId+1);
 
             animator.SetTrigger(txtAnimGameOver);
 
@@ -215,6 +217,11 @@ namespace Com.IsartDigital.ChaseTag
 
             audioSourceFx.clip = cheers;
             audioSourceFx.Play();
+
+            Time.timeScale = 0;
+
+            inputQuit.Disable();
+            inputNextRound.Enable();
         }
 
         public void Pause()
@@ -247,6 +254,39 @@ namespace Com.IsartDigital.ChaseTag
             inputPause.Disable();
             inputQuit.Disable();
             SceneManager.LoadScene(0);
+        }
+
+        public void NextRound(InputAction.CallbackContext callback)
+        {
+            Debug.Log("Round " + GameManager.Instance.RoundCounter + " sur " + GameManager.Instance.RoundNumber);
+
+            if (GameManager.Instance.RoundCounter == GameManager.Instance.RoundNumber)
+            {
+                DisplayFinalWin();
+                return;
+            }
+
+            animator.SetTrigger(txtAnimReturnToTitlecard);
+            inputNextRound.Disable();
+
+            PlayerManager.Instance.ReplaceAllPlayer();
+
+            audioSourceFx.clip = introMusic;
+            audioSourceFx.Play();
+            Time.timeScale = 1;
+
+            GameManager.Instance.Restart();
+        }
+
+        private void DisplayFinalWin()
+        {
+            Time.timeScale = 1;
+            animator.SetTrigger(txtFinalWin);
+            //Position Player on podium + stop move
+            //Wait x seconds and start move
+            //wait x second and reload scene
+
+            PlayerManager.Instance.getLeaderboard();
         }
 
         public void GameOverToTitleCard()
