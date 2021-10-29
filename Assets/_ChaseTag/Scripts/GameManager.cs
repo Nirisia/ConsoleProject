@@ -6,6 +6,7 @@
 using Com.IsartDigital.Common;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag {
@@ -22,7 +23,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         [SerializeField] private int roundNumber = 6;
         [SerializeField] private float timeBeforeMovePodium = 3f;
 
-        [SerializeField] private GameObject[] Maps;
+        [SerializeField] private List<GameObject> Maps;
+        [SerializeField] private GameObject podiumMap;
 
         private int roundCounter = 1;
 
@@ -59,7 +61,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
         private void Start()
         {
-            currentMap = Instantiate(Maps[0]);
+            LoadMap();
         }
 
         public void Restart()
@@ -72,7 +74,17 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             RoundCounter++;
 
             Destroy(currentMap);
-            currentMap = Instantiate(Maps[roundCounter-1]);
+
+            LoadMap();
+        }
+
+        private void LoadMap()
+        {
+            var randomInt = UnityEngine.Random.Range(0, Maps.Count - 1);
+
+            currentMap = Instantiate(Maps[randomInt]);
+
+            Maps.RemoveAt(randomInt);
         }
 
         public void FinalMap()
@@ -82,7 +94,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             CollectibleManager.Instance.DestroyAllCollectibles();
 
             Destroy(currentMap);
-            currentMap = Instantiate(Maps[roundCounter]);
+            currentMap = Instantiate(podiumMap);
 
             StartCoroutine(WinWaitBeforeMoving());
 
