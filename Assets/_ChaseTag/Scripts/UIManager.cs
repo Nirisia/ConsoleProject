@@ -25,6 +25,8 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private Text txt_timer = default;
         [SerializeField] public Text txt_GameOverPlayer = default;
         [SerializeField] public GameObject imgScore = default;
+        [SerializeField] public Text DisplayRoundStart = default;
+        [SerializeField] public Text DisplayRoundHUD = default;
 
         [Serializable]
         public class PlayerUIInfo
@@ -80,6 +82,8 @@ namespace Com.IsartDigital.ChaseTag
             inputPause.performed += DisplayQuit;
             inputQuit.performed += Quit;
             inputNextRound.performed += NextRound;
+
+            DisplayRoundHUD.text = (GameManager.Instance.RoundCounter) + " / " + GameManager.Instance.RoundNumber + "\nROUND";
         }
 
         private void Update()
@@ -265,6 +269,9 @@ namespace Com.IsartDigital.ChaseTag
         public void NextRound(InputAction.CallbackContext callback)
         {
             Debug.Log("Round " + GameManager.Instance.RoundCounter + " sur " + GameManager.Instance.RoundNumber);
+
+            DisplayRoundStart.text = "ROUND " + (GameManager.Instance.RoundCounter+1);
+            DisplayRoundHUD.text = (GameManager.Instance.RoundCounter+1) + " / " + GameManager.Instance.RoundNumber + "\nROUND";
 
             if (GameManager.Instance.RoundCounter == GameManager.Instance.RoundNumber)
             {
