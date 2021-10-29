@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 545807919}
   - component: {fileID: 545807918}
   m_Layer: 5
-  m_Name: State3
+  m_Name: State2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 867175223}
   - component: {fileID: 867175222}
   m_Layer: 5
-  m_Name: State2
+  m_Name: State3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2823,20 +2823,21 @@ MonoBehaviour:
   txtAnimGameOver: GameOver
   txtAnimQuit: Quit
   txtAnimReturnToTitlecard: ReturnToTitlecard
+  txtFinalWin: FinalWin
   txtReady: Ready
   txtNotReady: Press A ...
   btnPlay: {fileID: 3034856236839882925}
   txt_timer: {fileID: 5860178598047856224}
-  txt_GameOverPlayer: {fileID: 0}
+  txt_GameOverPlayer: {fileID: 9163279263943505569}
   playerUIInfos:
   - txtPlayerReady: {fileID: 1675647513}
     fx_spawn: {fileID: 1170562208375968493}
     txtPlayerCollectible: {fileID: 3916285614714277714}
-  - txtPlayerReady: {fileID: 867175222}
-    fx_spawn: {fileID: 1938661756034632124}
-    txtPlayerCollectible: {fileID: 4075581628659369814}
   - txtPlayerReady: {fileID: 545807918}
     fx_spawn: {fileID: 8196357719674420273}
+    txtPlayerCollectible: {fileID: 4075581628659369814}
+  - txtPlayerReady: {fileID: 867175222}
+    fx_spawn: {fileID: 1938661756034632124}
     txtPlayerCollectible: {fileID: 51897647334207511}
   - txtPlayerReady: {fileID: 1033573400}
     fx_spawn: {fileID: 678297831040860366}
@@ -2845,6 +2846,8 @@ MonoBehaviour:
   audioSourceMusic: {fileID: 0}
   audioSourceFx: {fileID: 0}
   win: {fileID: 8300000, guid: 69b9d0bea040d8c43bf2c5d14f0b064c, type: 3}
+  music: {fileID: 8300000, guid: 9d3c8f9f9a2d2064490e92c39bc0fdbc, type: 3}
+  introMusic: {fileID: 8300000, guid: 4676aea087abf344cb4baab807efbf56, type: 3}
   cheers: {fileID: 8300000, guid: f671de3893650374e83904389fb36a19, type: 3}
   boo: {fileID: 8300000, guid: 0c21530116da7284e9d4c11acb090c5d, type: 3}
   lastSeconds: {fileID: 8300000, guid: 315a5a29d189b24408b3fd1fd1a309ed, type: 3}
@@ -2897,6 +2900,46 @@ MonoBehaviour:
       m_Action: Input Pause
       m_Flags: 0
   inputQuit:
+    m_Name: Input Quit
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ec8a8d8f-b8a6-46bd-9061-957000e2b5e6
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: db481c21-ca34-4ccf-a2fd-d5c73eea18ec
+      m_Path: <Joystick>/trigger
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Quit
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 06a98471-f166-4900-a504-40b795317a5d
+      m_Path: <Keyboard>/enter
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Quit
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 35551c5e-9995-4788-9432-7401749765ec
+      m_Path: <NPad>/buttonEast
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Quit
+      m_Flags: 0
+    - m_Name: 
+      m_Id: d594f8a8-167a-447b-adf7-e042107a8711
+      m_Path: <Gamepad>/buttonSouth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Quit
+      m_Flags: 0
+  inputNextRound:
     m_Name: Input Quit
     m_Type: 0
     m_ExpectedControlType: 
@@ -3234,7 +3277,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -20, y: -20}
-  m_SizeDelta: {x: 500, y: 100}
+  m_SizeDelta: {x: 1900, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &3996582570955112252
 MonoBehaviour:
@@ -3253,9 +3296,9 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 5
   m_Spacing: 20
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
@@ -4074,7 +4117,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 20, y: 20}
-  m_SizeDelta: {x: 500, y: 100}
+  m_SizeDelta: {x: 1900, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &7382022312260127393
 MonoBehaviour:
@@ -4093,9 +4136,9 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 3
   m_Spacing: 20
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
@@ -4331,7 +4374,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -20, y: 20}
-  m_SizeDelta: {x: 500, y: 100}
+  m_SizeDelta: {x: 1900, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &3493303456832736688
 MonoBehaviour:
@@ -4350,9 +4393,9 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 5
   m_Spacing: 20
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
@@ -5128,7 +5171,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 20, y: -20}
-  m_SizeDelta: {x: 500, y: 100}
+  m_SizeDelta: {x: 1900, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1337361641656605884
 MonoBehaviour:
@@ -5147,9 +5190,9 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 3
   m_Spacing: 20
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
@@ -5240,7 +5283,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5371792804990430022, guid: da18dbf2e6d4b4b4fbe715a1d0e95f7a, type: 3}
       propertyPath: m_Name
-      value: fx_PlayerSpawnP3
+      value: fx_PlayerSpawnP2
       objectReference: {fileID: 0}
     - target: {fileID: 5375552116226711589, guid: da18dbf2e6d4b4b4fbe715a1d0e95f7a, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -5478,7 +5521,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5371792804990430022, guid: da18dbf2e6d4b4b4fbe715a1d0e95f7a, type: 3}
       propertyPath: m_Name
-      value: fx_PlayerSpawnP2
+      value: fx_PlayerSpawnP3
       objectReference: {fileID: 0}
     - target: {fileID: 5375552116226711589, guid: da18dbf2e6d4b4b4fbe715a1d0e95f7a, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b

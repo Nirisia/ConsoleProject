@@ -24,6 +24,7 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private Button btnPlay = default;
         [SerializeField] private Text txt_timer = default;
         [SerializeField] public Text txt_GameOverPlayer = default;
+        [SerializeField] public GameObject imgScore = default;
 
         [Serializable]
         public class PlayerUIInfo
@@ -31,6 +32,7 @@ namespace Com.IsartDigital.ChaseTag
             [SerializeField] public Text txtPlayerReady = default;
             [SerializeField] public ParticleSystem fx_spawn = default;
             [SerializeField] public Text txtPlayerCollectible = default;
+            [SerializeField] public GameObject scoreParent = default;
         }
 
         [SerializeField] private List<PlayerUIInfo> playerUIInfos;
@@ -204,6 +206,10 @@ namespace Com.IsartDigital.ChaseTag
         private void DisplayWin(int playerId, float elapsedTime)
         {
             PlayerManager.Instance.playerInfos[playerId].score++;
+            GameObject imgPoint = Instantiate(imgScore, playerUIInfos[playerId].scoreParent.transform);
+
+            imgPoint.GetComponent<RawImage>().color = PlayerManager.Instance.playerInfos[playerId].color;
+
             PlayerManager.Instance.ResetAllPlayer();
 
             txt_GameOverPlayer.text = "PLAYER   " + (playerId+1);
