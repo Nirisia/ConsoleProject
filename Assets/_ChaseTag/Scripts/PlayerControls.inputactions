@@ -20,6 +20,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "72898dac-08db-46a7-ad31-0ea093a7a8ce",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -198,6 +206,72 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "388d8961-7628-4911-860c-cec4a1e6688c",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WirelessJoycon",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca4ca0c9-930e-491d-b94e-c83a6ec5de10",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WirelessJoycon",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8fecade2-cf54-4666-86a8-9a9361db1f55",
+                    "path": "<NPad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5c68c0a-4344-415a-b79f-9339043e42f3",
+                    "path": "<NPad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e618e729-a5c5-4098-a118-0c691c8d732b",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e7d31df6-96cb-4a9c-a3b5-5fa76ab01a7a",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -214,9 +288,17 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "Pause",
+                    "name": "ControllerDetect",
                     "type": "Button",
-                    "id": "ff3c4c4a-8d22-4562-9b54-cf741467ea49",
+                    "id": "667f5185-1f70-49eb-a49b-10d204ac7166",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Settings",
+                    "type": "Button",
+                    "id": "204cc907-7d83-4fd6-85de-f3b1477b2be0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -280,23 +362,210 @@
                 },
                 {
                     "name": "",
-                    "id": "57f0b902-a574-4e64-9d07-b0668b382969",
-                    "path": "<HID::Nintendo Wireless Gamepad>/button10",
+                    "id": "517035b5-b630-432e-be3a-8530b0785a5f",
+                    "path": "<NPad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "WirelessJoycon",
+                    "id": "608f1580-34d7-437e-84da-49e9260f2735",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ControllerDetect",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "e9462e6d-69c8-4261-8888-a5406259e37e",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button5",
                     "interactions": "",
                     "processors": "",
                     "groups": "WirelessJoycon",
-                    "action": "Pause",
+                    "action": "ControllerDetect",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "3b5c1132-5197-4cef-913c-c31014db34b3",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WirelessJoycon",
+                    "action": "ControllerDetect",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "db389130-65ff-499e-9bc9-b53eabaa655a",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "EditorKeyboard",
+                    "action": "ControllerDetect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "ce7a1291-f8d9-4dc6-b9cb-14f3fca07fd3",
+                    "id": "214853b4-6bd0-4923-b3cc-280e75d51764",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "EditorGamepad",
+                    "action": "ControllerDetect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb3f1254-e826-4d68-8eaa-02f1ebfe8dc2",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "EditorGamepad",
+                    "action": "ControllerDetect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "SwitchJoyconLeft",
+                    "id": "64094483-33e5-4a5c-b807-230ec1108990",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ControllerDetect",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "392e6751-6c80-4704-8aa2-62f9a0fbeaa8",
+                    "path": "<NPad>/leftSL",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "JoyconLeft",
+                    "action": "ControllerDetect",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "d33a7ea0-0c81-41fa-8c1a-ceaee2087662",
+                    "path": "<NPad>/leftSR",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "JoyconLeft",
+                    "action": "ControllerDetect",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "SwitchJoyconRight",
+                    "id": "0a53b041-02ad-463f-af30-527eaa480b7a",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ControllerDetect",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "a3eab3e5-2217-42ae-b921-0f3ce8b05307",
+                    "path": "<NPad>/rightSL",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "JoyconLeft",
+                    "action": "ControllerDetect",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "ce8ab435-2da5-4744-8bb3-ecdbf06eb027",
+                    "path": "<NPad>/rightSR",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "JoyconLeft",
+                    "action": "ControllerDetect",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "590a5dbe-6226-4882-bd52-30d767eca1f8",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Settings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f7a6eebe-8a6f-4ef0-954d-96688028718d",
                     "path": "<HID::Nintendo Wireless Gamepad>/button9",
                     "interactions": "",
                     "processors": "",
-                    "groups": "WirelessJoycon",
-                    "action": "Pause",
+                    "groups": "",
+                    "action": "Settings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "719ff592-c933-48a2-bf40-ee4452f0dd90",
+                    "path": "<NPad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Settings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd675aa9-bbd7-4f9e-8834-fc8a2828d66f",
+                    "path": "<NPad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Settings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72cfd4bb-c809-4876-afad-9db8cc16959b",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Settings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b258c14-426f-4344-9310-4f4c5651ee63",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Settings",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag {
     public delegate void EndGameEventHandler(int playerId, float elapsedTime);
@@ -31,8 +32,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         private GameObject currentMap;
 
         public Timer GameTimer { get; private set; }
-        public int RoundNumber { get => roundNumber; private set => roundNumber = value; }
+        public int RoundNumber { get => roundNumber; set => roundNumber = value; }
         public int RoundCounter { get => roundCounter; private set => roundCounter = value; }
+        public int TimeLimit { get => timeLimit; set => timeLimit = value; }
 
         public event EndGameEventHandler OnWin;
         public event Action OnTie;
@@ -62,6 +64,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         private void Start()
         {
             LoadMap();
+            initGameSettings();
         }
 
         public void Restart()
@@ -112,9 +115,11 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         public void StartGame()
         {
             GameTimer = Instantiate(timerPrefab);
-            GameTimer.Init(timeLimit);
+            GameTimer.Init(TimeLimit);
             GameTimer.OnTimerCompleted += GameTimer_OnTimerCompleted;
             wallStartBlock.SetActive(false);
+
+            PlayerManager.Instance.GetComponent<PlayerInputManager>().DisableJoining();
         }
 
         private void GameTimer_OnTimerCompleted()
@@ -136,6 +141,16 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             }
 
             //PlayerManager.Instance.DestroyPlayer();
+        }
+
+        private void initGameSettings()
+        {
+
+            //if use PlayerPref init here (don t forget first time opening)
+            /* TimeLimit = playerpref time
+               RoundNumber = playerpref round*/
+
+            UIManager.Instance.initSliderValue(RoundNumber, TimeLimit);
         }
     }
 }

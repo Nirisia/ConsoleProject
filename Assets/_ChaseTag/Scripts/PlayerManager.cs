@@ -203,6 +203,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
         public void setOnPodium()
         {
+            ResetAllPlayer();
+
             PlayerInfo[] leaderboard = new PlayerInfo[playerCount];
 
             for (int i = 0; i < playerCount; i++)
@@ -221,6 +223,22 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             {
                 leaderboard[i].player.transform.position = podiumPosition[countPodiumPod];
                 countPodiumPod++;
+            }
+        }
+
+        public void HidePlayer()
+        {
+            for (int i = 0; i < playerCount; i++)
+            {
+                playerInfos[i].player.GetComponentInChildren<Renderer>().enabled = false;
+            }
+        }
+
+        public void ShowPlayer()
+        {
+            for (int i = 0; i < playerCount; i++)
+            {
+                playerInfos[i].player.GetComponentInChildren<Renderer>().enabled = true;
             }
         }
     }

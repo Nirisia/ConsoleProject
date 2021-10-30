@@ -24937,6 +24937,7 @@ MonoBehaviour:
   wallTag: Wall
   borderTag: Border
   secondStunAfterCollision: 4
+  stunDrag: 1000
   respawnPosition: {x: 0, y: 5, z: 0}
   fx_Slow: {fileID: 5837246514943736875}
   fx_Dash: {fileID: 1493922511621233128}
@@ -25049,6 +25050,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   haveCrown: 0
   prevSqrMagnitude: 0
+  trap: {fileID: 0}
   isTrapped: 0
 --- !u!54 &6911039557622591632
 Rigidbody:
@@ -25168,9 +25170,24 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 17310520-54b6-40ee-b738-42da19eb58f9
     m_ActionName: No Input/ToggleMenuMode[/Keyboard/space,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 72898dac-08db-46a7-ad31-0ea093a7a8ce
+    m_ActionName: Player/Pause[/Nintendo Wireless Gamepad/button10,/Nintendo Wireless
+      Gamepad/button9,/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 667f5185-1f70-49eb-a49b-10d204ac7166
+    m_ActionName: Menu/ControllerDetect[/Nintendo Wireless Gamepad/button5,/Nintendo
+      Wireless Gamepad/button6,/Keyboard/anyKey,/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 204cc907-7d83-4fd6-85de-f3b1477b2be0
+    m_ActionName: Menu/Settings[/Nintendo Wireless Gamepad/button10,/Nintendo Wireless
+      Gamepad/button9,/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
-  m_DefaultActionMap: e498c4e7-6757-410a-8b50-f2e115d2e3b9
+  m_DefaultActionMap: Menu
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!82 &4296116158267018870

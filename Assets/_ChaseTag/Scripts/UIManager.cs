@@ -17,6 +17,7 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private string txtAnimPlay = "FadeOut";
         [SerializeField] private string txtAnimGameOver = "GameOver";
         [SerializeField] private string txtAnimQuit = "Quit";
+        [SerializeField] private string txtAnimSetting = "Setting";
         [SerializeField] private string txtAnimReturnToTitlecard = "ReturnToTitlecard";
         [SerializeField] private string txtFinalWin = "FinalWin";
         [SerializeField] private string txtReady = "Ready";
@@ -27,6 +28,12 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] public GameObject imgScore = default;
         [SerializeField] public Text DisplayRoundStart = default;
         [SerializeField] public Text DisplayRoundHUD = default;
+
+        [SerializeField] public Text txtSetting_Round = default;
+        [SerializeField] public Text txtSetting_Time = default;
+        
+        [SerializeField] public Slider sliderSetting_Round = default;
+        [SerializeField] public Slider sliderSetting_Time = default;
 
         [Serializable]
         public class PlayerUIInfo
@@ -53,12 +60,14 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private InputAction inputPause = default;
         [SerializeField] private InputAction inputQuit = default;
         [SerializeField] private InputAction inputNextRound = default;
+        [SerializeField] private InputAction inputSetting = default;
 
         private Animator animator;
 
         public bool gameOver = false;
         public bool gameStarted = false;
         public bool isQuitting = false;
+        public bool isSetting = false;
 
         private void Awake()
         {
@@ -82,7 +91,9 @@ namespace Com.IsartDigital.ChaseTag
             inputPause.performed += DisplayQuit;
             inputQuit.performed += Quit;
             inputNextRound.performed += NextRound;
+            inputSetting.performed += DisplaySetting;
 
+            inputSetting.Enable();
             DisplayRoundHUD.text = (GameManager.Instance.RoundCounter) + " / " + GameManager.Instance.RoundNumber + "\nROUND";
         }
 
@@ -187,6 +198,8 @@ namespace Com.IsartDigital.ChaseTag
                 audioSourceFx.Play();
 
                 CollectibleManager.Instance.ResetCollectible();
+
+                inputSetting.Disable();
             }
         }
 
@@ -203,6 +216,7 @@ namespace Com.IsartDigital.ChaseTag
 
             Time.timeScale = 0;
 
+            inputPause.Disable();
             inputQuit.Disable();
             inputNextRound.Enable();
         }
@@ -230,6 +244,7 @@ namespace Com.IsartDigital.ChaseTag
 
             Time.timeScale = 0;
 
+            inputPause.Disable();
             inputQuit.Disable();
             inputNextRound.Enable();
         }
@@ -275,6 +290,7 @@ namespace Com.IsartDigital.ChaseTag
 
             if (GameManager.Instance.RoundCounter == GameManager.Instance.RoundNumber)
             {
+                DisplayRoundHUD.text = GameManager.Instance.RoundCounter + " / " + GameManager.Instance.RoundNumber + "\nROUND";
                 DisplayFinalWin();
                 return;
             }
@@ -299,6 +315,7 @@ namespace Com.IsartDigital.ChaseTag
 
             PlayerManager.Instance.setOnPodium();
 
+            inputPause.Enable();
             //Input to reload game
         }
 
@@ -316,6 +333,47 @@ namespace Com.IsartDigital.ChaseTag
         {
             Instance = null;
 
+        }
+
+        public void setRoundNumberSlider(float value)
+        {
+            txtSetting_Round.text = value.ToString();
+            GameManager.Instance.RoundNumber = (int)value;
+
+            DisplayRoundHUD.text = (GameManager.Instance.RoundCounter) + " / " + GameManager.Instance.RoundNumber + "\nROUND";
+
+            //set playerpref round here
+        }
+
+        public void setRoundTimeSlider(float value)
+        {
+            txtSetting_Time.text = value.ToString();
+            GameManager.Instance.TimeLimit = (int)value;
+
+            //set playerpref time here
+        }
+
+        public void initSliderValue(int round, int time)
+        {
+            sliderSetting_Round.value = round;
+            sliderSetting_Time.value = time;
+        }
+
+        public void DisplaySetting(InputAction.CallbackContext callback)
+        {
+            animator.SetTrigger(txtAnimSetting);
+            isSetting = !isSetting;
+
+            if (isSetting)
+            {
+                PlayerManager.Instance.HidePlayer();
+                PlayerManager.Instance.GetComponent<PlayerInputManager>().DisableJoining();
+            }
+            else
+            {
+                PlayerManager.Instance.ShowPlayer();
+                PlayerManager.Instance.GetComponent<PlayerInputManager>().EnableJoining();
+            }
         }
     }
 }
