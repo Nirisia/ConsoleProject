@@ -1854,8 +1854,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerPrefab: {fileID: 7531695272994752963, guid: c969f20bc49ea8f4882346f3652d87b3, type: 3}
   wallStartBlock: {fileID: 635663893}
-  timeLimit: 6
-  roundNumber: 45
+  timeLimit: 45
+  roundNumber: 3
   timeBeforeMovePodium: 5
   Maps:
   - {fileID: 4485808371920774317, guid: 0604034513505ee488f9bc3d35164ab5, type: 3}

@@ -190,7 +190,7 @@ namespace Com.IsartDigital.ChaseTag
 
         public void BtnPlay()
         {
-            if (PlayerManager.Instance.AllPlayersReady() && !gameStarted)
+            if (PlayerManager.Instance.AllPlayersReady() && !gameStarted && !isSetting)
             {
                 Debug.Log("Game Starting");
                 animator.SetTrigger(txtAnimPlay);
