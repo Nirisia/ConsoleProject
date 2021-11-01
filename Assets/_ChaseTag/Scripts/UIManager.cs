@@ -200,6 +200,8 @@ namespace Com.IsartDigital.ChaseTag
                 CollectibleManager.Instance.ResetCollectible();
 
                 inputSetting.Disable();
+
+                HidePlayerNotPlaying();
             }
         }
 
@@ -374,6 +376,17 @@ namespace Com.IsartDigital.ChaseTag
                 PlayerManager.Instance.ShowPlayer();
                 PlayerManager.Instance.GetComponent<PlayerInputManager>().EnableJoining();
             }
+        }
+
+        private void HidePlayerNotPlaying()
+        {
+            var playerNotPlaying = PlayerManager.Instance.playerCount;
+
+            for (int i = playerUIInfos.Count - 1; i >= playerNotPlaying; i--)
+            {
+                playerUIInfos[i].scoreParent.SetActive(false);
+            }
+
         }
     }
 }
