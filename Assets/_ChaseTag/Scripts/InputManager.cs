@@ -21,6 +21,28 @@ namespace Com.IsartDigital.ChaseTag
         {
             playerInputmanager.onPlayerJoined += OnPlayerJoined;
             playerInputmanager.onPlayerLeft += OnPlayerLeft;
+
+#if UNITY_SWITCH && !UNITY_EDITOR
+            Npad.Initialize(); 
+            Npad.SetSupportedStyleSet(NpadStyle.JoyLeft | NpadStyle.JoyRight);
+            NpadJoy.SetHoldType(NpadJoyHoldType.Horizontal);
+            NpadJoy.SetHandheldActivationMode(NpadHandheldActivationMode.None);
+            NpadId[] npadIds = { NpadId.No1, NpadId.No2, NpadId.No3, NpadId.No4 };
+            Npad.SetSupportedIdType(npadIds);
+
+            ControllerSupportArg controllerSupportArgs = new ControllerSupportArg();
+            controllerSupportArgs.SetDefault();
+
+            controllerSupportArgs.playerCountMax = 4;
+            controllerSupportArgs.playerCountMin = 2;
+
+            UnityEngine.Switch.Applet.Begin(); //call before calling a system applet to stop all Unity threads (including audio and networking)
+
+            nn.hid.ControllerSupport.Show(controllerSupportArgs);
+
+            UnityEngine.Switch.Applet.End();
+
+#endif
         }
 
         private void Update()

@@ -45,7 +45,7 @@
                     "path": "<NPad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "JoyconRight",
+                    "groups": "",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -56,7 +56,7 @@
                     "path": "<NPad>/dpad/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": "JoyconLeft",
+                    "groups": "Joycon",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -111,7 +111,7 @@
                     "path": "<NPad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "JoyconLeft",
+                    "groups": "Joycon",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -122,7 +122,7 @@
                     "path": "<NPad>/rightStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "JoyconRight",
+                    "groups": "",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -287,7 +287,7 @@
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "EditorGamepad;JoyconRight;JoyconLeft;WirelessJoycon",
+                    "groups": "EditorGamepad;Joycon;WirelessJoycon",
                     "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -363,7 +363,7 @@
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "JoyconLeft;JoyconRight",
+                    "groups": "EditorGamepad",
                     "action": "Join",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -402,12 +402,45 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "517035b5-b630-432e-be3a-8530b0785a5f",
-                    "path": "<NPad>/buttonEast",
+                    "name": "SwitchJoyconRightTrigger",
+                    "id": "0a53b041-02ad-463f-af30-527eaa480b7a",
+                    "path": "ButtonWithOneModifier",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+                    "action": "Join",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "faebec0c-8161-4f33-b397-cfb1ab7a4046",
+                    "path": "<NPad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "241345f0-d96f-41b9-9257-19504a4fb2ca",
+                    "path": "<NPad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "517035b5-b630-432e-be3a-8530b0785a5f",
+                    "path": "<NPad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joycon",
                     "action": "Join",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -479,78 +512,12 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "SwitchJoyconLeft",
-                    "id": "64094483-33e5-4a5c-b807-230ec1108990",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ControllerDetect",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "392e6751-6c80-4704-8aa2-62f9a0fbeaa8",
-                    "path": "<NPad>/leftSL",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "JoyconLeft",
-                    "action": "ControllerDetect",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "d33a7ea0-0c81-41fa-8c1a-ceaee2087662",
-                    "path": "<NPad>/leftSR",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "JoyconLeft",
-                    "action": "ControllerDetect",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "SwitchJoyconRight",
-                    "id": "0a53b041-02ad-463f-af30-527eaa480b7a",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ControllerDetect",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "a3eab3e5-2217-42ae-b921-0f3ce8b05307",
-                    "path": "<NPad>/rightSL",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "JoyconLeft",
-                    "action": "ControllerDetect",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "ce8ab435-2da5-4744-8bb3-ecdbf06eb027",
-                    "path": "<NPad>/rightSR",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "JoyconLeft",
-                    "action": "ControllerDetect",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "590a5dbe-6226-4882-bd52-30d767eca1f8",
                     "path": "<HID::Nintendo Wireless Gamepad>/button10",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "WirelessJoycon",
                     "action": "Settings",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -561,7 +528,7 @@
                     "path": "<HID::Nintendo Wireless Gamepad>/button9",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "WirelessJoycon",
                     "action": "Settings",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -572,18 +539,7 @@
                     "path": "<NPad>/start",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Settings",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "dd675aa9-bbd7-4f9e-8834-fc8a2828d66f",
-                    "path": "<NPad>/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "groups": "Joycon",
                     "action": "Settings",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -594,7 +550,7 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "EditorKeyboard",
                     "action": "Settings",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -605,7 +561,7 @@
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "EditorGamepad",
                     "action": "Settings",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -619,64 +575,19 @@
                 {
                     "name": "ToggleMenuMode",
                     "type": "Button",
-                    "id": "17310520-54b6-40ee-b738-42da19eb58f9",
+                    "id": "93e7a2e1-bff7-471c-ac92-4daa9a85499d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": ""
                 }
             ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "04e84fdf-173d-49a6-8919-d4e9d4fa99fe",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "EditorKeyboard",
-                    "action": "ToggleMenuMode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "19622b4c-6e74-4683-b76e-2283fba3ac17",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "JoyconLeft;JoyconRight",
-                    "action": "ToggleMenuMode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bc4e258d-d8c3-4fb8-9b51-33c6ca035c32",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "EditorGamepad",
-                    "action": "ToggleMenuMode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
+            "bindings": []
         }
     ],
     "controlSchemes": [
         {
-            "name": "JoyconLeft",
-            "bindingGroup": "JoyconLeft",
-            "devices": [
-                {
-                    "devicePath": "<NPad>",
-                    "isOptional": false,
-                    "isOR": false
-                }
-            ]
-        },
-        {
-            "name": "JoyconRight",
-            "bindingGroup": "JoyconRight",
+            "name": "Joycon",
+            "bindingGroup": "Joycon",
             "devices": [
                 {
                     "devicePath": "<NPad>",
@@ -696,7 +607,7 @@
                 },
                 {
                     "devicePath": "<Mouse>",
-                    "isOptional": true,
+                    "isOptional": false,
                     "isOR": false
                 }
             ]

@@ -406,6 +406,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         {
             if (ctx.phase != InputActionPhase.Performed) return;
 
+            Debug.Log("LOG ========================== DASH ===================");
+
             if (canDash && isActiveAndEnabled)
             {
                 if (!rb) rb = GetComponent<Rigidbody>();
@@ -423,8 +425,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         public void OnJoin(InputAction.CallbackContext ctx)
         {
             if (ctx.phase != InputActionPhase.Performed) return;
-            
-            Debug.Log("Join");
+
+            Debug.Log("LOG ========================== JOIN ===================");
             if (PlayerManager.Instance.AllPlayersReady())
             {
                 UIManager.Instance.BtnPlay();
@@ -439,12 +441,16 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         {
             if (ctx.phase != InputActionPhase.Performed) return;
 
+            Debug.Log("LOG ========================== SETTINGS ===================");
+
             UIManager.Instance.DisplaySetting(ctx);
         }
 
         public void OnDisplayQuit(InputAction.CallbackContext ctx)
         {
             if (ctx.phase != InputActionPhase.Performed) return;
+
+            Debug.Log("LOG ========================== DISPLAY QUIT ===================");
 
             UIManager.Instance.DisplayQuit(ctx);
         }
@@ -453,12 +459,16 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         {
             if (ctx.phase != InputActionPhase.Performed) return;
 
+            Debug.Log("LOG ========================== QUIT ===================");
+
             UIManager.Instance.Quit(ctx);
         }
         
         public void OnNextRound(InputAction.CallbackContext ctx)
         {
             if (ctx.phase != InputActionPhase.Performed) return;
+
+            Debug.Log("LOG ========================== NEXT ROUND ===================");
 
             UIManager.Instance.NextRound(ctx);
         }

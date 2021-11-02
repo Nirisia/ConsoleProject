@@ -815,30 +815,6 @@ MonoBehaviour:
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings:
-      - m_Name: WirelessJoycon
-        m_Id: d9c0ba80-dcdf-4515-930a-358c2578cd9f
-        m_Path: ButtonWithOneModifier
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Join
-        m_Flags: 4
-      - m_Name: modifier
-        m_Id: 18e67a2d-338d-4b5d-988d-8ebfe9141a64
-        m_Path: <HID::Nintendo Wireless Gamepad>/button5
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Join
-        m_Flags: 8
-      - m_Name: button
-        m_Id: 560b716c-0b79-427d-82c2-da886e4bc953
-        m_Path: <HID::Nintendo Wireless Gamepad>/button6
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Join
-        m_Flags: 8
       - m_Name: 
         m_Id: 69b52f30-6abc-4693-9e9b-95a95cef2650
         m_Path: <Keyboard>/space
@@ -856,13 +832,37 @@ MonoBehaviour:
         m_Action: Join
         m_Flags: 0
       - m_Name: 
-        m_Id: 62fdf206-607c-4754-9911-29e830b8f138
-        m_Path: <Gamepad>/buttonNorth
+        m_Id: 6424d6fc-819a-45e5-bdbd-2497d2165bbd
+        m_Path: <NPad>/buttonSouth
         m_Interactions: 
         m_Processors: 
         m_Groups: 
         m_Action: Join
         m_Flags: 0
+      - m_Name: Triggers
+        m_Id: f3a1522b-c0f2-440d-a89d-ce7d9efc1dce
+        m_Path: ButtonWithOneModifier
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 4
+      - m_Name: modifier
+        m_Id: 6b8cc76f-04ac-4a8f-addd-ebdc380e1b05
+        m_Path: <NPad>/leftShoulder
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 8
+      - m_Name: button
+        m_Id: f3c9b891-acb2-4f3f-8910-a0f880b341dd
+        m_Path: <NPad>/rightShoulder
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 8
     m_Reference: {fileID: -4470500587919777728, guid: 409a681433bcb984785948c7230d9eb9, type: 3}
   m_PlayerPrefab: {fileID: 5932366599267494352, guid: ebf05653ae809d648b48e4735434d1fe, type: 3}
   m_SplitScreen: 0
