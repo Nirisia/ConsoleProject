@@ -88,10 +88,10 @@ namespace Com.IsartDigital.ChaseTag
             GameManager.Instance.OnWin += DisplayWin;
             GameManager.Instance.OnTie += DisplayTie;
 
-            inputPause.performed += DisplayQuit;
-            inputQuit.performed += Quit;
-            inputNextRound.performed += NextRound;
-            inputSetting.performed += DisplaySetting;
+            // inputPause.performed += DisplayQuit;
+            // inputQuit.performed += Quit;
+            // inputNextRound.performed += NextRound;
+            // inputSetting.performed += DisplaySetting;
 
             inputSetting.Enable();
             DisplayRoundHUD.text = (GameManager.Instance.RoundCounter) + " / " + GameManager.Instance.RoundNumber + "\nROUND";
@@ -109,7 +109,9 @@ namespace Com.IsartDigital.ChaseTag
             GameManager.Instance.StartGame();
             audioSourceMusic.clip = music;
             audioSourceMusic.Play();
-
+            
+            gameStarted = true;
+            
             inputPause.Enable();
         }
 
@@ -124,7 +126,6 @@ namespace Com.IsartDigital.ChaseTag
         public void StartPlayerControls()
         {
             PlayerManager.Instance.SetPlayersControlScheme("Player");
-            gameStarted = true;
             StartPlayerInStage();
         }
 
@@ -192,6 +193,7 @@ namespace Com.IsartDigital.ChaseTag
         {
             if (PlayerManager.Instance.AllPlayersReady() && !gameStarted && !isSetting)
             {
+                PlayerManager.Instance.SetPlayersControlScheme("No Input");
                 Debug.Log("Game Starting");
                 animator.SetTrigger(txtAnimPlay);
 
@@ -265,6 +267,8 @@ namespace Com.IsartDigital.ChaseTag
 
         public void DisplayQuit(InputAction.CallbackContext callback)
         {
+            if (gameOver || !gameStarted) return;
+            
             if (!isQuitting)
                 inputQuit.Enable();
             else
@@ -276,6 +280,8 @@ namespace Com.IsartDigital.ChaseTag
 
         public void Quit(InputAction.CallbackContext callback)
         {
+            if (!isQuitting) return;
+            
             UnPause();
             isQuitting = false;
             inputPause.Disable();
@@ -285,6 +291,7 @@ namespace Com.IsartDigital.ChaseTag
 
         public void NextRound(InputAction.CallbackContext callback)
         {
+            if (!gameOver || isQuitting || isSetting || gameStarted) return;
             Debug.Log("Round " + GameManager.Instance.RoundCounter + " sur " + GameManager.Instance.RoundNumber);
 
             DisplayRoundStart.text = "ROUND " + (GameManager.Instance.RoundCounter+1);

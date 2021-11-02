@@ -25136,6 +25136,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 9150365382104769395}
+        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
+        m_MethodName: OnNextRound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9150365382104769395}
+        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
+        m_MethodName: OnQuit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9ce2a323-6a14-4487-9408-581b12ac456a
     m_ActionName: Player/Dash[/Keyboard/rightShift]
   - m_PersistentCalls:
@@ -25171,7 +25195,19 @@ MonoBehaviour:
     m_ActionId: 17310520-54b6-40ee-b738-42da19eb58f9
     m_ActionName: No Input/ToggleMenuMode[/Keyboard/space,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9150365382104769395}
+        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
+        m_MethodName: OnDisplayQuit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 72898dac-08db-46a7-ad31-0ea093a7a8ce
     m_ActionName: Player/Pause[/Nintendo Wireless Gamepad/button10,/Nintendo Wireless
       Gamepad/button9,/Keyboard/escape]
@@ -25181,10 +25217,50 @@ MonoBehaviour:
     m_ActionName: Menu/ControllerDetect[/Nintendo Wireless Gamepad/button5,/Nintendo
       Wireless Gamepad/button6,/Keyboard/anyKey,/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9150365382104769395}
+        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
+        m_MethodName: OnSettings
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 204cc907-7d83-4fd6-85de-f3b1477b2be0
     m_ActionName: Menu/Settings[/Nintendo Wireless Gamepad/button10,/Nintendo Wireless
       Gamepad/button9,/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9150365382104769395}
+        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
+        m_MethodName: OnNextRound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9150365382104769395}
+        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
+        m_MethodName: OnQuit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1060a4fd-96f6-441f-8ff0-ddfe8b5e5c5a
+    m_ActionName: Player/Select[/Keyboard/space,/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Menu

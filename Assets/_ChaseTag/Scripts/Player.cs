@@ -404,9 +404,10 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
 
         public void OnDash(InputAction.CallbackContext ctx)
         {
+            if (ctx.phase != InputActionPhase.Performed) return;
+
             if (canDash && isActiveAndEnabled)
             {
-                Debug.Log("Dash: " + this.gameObject);
                 if (!rb) rb = GetComponent<Rigidbody>();
                 rb.AddForce(velocity.normalized * currentDash, ForceMode.Impulse);
 
@@ -422,6 +423,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         public void OnJoin(InputAction.CallbackContext ctx)
         {
             if (ctx.phase != InputActionPhase.Performed) return;
+            
             Debug.Log("Join");
             if (PlayerManager.Instance.AllPlayersReady())
             {
@@ -431,6 +433,34 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
             {
                 UIManager.Instance.IsReady(PlayerManager.Instance.GetPlayerId(this), true);
             }
+        }
+        
+        public void OnSettings(InputAction.CallbackContext ctx)
+        {
+            if (ctx.phase != InputActionPhase.Performed) return;
+
+            UIManager.Instance.DisplaySetting(ctx);
+        }
+
+        public void OnDisplayQuit(InputAction.CallbackContext ctx)
+        {
+            if (ctx.phase != InputActionPhase.Performed) return;
+
+            UIManager.Instance.DisplayQuit(ctx);
+        }
+        
+        public void OnQuit(InputAction.CallbackContext ctx)
+        {
+            if (ctx.phase != InputActionPhase.Performed) return;
+
+            UIManager.Instance.Quit(ctx);
+        }
+        
+        public void OnNextRound(InputAction.CallbackContext ctx)
+        {
+            if (ctx.phase != InputActionPhase.Performed) return;
+
+            UIManager.Instance.NextRound(ctx);
         }
 
         public void ResetPlayer()
