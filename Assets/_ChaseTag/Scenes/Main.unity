@@ -863,6 +863,22 @@ MonoBehaviour:
         m_Groups: 
         m_Action: Join
         m_Flags: 8
+      - m_Name: 
+        m_Id: 233e1d72-bbbc-4e4b-881d-ab23cd68a0c0
+        m_Path: <Gamepad>/start
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 7c6b3d8f-4fc4-4d13-89b3-a40685832f02
+        m_Path: <HID::Nintendo Wireless Gamepad>/button2
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Join
+        m_Flags: 0
     m_Reference: {fileID: -4470500587919777728, guid: 409a681433bcb984785948c7230d9eb9, type: 3}
   m_PlayerPrefab: {fileID: 5932366599267494352, guid: ebf05653ae809d648b48e4735434d1fe, type: 3}
   m_SplitScreen: 0
@@ -2630,6 +2646,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4634191920248084350, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713489970938468229, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5246372649981321922, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
