@@ -1985,8 +1985,11 @@ MonoBehaviour:
   timeBeforeMovePodium: 5
   Maps:
   - {fileID: 4485808371920774317, guid: 0604034513505ee488f9bc3d35164ab5, type: 3}
-  - {fileID: 4485808371920774317, guid: 0604034513505ee488f9bc3d35164ab5, type: 3}
-  - {fileID: 4485808371920774317, guid: 0604034513505ee488f9bc3d35164ab5, type: 3}
+  - {fileID: 8641531735566357232, guid: e97ae92f6c343b4439b39e7396c45d5f, type: 3}
+  - {fileID: 3322270558837050334, guid: e469f16b2ed700f458263b0580f36c0e, type: 3}
+  - {fileID: 1238257019130134467, guid: 18db88c1a275d3f428ce760585c7df94, type: 3}
+  - {fileID: 159972334654076495, guid: 78a05dcd86722ea4f9ecea9cdef187eb, type: 3}
+  - {fileID: 1583614666288820887, guid: 0ee9c5e4eedbadf45b9b2d9e35af9f7a, type: 3}
   podiumMap: {fileID: 6339142260526348833, guid: f12168263ffd42f448164a8ea0e746e1, type: 3}
 --- !u!4 &1772121682
 Transform:
@@ -2756,6 +2759,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4634191920248084350, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713489970938468229, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5246372649981321922, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}

@@ -316,6 +316,17 @@
                 },
                 {
                     "name": "",
+                    "id": "8590d1f3-4a48-46ba-a867-f371ffd74afc",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5579daf8-f429-445f-a4ba-2ecd8c0ffab4",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -562,6 +573,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "WirelessJoycon",
+                    "action": "Settings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bffd65c5-f6d3-4b20-905a-62fa90fb11df",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Settings",
                     "isComposite": false,
                     "isPartOfComposite": false
