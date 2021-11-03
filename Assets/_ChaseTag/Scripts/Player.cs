@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using nn.hid;
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag
 {
@@ -118,6 +119,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         {
             doAction();
             KeepCrownInPlace();
+
+            int id = PlayerManager.Instance.GetPlayerId(this);
         }
 
         void FixedUpdate()
@@ -381,6 +384,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
             yield return new WaitForSeconds(playerSpecs.DashCooldown);
 
             canDash = true;
+            InputManager.Instance.SetVibration(0f, 0f, 0f, 0f, PlayerManager.Instance.GetPlayerId(this));
         }
 
         public IEnumerator StunAfterCollision()
@@ -416,6 +420,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
                 StartCoroutine(DashCooldown());
 
                 fx_Dash.Play();
+                InputManager.Instance.SetVibration(1f, 160.0f, 1.0f, 320.0f, PlayerManager.Instance.GetPlayerId(this));
 
                 audioSource.clip = sounds_dash[UnityEngine.Random.Range(0, sounds_dash.Length)];
                 audioSource.Play();

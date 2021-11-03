@@ -14,6 +14,8 @@ namespace Com.IsartDigital.ChaseTag
 {
     public class InputManager : MonoBehaviour
     {
+        public static InputManager Instance { get; private set; }
+
         [SerializeField] private PlayerInputManager playerInputmanager = default;
         [SerializeField] private GameObject playerPrefab = default;
 
@@ -26,8 +28,7 @@ namespace Com.IsartDigital.ChaseTag
 
             public NpadId npadId;
             public NpadStyle previousNpadStyle = NpadStyle.Invalid;
-            public VibrationDeviceHandle? m_vibrationDeviceHandleLeft = null;
-            public VibrationDeviceHandle? m_vibrationDeviceHandleRight = null;
+            public VibrationDeviceHandle? vibrationDeviceHandle = null;
         }
 
         private NpadData[] npadDatas =
@@ -48,6 +49,8 @@ namespace Com.IsartDigital.ChaseTag
             Npad.SetSupportedStyleSet(NpadStyle.JoyLeft | NpadStyle.JoyRight);
             NpadJoy.SetHoldType(NpadJoyHoldType.Horizontal);
             NpadJoy.SetHandheldActivationMode(NpadHandheldActivationMode.None);
+
+            NpadId[] npadIds = { NpadId.No1, NpadId.No2, NpadId.No3, NpadId.No4 };
             Npad.SetSupportedIdType(npadIds);
 
             ControllerSupportArg controllerSupportArgs = new ControllerSupportArg();
@@ -67,6 +70,17 @@ namespace Com.IsartDigital.ChaseTag
 #endif
         }
 
+        private void Awake()
+        {
+            if (Instance == null)
+                Instance = this;
+            else
+            {
+                Debug.LogWarning("Trying to create multiple instances of singleton script, creation denied");
+                Destroy(gameObject);
+            }
+        }
+
         private void Update()
         {
             if (playerInputmanager.playerCount == playerInputmanager.maxPlayerCount)
@@ -80,6 +94,7 @@ namespace Com.IsartDigital.ChaseTag
                 UpdateVibrationDeviceHandles(ref npadDatas[i]);
             }
 #endif
+
         }
 
         public void OnPlayerJoined(PlayerInput playerInput)
@@ -105,6 +120,9 @@ namespace Com.IsartDigital.ChaseTag
 
         public void OnDestroy()
         {
+            if (Instance == this)
+                Instance = null;
+
             playerInputmanager.onPlayerJoined -= OnPlayerJoined;
             playerInputmanager.onPlayerLeft -= OnPlayerLeft;
         }
@@ -122,12 +140,10 @@ namespace Com.IsartDigital.ChaseTag
             data.previousNpadStyle = currentStyle;
 
             // We should check if a device goes from inactive to active so we can clear any vibration it's still outputting from when it became inactive.
-            bool wasLeftDeviceNull = (data.m_vibrationDeviceHandleLeft == null);
-            bool wasRightDeviceNull = (data.m_vibrationDeviceHandleRight == null);
+            bool wasLeftDeviceNull = (data.vibrationDeviceHandle == null);
 
             // Set these as null. By the end of the function, any active vibration devices will have a set handle.
-            data.m_vibrationDeviceHandleLeft = null;
-            data.m_vibrationDeviceHandleRight = null;
+            data.vibrationDeviceHandle = null;
 
             if (currentStyle == NpadStyle.None || currentStyle == NpadStyle.Invalid)
             {
@@ -137,55 +153,34 @@ namespace Com.IsartDigital.ChaseTag
 
             VibrationDeviceHandle[]
                 vibrationDeviceHandles =
-                    new VibrationDeviceHandle[2]; // Temporary buffer to get handles
-            int vibrationDeviceCount = Vibration.GetDeviceHandles(vibrationDeviceHandles, 2,
+                    new VibrationDeviceHandle[1]; // Temporary buffer to get handles
+            int vibrationDeviceCount = Vibration.GetDeviceHandles(vibrationDeviceHandles, 1,
                 data.npadId, currentStyle);
-
-            VibrationDeviceHandle?
-                vibrationDeviceHandleLeft = null;
-            VibrationDeviceHandle? vibrationDeviceHandleRight = null;
 
             for (int i = 0; i < vibrationDeviceCount; i++)
             {
                 Vibration.InitializeDevice(vibrationDeviceHandles[i]);
 
-                VibrationDeviceInfo
-                    vibrationDeviceInfo =
-                        new VibrationDeviceInfo(); // This is basically just used as an 'out' parameter for GetDeviceInfo
-                Vibration.GetDeviceInfo(ref vibrationDeviceInfo, vibrationDeviceHandles[i]);
+                data.vibrationDeviceHandle = vibrationDeviceHandles[i];
 
-                // Cache references to our device handles.
-                switch (vibrationDeviceInfo.position)
-                {
-                    case VibrationDevicePosition.Left:
-                        data.m_vibrationDeviceHandleLeft = vibrationDeviceHandles[i];
-                        if (wasLeftDeviceNull)
-                        {
-                            if (data.m_vibrationDeviceHandleLeft != null)
-                            {
-                                Vibration.SendValue(data.m_vibrationDeviceHandleLeft.Value, new VibrationValue());
-                            }
-                        }
+                VibrationDeviceHandle deviceHandle = data.vibrationDeviceHandle.Value;
 
-                        break;
-
-                    case VibrationDevicePosition.Right:
-                        data.m_vibrationDeviceHandleRight = vibrationDeviceHandles[i];
-                        if (wasRightDeviceNull)
-                        {
-                            if (data.m_vibrationDeviceHandleLeft != null)
-                            {
-                                Vibration.SendValue(data.m_vibrationDeviceHandleLeft.Value, new VibrationValue());
-                            }
-                        }
-
-                        break;
-
-                    default: // This should never happen
-                        Debug.Assert(false, "Invalid VibrationDevicePosition specified");
-                        break;
-                }
+                Vibration.SendValue(deviceHandle, new VibrationValue(0.0f, 0.0f, 0.0f, 0.0f));
             }
+        }
+
+        public void SetVibration(float lowAmplitude, float lowFrequency, float highAmplitude, float highFrequency, int npadIndex)
+        {
+            if (npadIndex < 0 || npadIndex >= npadDatas.Length) return;
+
+            UpdateVibrationDeviceHandles(ref npadDatas[npadIndex]);
+#if UNITY_SWITCH
+            VibrationDeviceHandle? vibrationDeviceHandle = npadDatas[npadIndex].vibrationDeviceHandle;
+
+            if (!vibrationDeviceHandle.HasValue) return;
+
+            Vibration.SendValue(vibrationDeviceHandle.Value, new VibrationValue(lowAmplitude, lowFrequency, highAmplitude, highFrequency));
+#endif
         }
     }
 }
