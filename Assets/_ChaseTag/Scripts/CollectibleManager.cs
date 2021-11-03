@@ -70,7 +70,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
             for (int i = length - 1; i >= 0; i--)
             {
-                Destroy(collectibles[i].gameObject);
+                if (GameObject.FindGameObjectWithTag("Collectible"))
+                    Destroy(collectibles[i].gameObject);
 
                 collectibles.RemoveAt(i);
             }
@@ -86,6 +87,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             Collectible collectible = Instantiate(collectiblePrefab);
             collectibles.Add(collectible);
             Vector3 position = Vector3.zero;
+            Vector3 rayPos = Vector3.zero;
 
             RaycastHit hit;
             bool positionIsValid = false;
@@ -94,7 +96,11 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             {
                 position = RandomTool.GetRandomPositionInCube(spawnZoneBottomLeftAngle.position, spawnZoneTopRightAngle.position);
 
-                if (Physics.Raycast(position, Vector3.down, out hit))
+                rayPos = position;
+
+                rayPos.y += 500;
+
+                if (Physics.Raycast(rayPos, Vector3.down, out hit))
                 {
                     positionIsValid = hit.collider.CompareTag(groundTag);
                 }

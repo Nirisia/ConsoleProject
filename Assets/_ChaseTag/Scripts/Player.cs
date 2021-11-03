@@ -278,6 +278,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         {
             currentState = PlayerState.CAT;
 
+            if (trap)
+                trap.CancelTrap(this);
+
             currentSpeed = playerSpecs.CatSpeed;
             rb.drag = playerSpecs.CatDrag;
             currentDash = playerSpecs.CatDash;

@@ -46,7 +46,10 @@ namespace Com.IsartDigital.ChaseTag
                     originPlayerSpeed = playerCollided.currentSpeed;
                     playerCollided.currentSpeed = 0f;
                     playerCollided.trap = this;
-                    playerCollided.trapCoroutine = StartCoroutine(ReaccelerationPlayer(playerCollided));
+
+                    if (playerCollided.trapCoroutine == null)
+                        playerCollided.trapCoroutine = StartCoroutine(ReaccelerationPlayer(playerCollided));
+
                     playerCollided.PlayParticleSlow();
                 }
             }
@@ -76,13 +79,19 @@ namespace Com.IsartDigital.ChaseTag
             player.StopParticleSlow();
             player.currentSpeed = originPlayerSpeed;
             player.trap = null;
+
+            player.trapCoroutine = null;
+
             yield return null;
+
+
         }
 
         public void CancelTrap(Player player)
         {
             StopCoroutine(player.trapCoroutine);
 
+            player.trapCoroutine = null;
             player.StopParticleSlow();
             player.trap = null;
         }

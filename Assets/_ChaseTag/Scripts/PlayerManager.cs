@@ -88,6 +88,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
                     player.SetModeCat();
                     player.SetSize(PlayerState.CAT);
                     playerInfos[i].txtState.text = txtStateCat;
+
                 }
                 
             }
