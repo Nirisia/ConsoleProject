@@ -203,8 +203,6 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
         public void setOnPodium()
         {
-            ResetAllPlayer();
-
             PlayerInfo[] leaderboard = new PlayerInfo[playerCount];
 
             for (int i = 0; i < playerCount; i++)
@@ -216,12 +214,15 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
             leaderboard[0].player.transform.position = podiumPosition[3];
             CameraFollow.Instance.targets.Remove(leaderboard[0].player.transform);
+            leaderboard[0].player.ResetPlayer();
 
             var countPodiumPod = 0;
 
             for (int i = leaderboard.Length - 1; i >= 1; i--)
             {
+                leaderboard[i].player.PlayCoroutineStun();
                 leaderboard[i].player.transform.position = podiumPosition[countPodiumPod];
+                leaderboard[i].player.ResetPlayer();
                 countPodiumPod++;
             }
         }

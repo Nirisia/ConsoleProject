@@ -57,11 +57,6 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private AudioClip boo = default;
         [SerializeField] private AudioClip lastSeconds = default;
 
-        [SerializeField] private InputAction inputPause = default;
-        [SerializeField] private InputAction inputQuit = default;
-        [SerializeField] private InputAction inputNextRound = default;
-        [SerializeField] private InputAction inputSetting = default;
-
         private Animator animator;
 
         public bool gameOver = false;
@@ -88,12 +83,6 @@ namespace Com.IsartDigital.ChaseTag
             GameManager.Instance.OnWin += DisplayWin;
             GameManager.Instance.OnTie += DisplayTie;
 
-            // inputPause.performed += DisplayQuit;
-            // inputQuit.performed += Quit;
-            // inputNextRound.performed += NextRound;
-            // inputSetting.performed += DisplaySetting;
-
-            inputSetting.Enable();
             DisplayRoundHUD.text = (GameManager.Instance.RoundCounter) + " / " + GameManager.Instance.RoundNumber + "\nROUND";
         }
 
@@ -109,10 +98,6 @@ namespace Com.IsartDigital.ChaseTag
             GameManager.Instance.StartGame();
             audioSourceMusic.clip = music;
             audioSourceMusic.Play();
-            
-            gameStarted = true;
-            
-            inputPause.Enable();
         }
 
         public void StartPlayerInStage()
@@ -201,9 +186,9 @@ namespace Com.IsartDigital.ChaseTag
 
                 CollectibleManager.Instance.ResetCollectible();
 
-                inputSetting.Disable();
-
                 HidePlayerNotPlaying();
+
+                gameStarted = true;
             }
         }
 
@@ -219,10 +204,6 @@ namespace Com.IsartDigital.ChaseTag
             audioSourceFx.Play();
 
             Time.timeScale = 0;
-
-            inputPause.Disable();
-            inputQuit.Disable();
-            inputNextRound.Enable();
         }
 
         private void DisplayWin(int playerId, float elapsedTime)
@@ -247,10 +228,6 @@ namespace Com.IsartDigital.ChaseTag
             audioSourceFx.Play();
 
             Time.timeScale = 0;
-
-            inputPause.Disable();
-            inputQuit.Disable();
-            inputNextRound.Enable();
         }
 
         public void Pause()
@@ -267,12 +244,7 @@ namespace Com.IsartDigital.ChaseTag
 
         public void DisplayQuit(InputAction.CallbackContext callback)
         {
-            if (gameOver || !gameStarted) return;
-            
-            if (!isQuitting)
-                inputQuit.Enable();
-            else
-                inputQuit.Disable();
+            if (!gameStarted) return;
 
             isQuitting = !isQuitting;
             animator.SetTrigger(txtAnimQuit);
@@ -284,8 +256,6 @@ namespace Com.IsartDigital.ChaseTag
             
             UnPause();
             isQuitting = false;
-            inputPause.Disable();
-            inputQuit.Disable();
             SceneManager.LoadScene(0);
         }
 
@@ -305,7 +275,6 @@ namespace Com.IsartDigital.ChaseTag
             }
 
             animator.SetTrigger(txtAnimReturnToTitlecard);
-            inputNextRound.Disable();
 
             PlayerManager.Instance.ReplaceAllPlayer();
 
@@ -323,9 +292,6 @@ namespace Com.IsartDigital.ChaseTag
             GameManager.Instance.FinalMap();
 
             PlayerManager.Instance.setOnPodium();
-
-            inputPause.Enable();
-            //Input to reload game
         }
 
         public void GameOverToTitleCard()

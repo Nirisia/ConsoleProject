@@ -283,6 +283,17 @@
                 },
                 {
                     "name": "",
+                    "id": "1a1a7f3f-4fca-4006-adf5-be6c6c172ff4",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5579daf8-f429-445f-a4ba-2ecd8c0ffab4",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -313,6 +324,20 @@
                     "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
+<<<<<<< Updated upstream
+=======
+                },
+                {
+                    "name": "",
+                    "id": "c4893dcf-333d-4bac-8203-2ca644f02b1f",
+                    "path": "<HID::Nintendo Wireless Gamepad>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WirelessJoycon",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+>>>>>>> Stashed changes
                 }
             ]
         },
@@ -565,6 +590,31 @@
                     "action": "Settings",
                     "isComposite": false,
                     "isPartOfComposite": false
+<<<<<<< Updated upstream
+=======
+                },
+                {
+                    "name": "",
+                    "id": "e85cdeb4-155b-4d56-831c-ea77deb61d6f",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WirelessJoycon",
+                    "action": "Settings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f0e5ce97-47b3-4627-a16a-77c7b4d9afbf",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Settings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+>>>>>>> Stashed changes
                 }
             ]
         },

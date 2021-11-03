@@ -383,6 +383,22 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
             canDash = true;
         }
 
+        public void PlayCoroutineStun()
+        {
+            StartCoroutine(Stun());
+        }
+
+        public IEnumerator Stun()
+        {
+            float originalAngularDrag = rb.angularDrag;
+
+            rb.angularDrag = stunDrag;
+
+            yield return new WaitForSeconds(secondStunAfterCollision);
+
+            rb.angularDrag = originalAngularDrag;
+        }
+
         public IEnumerator StunAfterCollision()
         {
             float originalAngularDrag = rb.angularDrag;
@@ -485,6 +501,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
             fx_StolenCrown.Stop();
             cameraShake.enabled = false;
             MouseElapsedTime = 0;
+            trail.Clear();
         }
     }
 
