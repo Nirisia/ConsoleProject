@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using nn.hid;
 
+
 namespace Com.IsartDigital.ChaseTag.ChaseTag
 {
     public delegate void PlayerEventHandler(Player player);
@@ -71,6 +72,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
 
         [SerializeField] private TrailRenderer trail = default;
         [SerializeField] private AnimationCurve[] trailWidth3Mode = default;
+
+        [SerializeField] private TextAsset dashVibrationAsset = default;
+        [SerializeField] private TextAsset collisionVibrationAsset = default;
 
 
         private CameraShake cameraShake = default;
@@ -226,6 +230,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
                 cameraShake.enabled = true;
                 audioSource.clip = sounds_collision[0];
                 audioSource.Play();
+                InputManager.Instance.PlayVibrationFile(collisionVibrationAsset, PlayerManager.Instance.GetPlayerId(this));
             }
 
             if (currentState == PlayerState.CAT && collision.collider.CompareTag(playerTag) && stunCoroutine == null)
@@ -418,9 +423,9 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
                 rb.AddForce(velocity.normalized * currentDash, ForceMode.Impulse);
 
                 StartCoroutine(DashCooldown());
+                StartCoroutine(InputManager.Instance.PlayVibrationFile(dashVibrationAsset, PlayerManager.Instance.GetPlayerId(this)));
 
                 fx_Dash.Play();
-                InputManager.Instance.SetVibration(1f, 160.0f, 1.0f, 320.0f, PlayerManager.Instance.GetPlayerId(this));
 
                 audioSource.clip = sounds_dash[UnityEngine.Random.Range(0, sounds_dash.Length)];
                 audioSource.Play();

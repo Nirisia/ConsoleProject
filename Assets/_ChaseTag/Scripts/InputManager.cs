@@ -10,6 +10,7 @@ using nn.hid;
 using TMPro;
 using UnityEngine.InputSystem.HID;
 
+
 namespace Com.IsartDigital.ChaseTag
 {
     public class InputManager : MonoBehaviour
@@ -181,6 +182,38 @@ namespace Com.IsartDigital.ChaseTag
 
             Vibration.SendValue(vibrationDeviceHandle.Value, new VibrationValue(lowAmplitude, lowFrequency, highAmplitude, highFrequency));
 #endif
+        }
+
+        public IEnumerator SetVibrationSeconds(float lowAmplitude, float lowFrequency, float highAmplitude, float highFrequency, int npadIndex, float time)
+        {
+            InputManager.Instance.SetVibration(lowAmplitude, lowFrequency, highAmplitude, highFrequency, npadIndex);
+            yield return new WaitForSeconds(time);
+            InputManager.Instance.SetVibration(0f, 0f, 0f, 0f, npadIndex);
+        }
+
+        public IEnumerator PlayVibrationFile(TextAsset text, int npadIndex)
+        {
+            byte[] bytes = text.bytes;
+
+            VibrationFileParserContext vibrationFileParserContext = new VibrationFileParserContext();
+            VibrationFileInfo vibrationFileInfo = new VibrationFileInfo();
+            VibrationFile.Parse(ref vibrationFileInfo, ref vibrationFileParserContext, bytes, bytes.Length);
+
+            int pos = 0;
+            while (pos < vibrationFileInfo.sampleLength)
+            {
+                VibrationValue vibrationValue = new VibrationValue();
+                VibrationFile.RetrieveValue(ref vibrationValue, pos, ref vibrationFileParserContext);
+                SetVibration(vibrationValue.amplitudeLow,
+                    vibrationValue.frequencyLow,
+                    vibrationValue.amplitudeHigh,
+                    vibrationValue.frequencyHigh,
+                    npadIndex
+                   );
+                pos++;
+                yield return null;
+            }
+            SetVibration(0f, 0f, 0f, 0f, npadIndex);
         }
     }
 }
