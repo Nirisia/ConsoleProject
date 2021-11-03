@@ -189,6 +189,11 @@ namespace Com.IsartDigital.ChaseTag
                 HidePlayerNotPlaying();
 
                 gameStarted = true;
+
+                PlayerManager.Instance.GetComponent<PlayerInputManager>().DisableJoining();
+                GameManager.Instance.SetFallingLD();
+
+                Camera.main.GetComponent<CameraFollow>().IsSarting = true;
             }
         }
 

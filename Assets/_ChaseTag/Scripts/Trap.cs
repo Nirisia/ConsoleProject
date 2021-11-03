@@ -23,7 +23,11 @@ namespace Com.IsartDigital.ChaseTag
 
         [SerializeField] private AudioSource audioSourceExplode = default;
 
+        [SerializeField] private AnimationCurve animationCurveFall;
+
         private float originPlayerSpeed = default;
+
+        private float fallDuration = 2;
 
         private void OnCollisionEnter(Collision collision)
         {
@@ -94,6 +98,31 @@ namespace Com.IsartDigital.ChaseTag
             player.trapCoroutine = null;
             player.StopParticleSlow();
             player.trap = null;
+        }
+
+        IEnumerator AnimateFall(Vector3 origin, Vector3 target)
+        {
+            float journey = 0f;
+
+            while (journey <= fallDuration)
+            {
+                journey = journey + Time.deltaTime;
+                float percent = Mathf.Clamp01(journey / fallDuration);
+                float curvePercent = animationCurveFall.Evaluate(percent);
+
+                transform.parent.position = Vector3.LerpUnclamped(origin, target, curvePercent);
+
+                yield return null;
+            }
+        }
+
+        public void Fall()
+        {
+            Vector3 groundPos = transform.parent.position;
+
+            groundPos.y = 0f;
+
+            StartCoroutine(AnimateFall(transform.parent.position, groundPos));
         }
     }
 }

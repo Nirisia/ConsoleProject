@@ -7,6 +7,7 @@ namespace Com.IsartDigital.ChaseTag
     public class CameraFollow : MonoBehaviour
     {
         public static CameraFollow Instance { get; private set; }
+        public bool IsSarting { get => isSarting; set => isSarting = value; }
 
         [SerializeField] public List<Transform> targets = new List<Transform>();
         [SerializeField] private float offsetZ = -2;
@@ -20,19 +21,29 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private Transform winTransform;
         [SerializeField] public bool isWinPos = false;
         [SerializeField] private bool isLookat = true;
+        [SerializeField] private Vector3 introPos;
 
         private Vector3 velocity = Vector3.zero;
 
+        private bool isSarting = false;
+
         private void Update()
         {
-            if(targets.Count != 0 && UIManager.Instance.gameStarted && !isWinPos)
+            if (targets.Count != 0 && UIManager.Instance.gameStarted && !isWinPos && !isSarting)
                 MoveCamera();
+            else if (isSarting)
+                MoveCameraToIntro();
         }
 
         public void WinPosition()
         {
             transform.rotation = winTransform.rotation;
             transform.position = winTransform.position;
+        }
+
+        public void MoveCameraToIntro()
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, introPos, ref velocity, smoothTime);
         }
 
         private void MoveCamera()

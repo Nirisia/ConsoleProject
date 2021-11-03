@@ -79,6 +79,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             Destroy(currentMap);
 
             LoadMap();
+            SetFallingLD();
         }
 
         private void LoadMap()
@@ -119,7 +120,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             GameTimer.OnTimerCompleted += GameTimer_OnTimerCompleted;
             wallStartBlock.SetActive(false);
 
-            PlayerManager.Instance.GetComponent<PlayerInputManager>().DisableJoining();
+            Camera.main.GetComponent<CameraFollow>().IsSarting = false;
         }
 
         private void GameTimer_OnTimerCompleted()
@@ -152,5 +153,23 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
             UIManager.Instance.initSliderValue(RoundNumber, TimeLimit);
         }
+
+
+        public void SetFallingLD()
+        {
+            var listWall = currentMap.GetComponentsInChildren<Wall>();
+            var listTrap = currentMap.GetComponentsInChildren<Trap>();
+
+            for (int i = 0; i < listWall.Length; i++)
+            {
+                listWall[i].Fall();
+            }
+
+            for (int i = 0; i < listTrap.Length; i++)
+            {
+                listTrap[i].Fall();
+            }
+        }
+
     }
 }

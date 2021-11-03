@@ -14,7 +14,9 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private BoxCollider collider_right = default;
 
         [SerializeField] private AnimationCurve animationCurve;
+        [SerializeField] private AnimationCurve animationCurveFall;
         [SerializeField] private float moveDuration;
+        [SerializeField] private float fallDuration = 5;
 
         [SerializeField] private ParticleSystem fx_explosion;
         [SerializeField] private ParticleSystem fx_dust;
@@ -106,6 +108,37 @@ namespace Com.IsartDigital.ChaseTag
 
             fx_dust.Stop();
             isMoving = false;
+        }
+
+        IEnumerator AnimateFall(Vector3 origin, Vector3 target)
+        {
+            float journey = 0f;
+
+            fx_dust.Play();
+
+            while (journey <= fallDuration)
+            {
+                journey = journey + Time.deltaTime;
+                float percent = Mathf.Clamp01(journey / fallDuration);
+                float curvePercent = animationCurveFall.Evaluate(percent);
+
+                transform.position = Vector3.LerpUnclamped(origin, target, curvePercent);
+
+                yield return null;
+            }
+
+            fx_dust.Stop();
+
+            Camera.main.GetComponentInParent<CameraShake>().enabled = true;
+        }
+
+        public void Fall()
+        {
+            Vector3 groundPos = transform.position;
+
+            groundPos.y = 0.5f;
+
+            StartCoroutine(AnimateFall(transform.position, groundPos));
         }
     }
 }
