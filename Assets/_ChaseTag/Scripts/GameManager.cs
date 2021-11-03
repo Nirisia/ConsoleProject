@@ -127,7 +127,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             GameTimer.OnTimerCompleted -= GameTimer_OnTimerCompleted;
             GameTimer = null;
 
-            PlayerManager.Instance.SetPlayersControlScheme("Menu");
+            //PlayerManager.Instance.SetPlayersControlScheme("Menu");
 
             Player winner;
 
@@ -139,7 +139,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             {
                 OnTie?.Invoke();
             }
-
+            UIManager.Instance.gameStarted = false;
             //PlayerManager.Instance.DestroyPlayer();
         }
 

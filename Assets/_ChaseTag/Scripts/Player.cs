@@ -469,7 +469,6 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
             if (ctx.phase != InputActionPhase.Performed) return;
 
             Debug.Log("LOG ========================== NEXT ROUND ===================");
-
             UIManager.Instance.NextRound(ctx);
         }
 

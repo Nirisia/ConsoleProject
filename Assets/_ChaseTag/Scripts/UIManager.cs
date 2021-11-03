@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Com.IsartDigital.ChaseTag
 {
@@ -64,7 +65,6 @@ namespace Com.IsartDigital.ChaseTag
 
         private Animator animator;
 
-        public bool gameOver = false;
         public bool gameStarted = false;
         public bool isQuitting = false;
         public bool isSetting = false;
@@ -267,7 +267,7 @@ namespace Com.IsartDigital.ChaseTag
 
         public void DisplayQuit(InputAction.CallbackContext callback)
         {
-            if (gameOver || !gameStarted) return;
+            if (!gameStarted) return;
             
             if (!isQuitting)
                 inputQuit.Enable();
@@ -291,7 +291,10 @@ namespace Com.IsartDigital.ChaseTag
 
         public void NextRound(InputAction.CallbackContext callback)
         {
-            if (!gameOver || isQuitting || isSetting || gameStarted) return;
+            if (isQuitting || isSetting || gameStarted) return;
+
+            gameStarted = true;
+
             Debug.Log("Round " + GameManager.Instance.RoundCounter + " sur " + GameManager.Instance.RoundNumber);
 
             DisplayRoundStart.text = "ROUND " + (GameManager.Instance.RoundCounter+1);
@@ -314,6 +317,7 @@ namespace Com.IsartDigital.ChaseTag
             Time.timeScale = 1;
 
             GameManager.Instance.Restart();
+
         }
 
         private void DisplayFinalWin()
@@ -331,11 +335,6 @@ namespace Com.IsartDigital.ChaseTag
         public void GameOverToTitleCard()
         {
             animator.SetTrigger(txtAnimReturnToTitlecard);
-        }
-
-        public void SetGameOver()
-        {
-            gameOver = true;
         }
 
         private void OnDestroy()
@@ -377,11 +376,14 @@ namespace Com.IsartDigital.ChaseTag
             {
                 PlayerManager.Instance.HidePlayer();
                 PlayerManager.Instance.GetComponent<PlayerInputManager>().DisableJoining();
+                EventSystem.current?.SetSelectedGameObject(sliderSetting_Round.gameObject);
             }
             else
             {
                 PlayerManager.Instance.ShowPlayer();
                 PlayerManager.Instance.GetComponent<PlayerInputManager>().EnableJoining();
+
+                EventSystem.current?.SetSelectedGameObject(null);
             }
         }
 
