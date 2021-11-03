@@ -70,7 +70,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
             for (int i = length - 1; i >= 0; i--)
             {
-                Destroy(collectibles[i]?.gameObject);
+                if (GameObject.FindGameObjectWithTag("Collectible"))
+                    Destroy(collectibles[i].gameObject);
 
                 collectibles.RemoveAt(i);
             }
