@@ -45,7 +45,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         [SerializeField] private string wallTag = "Wall";
         [SerializeField] private string borderTag = "Border";
         [SerializeField, Range(0.1f, 4f)] private float secondStunAfterCollision = default;
-        [SerializeField] private float stunDrag = 10000;
+        [SerializeField] private float stunDrag = 100000;
 
         [SerializeField] private Vector3 respawnPosition;
 
@@ -75,6 +75,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         private CameraShake cameraShake = default;
 
         private Coroutine stunCoroutine;
+
+        private float SpeedMultiplicator = 1;
 
         //private int numCollectiblesCollected = 0;
         //public int NumCollectiblesCollected => numCollectiblesCollected;
@@ -142,9 +144,28 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         public void RespawnToPosition()
         {
             Explode();
-            GetComponentInChildren<TrailRenderer>().emitting = false;
-            transform.position = respawnPosition;
-            GetComponentInChildren<TrailRenderer>().emitting = true;
+
+            var listPlayer = PlayerManager.Instance.playerInfos;
+
+            for (int i = 0; i < listPlayer.Length; i++)
+            {
+                if (listPlayer[i].player = this)
+                {
+                    transform.position = listPlayer[i].spawnPosition;
+                    trail.Clear();
+                    StartCoroutine(dontMove());
+                    return;
+                }
+            }
+        }
+
+        IEnumerator dontMove()
+        {
+            SpeedMultiplicator = 0;
+
+            yield return new WaitForSeconds(1);
+
+            SpeedMultiplicator = 1;
         }
 
         public void PlayParticleSlow()
@@ -344,8 +365,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
 
         private void DoActionNormal()
         {
-            velocity.x = movementInput.x;
-            velocity.z = movementInput.y;
+            velocity.x = movementInput.x * SpeedMultiplicator;
+            velocity.z = movementInput.y * SpeedMultiplicator;
 
             velocity = velocity.normalized * (currentSpeed * Time.deltaTime);
 
@@ -397,22 +418,26 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
 
             rb.angularDrag = stunDrag;
 
+            Debug.Log("Stuned : " + rb.angularDrag);
+
             yield return new WaitForSeconds(secondStunAfterCollision);
 
             rb.angularDrag = originalAngularDrag;
+
+            Debug.Log("UNStuned : " + rb.angularDrag);
         }
 
         public IEnumerator StunAfterCollision()
         {
-            float originalAngularDrag = rb.angularDrag;
+            /*float originalAngularDrag = rb.angularDrag;
 
             SetModeVoid();
+            rb.angularDrag = stunDrag;*/
             PlayParticleSlow();
-            rb.angularDrag = stunDrag;
 
             yield return new WaitForSeconds(secondStunAfterCollision);
 
-            rb.angularDrag = originalAngularDrag;
+            /*rb.angularDrag = originalAngularDrag;*/
             SetModeCat();
             Resume();
             StopParticleSlow();

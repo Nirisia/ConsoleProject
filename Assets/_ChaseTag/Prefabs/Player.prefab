@@ -24937,7 +24937,7 @@ MonoBehaviour:
   wallTag: Wall
   borderTag: Border
   secondStunAfterCollision: 4
-  stunDrag: 1000
+  stunDrag: 10000
   respawnPosition: {x: 0, y: 5, z: 0}
   fx_Slow: {fileID: 5837246514943736875}
   fx_Dash: {fileID: 1493922511621233128}
