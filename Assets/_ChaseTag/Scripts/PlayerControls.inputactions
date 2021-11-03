@@ -205,26 +205,59 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "e99b1e8b-f4a8-41d1-a82d-dfda4368b502",
-                    "path": "<HID::Nintendo Wireless Gamepad>/hat",
+                    "name": "Left",
+                    "id": "4eafb625-9c06-487c-8834-5432fe2554af",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "cfc8b710-0c30-4856-ba0a-188ce2acca92",
+                    "path": "<HID::Nintendo Wireless Gamepad>/hat/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "WirelessJoycon",
                     "action": "Movement",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "388d8961-7628-4911-860c-cec4a1e6688c",
-                    "path": "<HID::Nintendo Wireless Gamepad>/button10",
+                    "name": "down",
+                    "id": "efc1c9a3-f8d6-4c8d-afb2-dea12b8b17a5",
+                    "path": "<HID::Nintendo Wireless Gamepad>/hat/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "WirelessJoycon",
-                    "action": "Pause",
+                    "action": "Movement",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "748f828f-afa2-4174-ba98-e7eb06c8c3df",
+                    "path": "<HID::Nintendo Wireless Gamepad>/hat/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WirelessJoycon",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "309753c0-5ce4-48e2-b753-8564ce23f78b",
+                    "path": "<HID::Nintendo Wireless Gamepad>/hat/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WirelessJoycon",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
@@ -283,7 +316,7 @@
                 },
                 {
                     "name": "",
-                    "id": "1a1a7f3f-4fca-4006-adf5-be6c6c172ff4",
+                    "id": "8590d1f3-4a48-46ba-a867-f371ffd74afc",
                     "path": "<HID::Nintendo Wireless Gamepad>/button10",
                     "interactions": "",
                     "processors": "",
@@ -324,20 +357,17 @@
                     "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
-<<<<<<< Updated upstream
-=======
                 },
                 {
                     "name": "",
                     "id": "c4893dcf-333d-4bac-8203-2ca644f02b1f",
-                    "path": "<HID::Nintendo Wireless Gamepad>/trigger",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button2",
                     "interactions": "",
                     "processors": "",
                     "groups": "WirelessJoycon",
                     "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
->>>>>>> Stashed changes
                 }
             ]
         },
@@ -418,46 +448,13 @@
                 {
                     "name": "",
                     "id": "23281bfa-9976-4990-8a47-9d8f1108ea0a",
-                    "path": "<HID::Nintendo Wireless Gamepad>/trigger",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button2",
                     "interactions": "",
                     "processors": "",
                     "groups": "WirelessJoycon",
                     "action": "Join",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "SwitchJoyconRightTrigger",
-                    "id": "0a53b041-02ad-463f-af30-527eaa480b7a",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Join",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "faebec0c-8161-4f33-b397-cfb1ab7a4046",
-                    "path": "<NPad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Join",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "241345f0-d96f-41b9-9257-19504a4fb2ca",
-                    "path": "<NPad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Join",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
@@ -538,28 +535,6 @@
                 },
                 {
                     "name": "",
-                    "id": "590a5dbe-6226-4882-bd52-30d767eca1f8",
-                    "path": "<HID::Nintendo Wireless Gamepad>/button10",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "WirelessJoycon",
-                    "action": "Settings",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f7a6eebe-8a6f-4ef0-954d-96688028718d",
-                    "path": "<HID::Nintendo Wireless Gamepad>/button9",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "WirelessJoycon",
-                    "action": "Settings",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "719ff592-c933-48a2-bf40-ee4452f0dd90",
                     "path": "<NPad>/start",
                     "interactions": "",
@@ -590,8 +565,6 @@
                     "action": "Settings",
                     "isComposite": false,
                     "isPartOfComposite": false
-<<<<<<< Updated upstream
-=======
                 },
                 {
                     "name": "",
@@ -606,7 +579,7 @@
                 },
                 {
                     "name": "",
-                    "id": "f0e5ce97-47b3-4627-a16a-77c7b4d9afbf",
+                    "id": "bffd65c5-f6d3-4b20-905a-62fa90fb11df",
                     "path": "<HID::Nintendo Wireless Gamepad>/button10",
                     "interactions": "",
                     "processors": "",
@@ -614,23 +587,13 @@
                     "action": "Settings",
                     "isComposite": false,
                     "isPartOfComposite": false
->>>>>>> Stashed changes
                 }
             ]
         },
         {
             "name": "No Input",
             "id": "8e8ee27f-3fde-43f3-b689-2d24e3bfa950",
-            "actions": [
-                {
-                    "name": "ToggleMenuMode",
-                    "type": "Button",
-                    "id": "93e7a2e1-bff7-471c-ac92-4daa9a85499d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
+            "actions": [],
             "bindings": []
         }
     ],

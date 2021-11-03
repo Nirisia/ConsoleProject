@@ -25121,7 +25121,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 546c7f0d-f3a4-4832-a0f0-0b7b9a0c0761
-    m_ActionName: Player/Movement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+    m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Mouse/position]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9150365382104769395}
@@ -25136,64 +25136,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 9150365382104769395}
-        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
-        m_MethodName: OnNextRound
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 9150365382104769395}
-        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
-        m_MethodName: OnQuit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_ActionId: 9ce2a323-6a14-4487-9408-581b12ac456a
-    m_ActionName: Player/Dash[/Keyboard/rightShift]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9150365382104769395}
-        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
-        m_MethodName: OnJoin
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 014bebd4-6869-48e4-af4b-041edb411e05
-    m_ActionName: Menu/Join[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9150365382104769395}
-        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
-        m_MethodName: OnToggleMenuMode
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 17310520-54b6-40ee-b738-42da19eb58f9
-    m_ActionName: No Input/ToggleMenuMode[/Keyboard/space,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonSouth]
+    m_ActionName: Player/Dash[/Keyboard/space,/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9150365382104769395}
@@ -25209,13 +25153,55 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 72898dac-08db-46a7-ad31-0ea093a7a8ce
-    m_ActionName: Player/Pause[/Nintendo Wireless Gamepad/button10,/Nintendo Wireless
-      Gamepad/button9,/Keyboard/escape]
+    m_ActionName: Player/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9150365382104769395}
+        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
+        m_MethodName: OnQuit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9150365382104769395}
+        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
+        m_MethodName: OnNextRound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1060a4fd-96f6-441f-8ff0-ddfe8b5e5c5a
+    m_ActionName: Player/Select[/Keyboard/space,/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9150365382104769395}
+        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
+        m_MethodName: OnJoin
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 014bebd4-6869-48e4-af4b-041edb411e05
+    m_ActionName: Menu/Join[/Keyboard/space,/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 667f5185-1f70-49eb-a49b-10d204ac7166
-    m_ActionName: Menu/ControllerDetect[/Nintendo Wireless Gamepad/button5,/Nintendo
-      Wireless Gamepad/button6,/Keyboard/anyKey,/Mouse/rightButton]
+    m_ActionName: Menu/ControllerDetect[/Keyboard/anyKey,/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9150365382104769395}
@@ -25231,37 +25217,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 204cc907-7d83-4fd6-85de-f3b1477b2be0
-    m_ActionName: Menu/Settings[/Nintendo Wireless Gamepad/button10,/Nintendo Wireless
-      Gamepad/button9,/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9150365382104769395}
-        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
-        m_MethodName: OnNextRound
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 9150365382104769395}
-        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
-        m_MethodName: OnQuit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 1060a4fd-96f6-441f-8ff0-ddfe8b5e5c5a
-    m_ActionName: Player/Select[/Keyboard/space,/Mouse/leftButton]
-  m_NeverAutoSwitchControlSchemes: 1
+    m_ActionName: Menu/Settings[/Keyboard/escape]
+  m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Menu
   m_SplitScreenIndex: -1
