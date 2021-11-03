@@ -1698,7 +1698,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1594049762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1980,11 +1980,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerPrefab: {fileID: 7531695272994752963, guid: c969f20bc49ea8f4882346f3652d87b3, type: 3}
   wallStartBlock: {fileID: 635663893}
-  timeLimit: 45
+  timeLimit: 3
   roundNumber: 3
   timeBeforeMovePodium: 5
   Maps:
-  - {fileID: 4485808371920774317, guid: 0604034513505ee488f9bc3d35164ab5, type: 3}
   - {fileID: 8641531735566357232, guid: e97ae92f6c343b4439b39e7396c45d5f, type: 3}
   - {fileID: 3322270558837050334, guid: e469f16b2ed700f458263b0580f36c0e, type: 3}
   - {fileID: 1238257019130134467, guid: 18db88c1a275d3f428ce760585c7df94, type: 3}

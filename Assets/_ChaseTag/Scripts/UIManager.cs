@@ -184,7 +184,7 @@ namespace Com.IsartDigital.ChaseTag
 
                 audioSourceFx.Play();
 
-                CollectibleManager.Instance.ResetCollectible();
+                //CollectibleManager.Instance.ResetCollectible();
 
                 HidePlayerNotPlaying();
 
