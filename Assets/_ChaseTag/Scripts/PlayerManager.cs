@@ -153,6 +153,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         
         public bool AllPlayersReady()
         {
+            if (playerCount <= 1) return false;
+            
             for (int i = 0; i < playerCount; i++)
             {
                 if (!playerInfos[i].isReady)
