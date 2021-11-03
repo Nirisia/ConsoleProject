@@ -44,6 +44,11 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             respawnDelay = new WaitForSeconds(collectibleRespawnDelay);
         }
 
+        private void Start()
+        {
+            ResetCollectible();
+        }
+
         private void Collectible_OnCollected(Collectible collectible)
         {
             collectibles.Remove(collectible);
