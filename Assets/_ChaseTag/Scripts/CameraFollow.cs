@@ -38,11 +38,20 @@ namespace Com.IsartDigital.ChaseTag
         private void MoveCamera()
         {
             Vector3 newPos = Vector3.zero;
-            float distance = 1; //Distance(target.position, target2.position);
+            float distance = 1;
             foreach (var target in targets)
             {
                 newPos += target.position;
             }
+
+            if(targets.Count > 1)
+                for (int i = 0; i < targets.Count - 1; i++)
+                {
+                    var newDistance = Vector3.Distance(targets[i].position, targets[i+1].position);
+
+                    if (newDistance > distance)
+                        distance = newDistance;
+                }
 
             newPos /= targets.Count;
             
