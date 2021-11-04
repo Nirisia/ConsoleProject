@@ -63,6 +63,9 @@ namespace Com.IsartDigital.ChaseTag
         public bool gameStarted = false;
         public bool isQuitting = false;
         public bool isSetting = false;
+        public bool isHelp = false;
+        public int helpPage = 2;
+        public int helpPageCounter = 0;
 
         private void Awake()
         {
@@ -306,6 +309,35 @@ namespace Com.IsartDigital.ChaseTag
         public void GameOverToTitleCard()
         {
             animator.SetTrigger(txtAnimReturnToTitlecard);
+        }
+
+        public void DisplayHelp(InputAction.CallbackContext callback)
+        {
+            animator.SetTrigger("Help");
+
+            if (helpPageCounter == 0 || helpPageCounter == helpPage)
+            {
+                isHelp = !isHelp;
+
+                if (isHelp)
+                {
+                    PlayerManager.Instance.HidePlayer();
+                    PlayerManager.Instance.GetComponent<PlayerInputManager>().DisableJoining();
+                    EventSystem.current?.SetSelectedGameObject(sliderSetting_Round.gameObject);
+                }
+                else
+                {
+                    PlayerManager.Instance.ShowPlayer();
+                    PlayerManager.Instance.GetComponent<PlayerInputManager>().EnableJoining();
+
+                    EventSystem.current?.SetSelectedGameObject(null);
+                }
+            }
+
+            helpPageCounter++;
+
+            if (helpPageCounter > helpPage)
+                helpPageCounter = 0;
         }
 
         private void OnDestroy()

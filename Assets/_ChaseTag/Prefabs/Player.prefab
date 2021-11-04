@@ -19864,7 +19864,19 @@ MonoBehaviour:
     m_ActionId: 014bebd4-6869-48e4-af4b-041edb411e05
     m_ActionName: Menu/Join[/Keyboard/space,/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9150365382104769395}
+        m_TargetAssemblyTypeName: Com.IsartDigital.ChaseTag.ChaseTag.Player, Assembly-CSharp
+        m_MethodName: OnHelp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 667f5185-1f70-49eb-a49b-10d204ac7166
     m_ActionName: Menu/ControllerDetect[/Keyboard/anyKey,/Mouse/rightButton]
   - m_PersistentCalls:

@@ -512,6 +512,15 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
             UIManager.Instance.NextRound(ctx);
         }
 
+        public void OnHelp(InputAction.CallbackContext ctx)
+        {
+            if (ctx.phase != InputActionPhase.Performed) return;
+
+            Debug.Log("LOG ========================== HELP ===================");
+
+            UIManager.Instance.DisplayHelp(ctx);
+        }
+
         public void ResetPlayer()
         {
             SetModeNormal();

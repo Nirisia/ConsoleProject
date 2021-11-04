@@ -384,7 +384,7 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "ControllerDetect",
+                    "name": "Help",
                     "type": "Button",
                     "id": "667f5185-1f70-49eb-a49b-10d204ac7166",
                     "expectedControlType": "Button",
@@ -468,57 +468,24 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "WirelessJoycon",
-                    "id": "608f1580-34d7-437e-84da-49e9260f2735",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ControllerDetect",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "e9462e6d-69c8-4261-8888-a5406259e37e",
-                    "path": "<HID::Nintendo Wireless Gamepad>/button5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "WirelessJoycon",
-                    "action": "ControllerDetect",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "3b5c1132-5197-4cef-913c-c31014db34b3",
-                    "path": "<HID::Nintendo Wireless Gamepad>/button6",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "WirelessJoycon",
-                    "action": "ControllerDetect",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "db389130-65ff-499e-9bc9-b53eabaa655a",
-                    "path": "<Keyboard>/anyKey",
+                    "path": "<Keyboard>/h",
                     "interactions": "",
                     "processors": "",
                     "groups": "EditorKeyboard",
-                    "action": "ControllerDetect",
+                    "action": "Help",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "214853b4-6bd0-4923-b3cc-280e75d51764",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "EditorGamepad",
-                    "action": "ControllerDetect",
+                    "action": "Help",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -529,7 +496,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "EditorGamepad",
-                    "action": "ControllerDetect",
+                    "action": "Help",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "864ee12e-12e4-4fe8-9639-a25fde1395f7",
+                    "path": "<HID::Nintendo Wireless Gamepad>/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Help",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
