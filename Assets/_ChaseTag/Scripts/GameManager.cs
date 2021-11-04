@@ -63,7 +63,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
         private void Start()
         {
-            LoadMap();
+            StartCoroutine(LoadMap());
             initGameSettings();
         }
 
@@ -71,24 +71,29 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
         {
             wallStartBlock.SetActive(true);
 
-            CollectibleManager.Instance.DestroyAllCollectibles();
-            CollectibleManager.Instance.ResetCollectible();
+            if (CollectibleManager.Instance != null) 
+                CollectibleManager.Instance.DestroyAllCollectibles();
 
             RoundCounter++;
 
             Destroy(currentMap);
 
-            LoadMap();
-            SetFallingLD();
+            StartCoroutine(LoadMap());
         }
 
-        private void LoadMap()
+        private IEnumerator LoadMap()
         {
+            if (CollectibleManager.Instance != null) Destroy(CollectibleManager.Instance.gameObject);
+
+            yield return null;
+
             var randomInt = UnityEngine.Random.Range(0, Maps.Count - 1);
 
             currentMap = Instantiate(Maps[randomInt]);
 
             Maps.RemoveAt(randomInt);
+
+            SetFallingLD();
         }
 
         public void FinalMap()
