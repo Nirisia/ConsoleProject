@@ -1993,6 +1993,7 @@ MonoBehaviour:
   - {fileID: 159972334654076495, guid: 78a05dcd86722ea4f9ecea9cdef187eb, type: 3}
   - {fileID: 1583614666288820887, guid: 0ee9c5e4eedbadf45b9b2d9e35af9f7a, type: 3}
   podiumMap: {fileID: 6339142260526348833, guid: f12168263ffd42f448164a8ea0e746e1, type: 3}
+  currentMap: {fileID: 0}
 --- !u!4 &1772121682
 Transform:
   m_ObjectHideFlags: 0
@@ -2543,6 +2544,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3143079963860234672, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1930
+      objectReference: {fileID: 0}
     - target: {fileID: 3256751465592943894, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: audioSourceFx
       value: 
@@ -2761,7 +2766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4357183479862004939, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 241.2
+      value: 241.20001
       objectReference: {fileID: 0}
     - target: {fileID: 4598267415212170898, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchorMax.y

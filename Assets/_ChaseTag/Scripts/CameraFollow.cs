@@ -1,3 +1,4 @@
+using Com.IsartDigital.ChaseTag.ChaseTag;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,7 +44,7 @@ namespace Com.IsartDigital.ChaseTag
 
         public void MoveCameraToIntro()
         {
-            transform.position = Vector3.SmoothDamp(transform.position, introPos, ref velocity, smoothTime);
+            transform.position = Vector3.SmoothDamp(transform.position, GameManager.Instance.currentMap.GetComponent<Map>().IntroCamPos.position, ref velocity, smoothTime);
         }
 
         private void MoveCamera()

@@ -29,7 +29,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
 
         private int roundCounter = 1;
 
-        private GameObject currentMap;
+        public GameObject currentMap;
 
         public Timer GameTimer { get; private set; }
         public int RoundNumber { get => roundNumber; set => roundNumber = value; }

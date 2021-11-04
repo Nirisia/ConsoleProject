@@ -79,6 +79,36 @@ Transform:
   m_Father: {fileID: 3322270558837050333}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2943176211309747385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9193414669198768502}
+  m_Layer: 0
+  m_Name: introCamPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9193414669198768502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2943176211309747385}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.42, y: 21.46, z: -3.87}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3322270558837050333}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3322270558592295176
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3322270558837050333}
   - component: {fileID: 3488115145314684310}
+  - component: {fileID: -5246432998743546185}
   m_Layer: 0
   m_Name: MAP2
   m_TagString: Untagged
@@ -304,6 +335,7 @@ Transform:
   - {fileID: 2348111324788130444}
   - {fileID: 6218812049085930895}
   - {fileID: 845969571392572362}
+  - {fileID: 9193414669198768502}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -325,6 +357,19 @@ MonoBehaviour:
   spawnZoneBottomLeftAngle: {fileID: 6218812049085930895}
   spawnZoneTopRightAngle: {fileID: 845969571392572362}
   groundTag: Ground
+--- !u!114 &-5246432998743546185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3322270558837050334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e93185bd87580b4d8c701209644497c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IntroCamPos: {fileID: 9193414669198768502}
 --- !u!1 &3322270559338141752
 GameObject:
   m_ObjectHideFlags: 0

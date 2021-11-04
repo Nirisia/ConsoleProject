@@ -317,6 +317,7 @@ namespace Com.IsartDigital.ChaseTag
 
             if (helpPageCounter == 0 || helpPageCounter == helpPage)
             {
+                EventSystem.current?.SetSelectedGameObject(null);
                 isHelp = !isHelp;
 
                 if (isHelp)
@@ -330,7 +331,6 @@ namespace Com.IsartDigital.ChaseTag
                     PlayerManager.Instance.ShowPlayer();
                     PlayerManager.Instance.GetComponent<PlayerInputManager>().EnableJoining();
 
-                    EventSystem.current?.SetSelectedGameObject(null);
                 }
             }
 
