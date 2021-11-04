@@ -19713,6 +19713,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  dashVibrationAsset: {fileID: 4900000, guid: d87d38d4404c2ba478cd8dd5d1453c26, type: 3}
+  collisionVibrationAsset: {fileID: 4900000, guid: 094719a49d2aaad419d7422784ff7913, type: 3}
+  npadID: 0
   haveCrown: 0
   prevSqrMagnitude: 0
   trap: {fileID: 0}

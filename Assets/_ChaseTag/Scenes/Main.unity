@@ -1213,7 +1213,7 @@ MonoBehaviour:
   winTransform: {fileID: 545069813}
   isWinPos: 0
   isLookat: 0
-  introPos: {x: 0, y: 10, z: 0}
+  introPos: {x: 0, y: 7, z: 0}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1936,6 +1936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInputmanager: {fileID: 669529902}
   playerPrefab: {fileID: 5932366599267494352, guid: ebf05653ae809d648b48e4735434d1fe, type: 3}
+  testNpad: []
 --- !u!4 &1735646301
 Transform:
   m_ObjectHideFlags: 0
@@ -1981,8 +1982,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerPrefab: {fileID: 7531695272994752963, guid: c969f20bc49ea8f4882346f3652d87b3, type: 3}
   wallStartBlock: {fileID: 635663893}
-  timeLimit: 3
-  roundNumber: 6
+  timeLimit: 30
+  roundNumber: 3
   timeBeforeMovePodium: 5
   Maps:
   - {fileID: 4485808371920774317, guid: 0604034513505ee488f9bc3d35164ab5, type: 3}
@@ -2378,6 +2379,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 252200654126955992, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_Text
+      value: don't get hit by it. you will lose your crown !
+      objectReference: {fileID: 0}
     - target: {fileID: 517737963117066890, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2411,7 +2416,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2936917490601604305, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936917490601604305, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936917490601604305, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3034856237308546820, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
@@ -2715,6 +2728,10 @@ PrefabInstance:
       value: Settings
       objectReference: {fileID: 0}
     - target: {fileID: 3628520943273748120, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3628520943273748120, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -2733,6 +2750,18 @@ PrefabInstance:
     - target: {fileID: 3748778133480460372, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357183479862004939, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1438.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357183479862004939, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 121.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357183479862004939, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 241.2
       objectReference: {fileID: 0}
     - target: {fileID: 4598267415212170898, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2812,11 +2841,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6834980054622202629, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 2.89
       objectReference: {fileID: 0}
     - target: {fileID: 7509919484592365075, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 21.962204
+      objectReference: {fileID: 0}
+    - target: {fileID: 8005495808186097762, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_Value
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8455417007476034140, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchorMax.y

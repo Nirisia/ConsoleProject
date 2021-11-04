@@ -7,6 +7,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using nn.hid;
+
 
 namespace Com.IsartDigital.ChaseTag.ChaseTag
 {
@@ -69,10 +71,14 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         [SerializeField] private TrailRenderer trail = default;
         [SerializeField] private AnimationCurve[] trailWidth3Mode = default;
 
+        [SerializeField] private TextAsset dashVibrationAsset = default;
+        [SerializeField] private TextAsset collisionVibrationAsset = default;
+
 
         private CameraShake cameraShake = default;
 
         private Coroutine stunCoroutine;
+        public int npadID = 0;
 
         private float SpeedMultiplicator = 1;
 
@@ -118,6 +124,8 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         {
             doAction();
             KeepCrownInPlace();
+
+            //int id = PlayerManager.Instance.GetPlayerId(this);
         }
 
         void FixedUpdate()
@@ -242,6 +250,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
                 cameraShake.enabled = true;
                 audioSource.clip = sounds_collision[0];
                 audioSource.Play();
+                StartCoroutine(InputManager.Instance.PlayVibrationFile(collisionVibrationAsset, npadID));
             }
 
             if (currentState == PlayerState.CAT && collision.collider.CompareTag(playerTag) && stunCoroutine == null)
@@ -400,6 +409,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
             yield return new WaitForSeconds(playerSpecs.DashCooldown);
 
             canDash = true;
+            InputManager.Instance.SetVibration(0f, 0f, 0f, 0f, PlayerManager.Instance.GetPlayerId(this));
         }
 
         public void PlayCoroutineStun()
@@ -453,6 +463,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
                 rb.AddForce(velocity.normalized * currentDash, ForceMode.Impulse);
 
                 StartCoroutine(DashCooldown());
+                StartCoroutine(InputManager.Instance.PlayVibrationFile(dashVibrationAsset, npadID));
 
                 fx_Dash.Play();
 
@@ -508,7 +519,6 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
             if (ctx.phase != InputActionPhase.Performed) return;
 
             Debug.Log("LOG ========================== NEXT ROUND ===================");
-
             UIManager.Instance.NextRound(ctx);
         }
 

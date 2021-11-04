@@ -513,6 +513,17 @@
                 },
                 {
                     "name": "",
+                    "id": "76856e58-e679-45f2-baef-d3b42704afc1",
+                    "path": "<NPad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Help",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "719ff592-c933-48a2-bf40-ee4452f0dd90",
                     "path": "<NPad>/start",
                     "interactions": "",
