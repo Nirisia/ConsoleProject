@@ -368,6 +368,9 @@ namespace Com.IsartDigital.ChaseTag
         {
             sliderSetting_Round.value = round;
             sliderSetting_Time.value = time;
+
+            setRoundNumberSlider(round);
+            setRoundTimeSlider(time);
         }
 
         public void DisplaySetting(InputAction.CallbackContext callback)

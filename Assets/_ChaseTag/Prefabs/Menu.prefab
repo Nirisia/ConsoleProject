@@ -3855,7 +3855,7 @@ RectTransform:
   m_GameObject: {fileID: 3034856236830629104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 3034856238183317070}
   m_RootOrder: 1
@@ -3906,7 +3906,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: TAG
+  m_Text: THE KING
 --- !u!1 &3034856236839882927
 GameObject:
   m_ObjectHideFlags: 0
@@ -4143,7 +4143,7 @@ RectTransform:
   m_GameObject: {fileID: 3034856237194487091}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 3034856238183317070}
   m_RootOrder: 0
@@ -4194,7 +4194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CHASE
+  m_Text: LONG LIVE
 --- !u!1 &3034856237308546820
 GameObject:
   m_ObjectHideFlags: 0

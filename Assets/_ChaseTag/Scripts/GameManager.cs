@@ -155,7 +155,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag {
             //if use PlayerPref init here (don t forget first time opening)
             /* TimeLimit = playerpref time
                RoundNumber = playerpref round*/
-
+            
             UIManager.Instance.initSliderValue(RoundNumber, TimeLimit);
         }
 
