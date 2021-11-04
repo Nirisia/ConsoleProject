@@ -318,19 +318,19 @@ namespace Com.IsartDigital.ChaseTag
             if (helpPageCounter == 0 || helpPageCounter == helpPage)
             {
                 EventSystem.current?.SetSelectedGameObject(null);
-                isHelp = !isHelp;
 
-                if (isHelp)
+                if (!isHelp)
                 {
                     PlayerManager.Instance.HidePlayer();
                     PlayerManager.Instance.GetComponent<PlayerInputManager>().DisableJoining();
                     EventSystem.current?.SetSelectedGameObject(sliderSetting_Round.gameObject);
+                    isHelp = true;
                 }
                 else
                 {
                     PlayerManager.Instance.ShowPlayer();
                     PlayerManager.Instance.GetComponent<PlayerInputManager>().EnableJoining();
-
+                    isHelp = false;
                 }
             }
 
