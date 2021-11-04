@@ -80,6 +80,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
         private CameraShake cameraShake = default;
 
         private Coroutine stunCoroutine;
+        public int npadID = 0;
 
         //private int numCollectiblesCollected = 0;
         //public int NumCollectiblesCollected => numCollectiblesCollected;
@@ -124,7 +125,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
             doAction();
             KeepCrownInPlace();
 
-            int id = PlayerManager.Instance.GetPlayerId(this);
+            //int id = PlayerManager.Instance.GetPlayerId(this);
         }
 
         void FixedUpdate()
@@ -230,7 +231,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
                 cameraShake.enabled = true;
                 audioSource.clip = sounds_collision[0];
                 audioSource.Play();
-                InputManager.Instance.PlayVibrationFile(collisionVibrationAsset, PlayerManager.Instance.GetPlayerId(this));
+                StartCoroutine(InputManager.Instance.PlayVibrationFile(collisionVibrationAsset, npadID));
             }
 
             if (currentState == PlayerState.CAT && collision.collider.CompareTag(playerTag) && stunCoroutine == null)
@@ -423,7 +424,7 @@ namespace Com.IsartDigital.ChaseTag.ChaseTag
                 rb.AddForce(velocity.normalized * currentDash, ForceMode.Impulse);
 
                 StartCoroutine(DashCooldown());
-                StartCoroutine(InputManager.Instance.PlayVibrationFile(dashVibrationAsset, PlayerManager.Instance.GetPlayerId(this)));
+                StartCoroutine(InputManager.Instance.PlayVibrationFile(dashVibrationAsset, npadID));
 
                 fx_Dash.Play();
 

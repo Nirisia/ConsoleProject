@@ -20,6 +20,8 @@ namespace Com.IsartDigital.ChaseTag
         [SerializeField] private PlayerInputManager playerInputmanager = default;
         [SerializeField] private GameObject playerPrefab = default;
 
+        public List<string> testNpad;
+
         private class NpadData
         {
             public NpadData(NpadId npadId)
@@ -107,6 +109,10 @@ namespace Com.IsartDigital.ChaseTag
             PlayerManager.Instance.PlayerJoined(playerInput.playerIndex);
             PlayerManager.Instance.ReplacePlayer(playerInput.playerIndex, playerInput.gameObject.transform);
             CameraFollow.Instance.targets.Add(myPlayer.transform);
+
+            GetNpadID(playerInput);
+
+            Debug.LogError(playerInput.devices[0].name);
         }
 
         public void OnPlayerLeft(PlayerInput playerInput)
@@ -126,6 +132,31 @@ namespace Com.IsartDigital.ChaseTag
 
             playerInputmanager.onPlayerJoined -= OnPlayerJoined;
             playerInputmanager.onPlayerLeft -= OnPlayerLeft;
+        }
+
+        private void GetNpadID(PlayerInput playerInput)
+        {
+            switch (playerInput.devices[0].name)
+            {
+                case "NPad1":
+                    PlayerManager.Instance.playerInfos[playerInput.playerIndex].player.npadID = 0;
+                    break;
+
+                case "NPad2":
+                    PlayerManager.Instance.playerInfos[playerInput.playerIndex].player.npadID = 1;
+                    break;
+
+                case "NPad3":
+                    PlayerManager.Instance.playerInfos[playerInput.playerIndex].player.npadID = 2;
+                    break;
+
+                case "NPad4":
+                    PlayerManager.Instance.playerInfos[playerInput.playerIndex].player.npadID = 3;
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         private void UpdateVibrationDeviceHandles(ref NpadData data)
