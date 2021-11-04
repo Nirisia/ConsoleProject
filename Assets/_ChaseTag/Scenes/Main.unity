@@ -2383,6 +2383,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: don't get hit by it. you will lose your crown !
       objectReference: {fileID: 0}
+    - target: {fileID: 328477798989712599, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50.274048
+      objectReference: {fileID: 0}
     - target: {fileID: 517737963117066890, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2753,15 +2757,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4357183479862004939, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1438.4
+      value: 1068.6
       objectReference: {fileID: 0}
     - target: {fileID: 4357183479862004939, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 121.4
+      value: 152.3
       objectReference: {fileID: 0}
     - target: {fileID: 4357183479862004939, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 241.2
+      value: 611
       objectReference: {fileID: 0}
     - target: {fileID: 4598267415212170898, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchorMax.y
