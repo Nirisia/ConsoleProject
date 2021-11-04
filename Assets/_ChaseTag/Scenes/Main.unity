@@ -2380,9 +2380,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 252200654126955992, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
-      propertyPath: m_Text
-      value: don't get hit by it. you will lose your crown !
+    - target: {fileID: 542775906, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 328477798989712599, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -58.442993
       objectReference: {fileID: 0}
     - target: {fileID: 517737963117066890, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2543,10 +2547,6 @@ PrefabInstance:
     - target: {fileID: 3045085682541224467, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3143079963860234672, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1930
       objectReference: {fileID: 0}
     - target: {fileID: 3256751465592943894, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: audioSourceFx
@@ -2756,18 +2756,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4357183479862004939, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1438.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4357183479862004939, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 121.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4357183479862004939, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 241.20001
-      objectReference: {fileID: 0}
     - target: {fileID: 4598267415212170898, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2846,7 +2834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6834980054622202629, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_Value
-      value: 2.89
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7509919484592365075, guid: 5d303ae40110de240ba0f1e163ab1dc4, type: 3}
       propertyPath: m_AnchoredPosition.x
